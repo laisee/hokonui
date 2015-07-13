@@ -1,5 +1,5 @@
 from exchanges.base import Exchange
-
+from helpers import apply_format
 
 class Bitfinex(Exchange):
 
@@ -7,12 +7,12 @@ class Bitfinex(Exchange):
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return data.get('last_price')
+        return apply_format(data.get('last_price'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return data.get('bid')
+        return apply_format(data.get('bid'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return data.get('ask')
+        return apply_format(data.get('ask'))

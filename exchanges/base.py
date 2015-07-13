@@ -1,5 +1,4 @@
 from decimal import Decimal
-
 from helpers import get_response, get_datetime
 
 
@@ -23,19 +22,16 @@ class Exchange(object):
     def get_current_price(cls):
         body = cls.BODY if hasattr(cls, 'BODY') else None
         data = get_response(cls.TICKER_URL,body)
-        price = cls._current_price_extractor(data)
-        return Decimal(price)
+        return cls._current_price_extractor(data)
 
     @classmethod
     def get_current_bid(cls):
         body = cls.BODY if hasattr(cls, 'BODY') else None
         data = get_response(cls.TICKER_URL,body)
-        price = cls._current_bid_extractor(data)
-        return Decimal(price)
+        return cls._current_bid_extractor(data)
 
     @classmethod
     def get_current_ask(cls):
         body = cls.BODY if hasattr(cls, 'BODY') else None
         data = get_response(cls.TICKER_URL,body)
-        price = cls._current_ask_extractor(data)
-        return Decimal(price)
+        return cls._current_ask_extractor(data)

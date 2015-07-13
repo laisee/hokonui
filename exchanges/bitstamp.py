@@ -1,4 +1,5 @@
 from exchanges.base import Exchange
+from helpers import apply_format
 
 class Bitstamp(Exchange):
 
@@ -6,12 +7,12 @@ class Bitstamp(Exchange):
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return data.get('last')
+        return apply_format(data.get('last'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return data.get('bid')
+        return apply_format(data.get('bid'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return data.get('ask')
+        return apply_format(data.get('ask'))

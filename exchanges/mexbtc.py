@@ -1,6 +1,6 @@
 from decimal import Decimal
 from exchanges.base import Exchange
-
+from helpers import apply_format
 
 class MexBtc(Exchange):
 
@@ -9,12 +9,12 @@ class MexBtc(Exchange):
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return format(Decimal(data.get('last')),'.6f')
+        return apply_format(data.get('last'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return format(Decimal(data.get('bid')),'.6f')
+        return apply_format(data.get('bid'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return format(Decimal(data.get('ask')),'.6f')
+        return apply_format(data.get('ask'))

@@ -1,5 +1,5 @@
 from exchanges.base import Exchange
-
+from helpers import apply_format
 
 class Huobi(Exchange):
 
@@ -7,12 +7,12 @@ class Huobi(Exchange):
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return data.get('ticker', {}).get('last')
+        return apply_format(data.get('ticker', {}).get('last'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return data.get('ticker', {}).get('buy')
+        return apply_format(data.get('ticker', {}).get('buy'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return data.get('ticker', {}).get('sell')
+        return apply_format(data.get('ticker', {}).get('sell'))
