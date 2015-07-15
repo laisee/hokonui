@@ -1,5 +1,4 @@
-1. add unit tests
-2. add new exchanges - ITBIT, CoinSetter, Kraken(EURO)
-3. add handling for currencies 
-4. add order books
-5. move URLs into config file 
+1. add new exchanges - ITBIT, CoinSetter, Kraken(EURO)
+2. add handling for currencies 
+3. add order books
+4. move URLs into config file 
