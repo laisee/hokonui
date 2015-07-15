@@ -2,7 +2,6 @@ import requests,json
 from datetime import datetime
 from decimal import Decimal
 
-
 def apply_format(value):
     return format(Decimal(value),'.5f')
 
