@@ -1,4 +1,4 @@
-1. add new exchanges - ITBIT, CoinSetter, Kraken(EURO)
-2. add handling for currencies 
-3. add order books
+1. add order books ( Mex, Bitstamp, Huobi)
+2. add new exchanges - CoinSetter, Kraken(EURO), Quoine
+3. add ts to returned data ( price, orders )
 4. move URLs into config file 

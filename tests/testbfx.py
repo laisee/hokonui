@@ -23,5 +23,13 @@ class TestBitfinex():
       #print 'Ask   ', bfx.get_current_ask()
       ok_(bfx.get_current_ask('USD')>0.00)
 
+  def test_orders(self):
+      orders = bfx.get_current_orders(None,20)
+      ok_(len(orders["Asks"])>0, "Asks array should not be empty")
+      ok_(len(orders["Bids"])>0, "Bids array should not be empty")
+      ok_(orders["Source"]=="ITBIT", "Source should be 'ITBIT'")
+      ok_(float(orders["Timestamp"])>0,"Timestamp should be greater than zero")
+      #raise ValueError(str(orders))
+
 if __name__ == '__main__':
     nosetools.runmodule()
