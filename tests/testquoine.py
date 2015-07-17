@@ -33,14 +33,15 @@ class TestQuoine(TestCase):
 
   def test_orders(self):
       ccy_id = self.Ccy2Id('USD')
-      orders = q.get_current_orders(ccy_id)
+      orders = q.get_current_orders(ccy_id,50)
       ok_(len(orders["Asks"])>0, "Asks array should not be empty")
       ok_(len(orders["Bids"])>0, "Bids array should not be empty")
       ok_(orders["Source"]=="Quoine", "Source should be 'Quoine'")
       ok_(float(orders["Timestamp"])>0,"Timestamp should be greater than zero")
-      raise ValueError(str(orders))
+      #raise ValueError(str(orders))
 
-  def Ccy2Id(self,ccy):
+  @staticmethod
+  def Ccy2Id(ccy):
      id = -1
      if ccy == 'USD':
         id = 1
