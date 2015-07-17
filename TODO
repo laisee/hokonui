@@ -1,5 +1,5 @@
-1. add new exchanges - CoinSetter, Kraken(EURO), Quoine
-2. add ts to returned data ( price, orders )
+1. add new exchanges - Kraken(EURO)
+2. add ts to returned data ( price )
 3. move URLs into config file 
 4. fix okcoin
 5. refactor formatter

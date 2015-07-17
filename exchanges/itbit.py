@@ -9,9 +9,6 @@ class Itbit(Exchange):
     DEFAULT_MAX_ORDERBOOK_CUM_QTY = 10000.00
     NAME = 'Itbit'
 
-    def __init__(self):
-        self.name = 'ItBit'
-
     @classmethod
     def _current_price_extractor(cls, data):
         return apply_format(data.get('lastPrice'))
