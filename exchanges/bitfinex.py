@@ -6,6 +6,7 @@ class Bitfinex(Exchange):
 
     TICKER_URL = 'https://api.bitfinex.com/v1/pubticker/btc%s'
     ORDER_BOOK_URL = 'https://api.bitfinex.com/v1/book/BTCUSD'
+    NAME = 'Bitfinex'
 
     @classmethod
     def _current_price_extractor(cls, data):
@@ -40,7 +41,7 @@ class Bitfinex(Exchange):
                 asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
             sellMax = sellMax + float(level["amount"])
 
-        orders["Source"] = "ITBIT"
+        orders["Source"] = "Bitfinex"
         orders["Bids"] = bids
         orders["Asks"] = asks
         orders["Timestamp"] = str(int(time.time()))

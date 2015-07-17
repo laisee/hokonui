@@ -6,6 +6,7 @@ class Exchange(object):
 
     TICKER_URL = None
     ORDER_BOOK_URL = None
+    NAME = 'Base'
 
     @classmethod
     def _current_price_extractor(cls, data):

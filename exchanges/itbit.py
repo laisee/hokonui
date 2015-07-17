@@ -7,6 +7,10 @@ class Itbit(Exchange):
     TICKER_URL = 'https://api.itbit.com/v1/markets/XBT%s/ticker'
     ORDER_BOOK_URL = 'https://api.itbit.com/v1/markets/XBT%s/order_book'
     DEFAULT_MAX_ORDERBOOK_CUM_QTY = 10000.00
+    NAME = 'Itbit'
+
+    def __init__(self):
+        self.name = 'ItBit'
 
     @classmethod
     def _current_price_extractor(cls, data):

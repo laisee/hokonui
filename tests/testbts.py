@@ -1,3 +1,4 @@
+import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
@@ -18,6 +19,9 @@ class TestBitstamp(TestCase):
   def tearDown(self):
       print(__name__, ': TestClass.teardown_class() -------')
  
+  def test_name(self):
+      ok_(bts.NAME==string.replace(type(self).__name__,'Test',''))
+
   def test_price(self):
       print(__name__)
       #print 'Ask   ', bts.get_current_ask()

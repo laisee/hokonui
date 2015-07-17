@@ -19,6 +19,9 @@ class TestMockExchange(TestCase):
   def tearDown(self):
       print(__name__, ': TestClass.teardown_class() -------')
 
+  def test_exchange_name(self):
+      ok_(mock.NAME != '')
+
   def test_price_fails_no_currency(self):
       with assert_raises(ValueError) as cm:
           mock.get_current_price(None)

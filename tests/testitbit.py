@@ -1,3 +1,4 @@
+import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
@@ -17,6 +18,9 @@ class TestItbit(TestCase):
 
   def tearDown(self):
       print(__name__, ': TestClass.teardown_class() -------')
+
+  def test_name(self):
+      ok_(itb.NAME==string.replace(type(self).__name__,'Test',''))
 
   def test_price(self):
       #print 'Ask   ', itb.get_current_ask()

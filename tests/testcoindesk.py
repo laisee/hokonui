@@ -1,5 +1,8 @@
 import nose
+import string
+from unittest import TestCase
 from nose.tools import ok_
+
 if __package__ is None:
     import sys
     from os import path
@@ -8,7 +11,10 @@ if __package__ is None:
 else:
     from ..exchanges.coindesk import CoinDesk as coin 
 
-class TestCoinDesk():
+class TestCoinDesk(TestCase):
+
+  def test_name(self):
+      ok_(coin.NAME==string.replace(type(self).__name__,'Test',''))
 
   def test_price(self):
       #print 'Ask   ', coin.get_current_ask()

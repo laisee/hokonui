@@ -5,9 +5,9 @@ from helpers import apply_format
 class MexBtc(Exchange):
 
     TICKER_URL = 'https://public-api.mexbt.com/v1/ticker'
-    ORDER_BOOK_URL = 'https://data.mexbt.com/order-book/btc%s'
-
+    ORDER_BOOK_URL = 'https://public-api.mexbt.com/v1/order-book'
     BODY = '{"productPair": "BTCUSD"}'
+    NAME = 'MexBtc' 
 
     @classmethod
     def _current_price_extractor(cls, data):
@@ -23,11 +23,8 @@ class MexBtc(Exchange):
 
     @classmethod
     def _current_orders_extractor(cls,data,max_qty=3):
-        orders = {}
-        bids = {}
-        asks = {}
-        buyMax = 0
-        sellMax = 0
+        orders, bids,asks = {}
+        buyMax, sellMax = 0
         for level in data["bids"]:
             if buyMax > max_qty:
                continue
@@ -42,7 +39,7 @@ class MexBtc(Exchange):
                 asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
             sellMax = sellMax + float(level[1])
 
-        orders["Source"] = "ITBIT"
+        orders["Source"] = "MexBtc"
         orders["Bids"] = bids
         orders["Asks"] = asks
         orders["Timestamp"] = str(int(time.time()))

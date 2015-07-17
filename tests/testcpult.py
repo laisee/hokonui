@@ -1,5 +1,7 @@
+import string
 import nose
 from nose.tools import ok_
+from unittest import TestCase
 
 if __package__ is None:
     import sys
@@ -9,7 +11,10 @@ if __package__ is None:
 else:
     from ..exchanges.coinapult import Coinapult as cplt 
 
-class TestCoinapult():
+class TestCoinapult(TestCase):
+
+  def test_name(self):
+      ok_(cplt.NAME==string.replace(type(self).__name__,'Test',''))
 
   def test_price(self):
       #print 'Ask   ', cplt.get_current_ask()

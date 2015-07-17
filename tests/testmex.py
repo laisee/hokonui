@@ -1,6 +1,7 @@
 import nose
 from nose.tools import ok_
-import os, sys
+import string
+from unittest import TestCase
 
 if __package__ is None:
     import sys
@@ -10,13 +11,18 @@ if __package__ is None:
 else:
     from ..exchanges.mexbtc import MexBtc as mex
 
-class TestMex():
+class TestMexBtc(TestCase):
   
   def setup_func():
     "set up test fixtures"
 
   def teardown_func():
     "tear down test fixtures"
+
+  def test_name(self):
+      print mex.NAME
+      print type(self).__name__
+      ok_(mex.NAME==string.replace(type(self).__name__,'Test',''))
 
   def test_price(self):
       #print 'Ask   ', mex.get_current_ask()
@@ -34,7 +40,7 @@ class TestMex():
       orders = mex.get_current_orders('USD')
       ok_(len(orders["Asks"])>0, "Asks array should not be empty")
       ok_(len(orders["Bids"])>0, "Bids array should not be empty")
-      ok_(orders["Source"]=="ITBIT", "Source should be 'ITBIT'")
+      ok_(orders["Source"]=="MexBtc", "Source should be 'MexBtc'")
       ok_(float(orders["Timestamp"])>0,"Timestamp should be greater than zero")
       #raise ValueError(str(orders))
 

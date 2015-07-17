@@ -15,14 +15,17 @@ def get_response(url,ccy,body=None):
     guard(url, ccy)
     if ccy:
        url = url % ccy 
-    if body:
-        data = json.loads(body)
-        response = requests.post(url,json=data)
-    else:
-        response = requests.get(url)
-    response.raise_for_status()
-    print str(response) 
-    return response.json()
+    try:
+        if body:
+            data = json.loads(body)
+            response = requests.post(url,json=data)
+        else:
+            response = requests.get(url)
+        response.raise_for_status()
+        json_response = response.json()
+        return json_response
+    except Exception as e:
+        raise Exception('API request rejected: %s' % str(e))
 
 def guard(url,ccy):
     if ccy:

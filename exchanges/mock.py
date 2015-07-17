@@ -4,6 +4,7 @@ from helpers import apply_format
 class MockExchange(Exchange):
 
     TICKER_URL = 'https://api.mock.com/v1/markets/XBT%s/ticker'
+    NAME = 'MockExchange'
 
     @classmethod
     def _current_price_extractor(cls, data):

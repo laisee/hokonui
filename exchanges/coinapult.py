@@ -10,6 +10,7 @@ class Coinapult(object):
         (2500, 'vip'),
         (5000, 'vip+')
     ]
+    NAME = 'Coinapult'
 
     @classmethod
     def get_current_price(cls,ccy):

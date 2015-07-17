@@ -2,6 +2,8 @@ from helpers import get_datetime, get_response, apply_format
 
 class CoinDesk(object):
 
+    NAME = 'CoinDesk'
+
     @classmethod
     def get_current_price(cls,ccy='USD'):
         url = 'https://api.coindesk.com/v1/bpi/currentprice/%s.json'
