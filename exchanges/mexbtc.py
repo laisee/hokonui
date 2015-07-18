@@ -1,6 +1,6 @@
 from decimal import Decimal
 from exchanges.base import Exchange
-from helpers import apply_format
+from utils.helpers import apply_format
 
 class MexBtc(Exchange):
 

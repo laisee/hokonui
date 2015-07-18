@@ -1,6 +1,6 @@
 import time
 from exchanges.base import Exchange
-from helpers import apply_format, apply_format_level
+from utils.helpers import apply_format, apply_format_level
 
 class CoinSetter(Exchange):
 
@@ -39,7 +39,7 @@ class CoinSetter(Exchange):
                 bids[apply_format_level(level["bid"]["price"])] = "{:.8f}".format(float(level["bid"]["size"]))
             sellMax = sellMax + float(level["bid"]["size"])
  
-        orders["Source"] = "ITBIT"
+        orders["Source"] = "CoinSetter"
         orders["Bids"] = bids
         orders["Asks"] = asks
         orders["Timestamp"] = str(int(time.time()))

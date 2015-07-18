@@ -1,6 +1,5 @@
-1. add new exchanges - Kraken(EURO)
+1. add new exchanges - Kraken(EURO), CoinBase, BTC-E, BitMex
 2. add ts to returned data ( price )
 3. move URLs into config file 
-4. fix okcoin
-5. refactor formatter
-6. fix mex
+4. refactor formatter
+5. fix mex

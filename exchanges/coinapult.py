@@ -1,4 +1,4 @@
-from helpers import get_response, apply_format
+from utils.helpers import get_response, apply_format
 
 class Coinapult(object):
 
