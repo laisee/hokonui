@@ -11,13 +11,15 @@ def apply_format_level(value):
 def get_datetime():
     return datetime.now().strftime('%Y-%m-%d %h:%m:%s')
 
-def get_response(url,ccy,body=None):
+def get_response(url,ccy,body=None,params=None):
     guard(url, ccy)
     #print "URL ", url 
     #print "CCY ", ccy 
     #print "BODY ", body 
     if ccy:
        url = url % ccy 
+    if params:
+       url = "%s%s" % (url,params) 
     try:
         if body:
             data = json.loads(body)

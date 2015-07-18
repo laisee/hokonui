@@ -28,21 +28,21 @@ class Exchange(object):
         raise NotImplementedError
 
     @classmethod
-    def get_current_price(cls,ccy=None):
+    def get_current_price(cls,ccy=None,params=None):
         body = cls.BODY if hasattr(cls, 'BODY') else None
-        data = get_response(cls.TICKER_URL,ccy,body)
+        data = get_response(cls.TICKER_URL,ccy,body,params)
         return cls._current_price_extractor(data)
 
     @classmethod
-    def get_current_bid(cls,ccy=None):
+    def get_current_bid(cls,ccy=None,params=None):
         body = cls.BODY if hasattr(cls, 'BODY') else None
-        data = get_response(cls.TICKER_URL,ccy,body)
+        data = get_response(cls.TICKER_URL,ccy,body,params)
         return cls._current_bid_extractor(data)
 
     @classmethod
-    def get_current_ask(cls,ccy=None):
+    def get_current_ask(cls,ccy=None,params=None):
         body = cls.BODY if hasattr(cls, 'BODY') else None
-        data = get_response(cls.TICKER_URL,ccy,body)
+        data = get_response(cls.TICKER_URL,ccy,body,params)
         return cls._current_ask_extractor(data)
 
     @classmethod
