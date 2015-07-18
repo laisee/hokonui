@@ -44,5 +44,5 @@ class OKCoin(Exchange):
         orders["Bids"] = bids
         orders["Asks"] = asks
         orders["Timestamp"] = str(int(time.time()))
-        raise ValueError(str(orders))
+        #raise ValueError(str(orders))
         return orders

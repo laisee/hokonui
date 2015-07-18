@@ -20,24 +20,19 @@ class TestMexBtc(TestCase):
     "tear down test fixtures"
 
   def test_name(self):
-      print mex.NAME
-      print type(self).__name__
       ok_(mex.NAME==string.replace(type(self).__name__,'Test',''))
 
   def test_price(self):
-      #print 'Ask   ', mex.get_current_ask()
       ok_(mex.get_current_price() > 0.00)
 
   def test_bid(self):
-      #print 'Bid   ', mex.get_current_bid()
       ok_(mex.get_current_bid() > 0.00)
 
   def test_ask(self):
-      #print 'Ask   ', mex.get_current_ask()
       ok_(mex.get_current_ask() > 0.00)
 
   def test_orders(self):
-      orders = mex.get_current_orders('USD')
+      orders = mex.get_current_orders()
       ok_(len(orders["Asks"])>0, "Asks array should not be empty")
       ok_(len(orders["Bids"])>0, "Bids array should not be empty")
       ok_(orders["Source"]=="MexBtc", "Source should be 'MexBtc'")

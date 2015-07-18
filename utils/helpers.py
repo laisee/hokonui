@@ -1,4 +1,4 @@
-import requests,json
+import requests,json, sys, traceback
 from datetime import datetime
 from decimal import Decimal
 
@@ -13,6 +13,9 @@ def get_datetime():
 
 def get_response(url,ccy,body=None):
     guard(url, ccy)
+    #print "URL ", url 
+    #print "CCY ", ccy 
+    #print "BODY ", body 
     if ccy:
        url = url % ccy 
     try:
@@ -21,11 +24,15 @@ def get_response(url,ccy,body=None):
             response = requests.post(url,json=data)
         else:
             response = requests.get(url)
+        #print str(response) 
         response.raise_for_status()
         json_response = response.json()
         return json_response
     except Exception as e:
-        raise Exception('API request rejected: %s' % str(e))
+        print "Exception in API request %s " % url
+        print '-'*60
+        traceback.print_exc(file=sys.stdout)
+        print '-'*60
 
 def guard(url,ccy):
     if ccy:
