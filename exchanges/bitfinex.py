@@ -4,6 +4,9 @@ from utils.helpers import apply_format, apply_format_level
 
 class Bitfinex(Exchange):
 
+    """ This is an implementation of the BTC-e private trade API and the public information API.
+        Please refer to https://btc-e.com/api/documentation for API documentation.
+    """
     TICKER_URL = 'https://api.bitfinex.com/v1/pubticker/btc%s'
     ORDER_BOOK_URL = 'https://api.bitfinex.com/v1/book/BTCUSD'
     NAME = 'Bitfinex'
