@@ -12,10 +12,10 @@ def get_datetime():
     return datetime.now().strftime('%Y-%m-%d %h:%m:%s')
 
 def get_response(url,ccy,body=None,params=None):
-    guard(url, ccy)
     #print "URL ", url 
     #print "CCY ", ccy 
     #print "BODY ", body 
+    guard(url, ccy)
     if ccy:
        url = url % ccy 
     if params:
@@ -26,12 +26,11 @@ def get_response(url,ccy,body=None,params=None):
             response = requests.post(url,json=data)
         else:
             response = requests.get(url)
-        #print str(response) 
         response.raise_for_status()
         json_response = response.json()
         return json_response
     except Exception as e:
-        print "Exception in API request %s " % url
+        print "Exception in API request %s : %s " % (url, e)
         print '-'*60
         traceback.print_exc(file=sys.stdout)
         print '-'*60
