@@ -1,4 +1,7 @@
-- [ ] add new exchanges - Kraken(EURO)
+- [ ] add new exchanges 
+  - [ ] Kraken(EURO)
+  - [x] Quoine
+  - [x] BTC-E
 - [ ] add ts to returned data ( price )
 - [ ] move URLs into config file
 - [ ] refactor formatter
