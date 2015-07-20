@@ -11,6 +11,9 @@ def apply_format_level(value):
 def get_datetime():
     return datetime.now().strftime('%Y-%m-%d %h:%m:%s')
 
+def get_timestamp():
+    return time.mktime(time.gmtime())
+
 def get_response(url,ccy,body=None,params=None):
     #print "URL ", url 
     #print "CCY ", ccy 
@@ -27,8 +30,7 @@ def get_response(url,ccy,body=None,params=None):
         else:
             response = requests.get(url)
         response.raise_for_status()
-        json_response = response.json()
-        return json_response
+        return response.json()
     except Exception as e:
         print "Exception in API request %s : %s " % (url, e)
         print '-'*60

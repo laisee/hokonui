@@ -1,6 +1,7 @@
-1. add new exchanges - Kraken(EURO)
-2. add ts to returned data ( price )
-3. move URLs into config file 
-4. refactor formatter
-5. add thread support 
-6. add example using threads
+- [ ] add new exchanges - Kraken(EURO)
+- [ ] add ts to returned data ( price )
+- [ ] move URLs into config file
+- [ ] refactor formatter
+- [ ] add thread support
+- [ ] add example using threads
+- [ ] add support for python3
