@@ -1,7 +1,7 @@
 # hoko
 Python library for querying Bitcoin exchange tickers, order books. 
 
-##Exchanges included currently##
+##Exchanges included##
  - # BTC-E
  - # CoinBase
  - # CoinSetter
@@ -16,7 +16,8 @@ Python library for querying Bitcoin exchange tickers, order books.
  - # CoinDesk
  - # Coinapult
 
-##TODO(see TODO.md for all items)##
+##TODO##
+(see TODO.md for all items)
  - # add to PyPi
  - # add session for querying private account balances
  - # buy/sell
