@@ -19,6 +19,7 @@ Forked from https://github.com/dursk/bitcoin-price-api.
 
 ##Features##
  - single API for multiple exchanges, data providers
+ - full set of tests using nose tool
  - MIT license
  - active development
  - minimal code dependencies
