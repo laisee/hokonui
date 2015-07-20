@@ -1,6 +1,5 @@
 # hoko
 Python library for querying Bitcoin exchange tickers, order books. 
-
 Forked from https://github.com/dursk/bitcoin-price-api.
 
 ##Exchanges included##
@@ -14,10 +13,9 @@ Forked from https://github.com/dursk/bitcoin-price-api.
  - # Quoine
  - # MexBT
 
-##Others##
+##Data Providers##
  - # CoinDesk
  - # Coinapult
-
 ##TODO##
 (see TODO.md for all items)
  - # add simple arbitrage between selected exchanges
