@@ -17,8 +17,13 @@ Forked from https://github.com/dursk/bitcoin-price-api.
  - CoinDesk
  - Coinapult
 
+##Features##
+ - single API for multiple exchanges, data providers
+ - MIT license
+ - active development
+ - minimal code dependencies
+ 
 ##TODO##
-(see TODO.md for all items)
  - add simple arbitrage between selected exchanges
  - add session class for querying account balances
  - add buy/sell
