@@ -3,7 +3,7 @@ Python library for querying Bitcoin exchange tickers, order books.
 
 Forked from https://github.com/dursk/bitcoin-price-api.
 
-##Exchanges included currently##
+##Exchanges included##
  - # BTC-E
  - # CoinBase
  - # CoinSetter
@@ -18,8 +18,9 @@ Forked from https://github.com/dursk/bitcoin-price-api.
  - # CoinDesk
  - # Coinapult
 
-##TODO(see TODO.md for all items)##
- - # add to PyPi
- - # add session for querying private account balances
- - # buy/sell
- - # arbitrage
+##TODO##
+(see TODO.md for all items)
+ - # add simple arbitrage between selected exchanges
+ - # add session class for querying account balances
+ - # add buy/sell
+ - # add library to PyPi
