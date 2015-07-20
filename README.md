@@ -18,7 +18,7 @@ Python library for querying Bitcoin exchange tickers, order books.
 
 ##TODO##
 (see TODO.md for all items)
- - # add to PyPi
- - # add session for querying private account balances
- - # buy/sell
- - # arbitrage
+ - # add simple arbitrage between selected exchanges
+ - # add session class for querying account balances
+ - # add buy/sell
+ - # add library to PyPi
