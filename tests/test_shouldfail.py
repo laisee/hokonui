@@ -3,13 +3,8 @@ from nose.tools import ok_
 from nose.tools import assert_raises
 from unittest import TestCase
 
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.mock import MockExchange as mock
-else:
-    from ..exchanges.mock import Mock as mock
+from context import hoko
+from hoko.exchanges.mock import MockExchange as mock
 
 class TestMockExchange(TestCase):
 
@@ -41,4 +36,4 @@ class TestMockExchange(TestCase):
       ok_(ex.message == "URL https://api.mock.com/v1/markets/XBT%s/ticker should have a currency value supplied")
 
 if __name__ == '__main__':
-    nosetest.runmodule()
+    nose.runmodule()

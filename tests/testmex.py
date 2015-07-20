@@ -2,14 +2,8 @@ import nose
 from nose.tools import ok_
 import string
 from unittest import TestCase
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.mexbtc import MexBtc as mex
-else:
-    from ..exchanges.mexbtc import MexBtc as mex
+from context import hoko
+from hoko.exchanges.mexbtc import MexBtc as mex
 
 class TestMexBtc(TestCase):
   

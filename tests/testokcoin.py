@@ -2,14 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.okcoin import OKCoin as okc
-else:
-    from ..exchanges.okcoin import OKCoin as okc
+from context import hoko
+from hoko.exchanges.okcoin import OKCoin as okc
 
 class TestOkCoin(TestCase):
 
@@ -30,4 +24,4 @@ class TestOkCoin(TestCase):
       ok_(float(orders["Timestamp"])>0,"Timestamp should be greater than zero")
 
 if __name__ == '__main__':
-    nosetests.runmodule()
+    nose.runmodule()

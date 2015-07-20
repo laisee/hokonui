@@ -1,18 +1,15 @@
-import time
-from exchanges.base import Exchange
-from utils.helpers import apply_format, apply_format_level
+from hoko.exchanges.base import Exchange
+from hoko.utils.helpers import apply_format
 
-class MexBtc(Exchange):
+class Bitstamp(Exchange):
 
-    TICKER_URL = 'https://public-api.mexbt.com/v1/ticker'
-    ORDER_BOOK_URL = 'https://public-api.mexbt.com/v1/order-book'
-    BODY = '{"productPair": "BTCUSD"}'
-    NAME = 'MexBtc' 
+    TICKER_URL = 'https://bitstamp.net/api/ticker/'
+    ORDER_BOOK_URL = 'https://www.bitstamp.net/api/order_book'
+    NAME = 'Bitstamp'
 
     @classmethod
     def _current_price_extractor(cls, data):
         return apply_format(data.get('last'))
-        #raise ValueError(str(data))
 
     @classmethod
     def _current_bid_extractor(cls, data):
@@ -33,19 +30,18 @@ class MexBtc(Exchange):
             if buyMax > max_qty:
                continue
             else:
-               bids[apply_format_level(level["px"])] = "{:.8f}".format(float(level["qty"]))
-            buyMax = buyMax + float(level["qty"])
+               bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+            buyMax = buyMax + float(level["amount"])
 
         for level in data["asks"]:
             if sellMax > max_qty:
                 continue
             else:
-                asks[apply_format_level(level["px"])] = "{:.8f}".format(float(level["qty"]))
-            sellMax = sellMax + float(level["qty"])
+               asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+            sellMax = sellMax + float(level["amount"])
 
-        orders["Source"] = "MexBtc"
+        orders["Source"] = "Bitfinex"
         orders["Bids"] = bids
         orders["Asks"] = asks
         orders["Timestamp"] = str(int(time.time()))
-        #raise ValueError(str(orders))
         return orders

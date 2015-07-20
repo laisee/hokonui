@@ -2,14 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.coinsetter import CoinSetter as csttr
-else:
-    from ..exchanges.coinsetter import CoinSetter as csttr
+from context import hoko
+from hoko.exchanges.coinsetter import CoinSetter as csttr
 
 class TestCoinSetter(TestCase):
 
@@ -43,4 +37,4 @@ class TestCoinSetter(TestCase):
       #raise ValueError(str(orders))
 
 if __name__ == '__main__':
-    nosetest.runmodule()
+    nose.runmodule()

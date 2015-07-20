@@ -2,14 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.mock import MockExchange as mock
-else:
-    from ..exchanges.mock import MockExchange as mock
+from context import hoko
+from hoko.exchanges.mock import MockExchange as mock
 
 class TestMockExchange(TestCase):
 
@@ -23,4 +17,4 @@ class TestMockExchange(TestCase):
       ok_(mock.NAME==string.replace(type(self).__name__,'Test',''))
 
 if __name__ == '__main__':
-    nosetest.runmodule()
+    nose.runmodule()

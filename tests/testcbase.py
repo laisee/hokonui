@@ -2,14 +2,8 @@ import nose
 import string
 from nose.tools import ok_
 from unittest import TestCase
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.coinbase import CoinBase as cba
-else:
-    from ..exchanges.coinbase import CoinBase as cba
+from context import hoko
+from hoko.exchanges.coinbase import CoinBase as cba
 
 class TestCoinBase(TestCase):
 

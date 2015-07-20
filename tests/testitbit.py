@@ -2,14 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.itbit import Itbit as itb
-else:
-    from ..exchanges.itbit import Itbit as itb
+from context import hoko
+from hoko.exchanges.itbit import Itbit as itb
 
 class TestItbit(TestCase):
 
@@ -43,4 +37,4 @@ class TestItbit(TestCase):
       #raise ValueError(str(orders))
 
 if __name__ == '__main__':
-    nosetest.runmodule()
+    nose.runmodule()

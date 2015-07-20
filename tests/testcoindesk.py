@@ -2,14 +2,8 @@ import nose
 import string
 from unittest import TestCase
 from nose.tools import ok_
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.coindesk import CoinDesk as coin 
-else:
-    from ..exchanges.coindesk import CoinDesk as coin 
+from context import hoko
+from hoko.exchanges.coindesk import CoinDesk as coin 
 
 class TestCoinDesk(TestCase):
 

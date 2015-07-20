@@ -2,14 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.bitfinex import Bitfinex as bfx
-else:
-    from ..exchanges.bitfinex import Bitfinex as bfx
+from context import hoko
+from hoko.exchanges.bitfinex import Bitfinex as bfx
 
 class TestBitfinex(TestCase):
 

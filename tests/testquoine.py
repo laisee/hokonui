@@ -2,14 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.quoine import Quoine as q
-else:
-    from ..exchanges.quoine import Quoine as q
+from context import hoko
+from hoko.exchanges.quoine import Quoine as q
 
 class TestQuoine(TestCase):
 
@@ -68,4 +62,4 @@ class TestQuoine(TestCase):
      return id
 
 if __name__ == '__main__':
-    nosetest.runmodule()
+    nose.runmodule()

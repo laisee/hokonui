@@ -1,5 +1,5 @@
-from exchanges.base import Exchange
-from utils.helpers import apply_format                                 
+from hoko.exchanges.base import Exchange
+from hoko.utils.helpers import apply_format                                 
 
 class MockExchange(Exchange):
 

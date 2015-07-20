@@ -1,6 +1,6 @@
 import json, time
-from exchanges.base import Exchange
-from utils.helpers import apply_format, apply_format_level
+from hoko.exchanges.base import Exchange
+from hoko.utils.helpers import apply_format, apply_format_level
 
 class Bitfinex(Exchange):
 

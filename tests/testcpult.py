@@ -2,14 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.coinapult import Coinapult as cplt 
-else:
-    from ..exchanges.coinapult import Coinapult as cplt 
+from context import hoko
+from hoko.exchanges.coinapult import Coinapult as cplt 
 
 class TestCoinapult(TestCase):
 

@@ -2,14 +2,8 @@ import nose
 import string
 from nose.tools import ok_
 from unittest import TestCase
-
-if __package__ is None:
-    import sys
-    from os import path
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    from exchanges.btce import BTCE as btce
-else:
-    from ..exchanges.btce import BTCE as btce
+from context import hoko
+from hoko.exchanges.btce import BTCE as btce
 
 class TestBTCE(TestCase):
 
