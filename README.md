@@ -1,4 +1,4 @@
-# hoko
+# Hokonui*
 Python library for querying Bitcoin exchange tickers, order books. 
 
 Forked from https://github.com/dursk/bitcoin-price-api.
@@ -24,3 +24,5 @@ Forked from https://github.com/dursk/bitcoin-price-api.
  - # add session class for querying account balances
  - # add buy/sell
  - # add library to PyPi
+
+* name of a mountain range in southern part of New Zealand
