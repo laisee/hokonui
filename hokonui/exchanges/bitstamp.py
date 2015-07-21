@@ -1,5 +1,5 @@
-from hoko.exchanges.base import Exchange
-from hoko.utils.helpers import apply_format
+from hokonui.exchanges.base import Exchange
+from hokonui.utils.helpers import apply_format
 
 class Bitstamp(Exchange):
 

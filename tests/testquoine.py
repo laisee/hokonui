@@ -2,8 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-from context import hoko
-from hoko.exchanges.quoine import Quoine as q
+from context import hokonui
+from hokonui.exchanges.quoine import Quoine as q
 
 class TestQuoine(TestCase):
 

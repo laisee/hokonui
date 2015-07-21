@@ -1,5 +1,5 @@
 from decimal import Decimal
-from hoko.utils.helpers import get_response, get_datetime
+from hokonui.utils.helpers import get_response, get_datetime
 
 class Exchange(object):
 

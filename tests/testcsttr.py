@@ -2,8 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-from context import hoko
-from hoko.exchanges.coinsetter import CoinSetter as csttr
+from context import hokonui
+from hokonui.exchanges.coinsetter import CoinSetter as csttr
 
 class TestCoinSetter(TestCase):
 

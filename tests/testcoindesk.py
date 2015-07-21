@@ -2,8 +2,8 @@ import nose
 import string
 from unittest import TestCase
 from nose.tools import ok_
-from context import hoko
-from hoko.exchanges.coindesk import CoinDesk as coin 
+from context import hokonui
+from hokonui.exchanges.coindesk import CoinDesk as coin 
 
 class TestCoinDesk(TestCase):
 

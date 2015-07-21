@@ -2,8 +2,8 @@ import nose
 import string
 from nose.tools import ok_
 from unittest import TestCase
-from context import hoko
-from hoko.exchanges.coinbase import CoinBase as cba
+from context import hokonui
+from hokonui.exchanges.coinbase import CoinBase as cba
 
 class TestCoinBase(TestCase):
 

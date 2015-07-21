@@ -2,8 +2,8 @@ import nose
 from nose.tools import ok_
 import string
 from unittest import TestCase
-from context import hoko
-from hoko.exchanges.mexbtc import MexBtc as mex
+from context import hokonui
+from hokonui.exchanges.mexbtc import MexBtc as mex
 
 class TestMexBtc(TestCase):
   

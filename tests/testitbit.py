@@ -2,8 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-from context import hoko
-from hoko.exchanges.itbit import Itbit as itb
+from context import hokonui
+from hokonui.exchanges.itbit import Itbit as itb
 
 class TestItbit(TestCase):
 

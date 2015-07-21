@@ -1,6 +1,6 @@
 import time
-from hoko.exchanges.base import Exchange
-from hoko.utils.helpers import apply_format, apply_format_level
+from hokonui.exchanges.base import Exchange
+from hokonui.utils.helpers import apply_format, apply_format_level
 
 class OKCoin(Exchange):
 

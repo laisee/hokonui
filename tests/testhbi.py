@@ -2,8 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-from context import hoko
-from hoko.exchanges.huobi import Huobi as hbi 
+from context import hokonui
+from hokonui.exchanges.huobi import Huobi as hbi 
 
 class TestHuobi(TestCase):
 

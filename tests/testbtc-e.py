@@ -2,8 +2,8 @@ import nose
 import string
 from nose.tools import ok_
 from unittest import TestCase
-from context import hoko
-from hoko.exchanges.btce import BTCE as btce
+from context import hokonui
+from hokonui.exchanges.btce import BTCE as btce
 
 class TestBTCE(TestCase):
 

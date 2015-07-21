@@ -8,6 +8,6 @@ if __package__ is None:
     from os import path
     sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
 
-import hoko
-import hoko.exchanges
-import hoko.utils
+import hokonui
+import hokonui.exchanges
+import hokonui.utils

@@ -2,8 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-from context import hoko
-from hoko.exchanges.bitstamp import Bitstamp as bts 
+from context import hokonui
+from hokonui.exchanges.bitstamp import Bitstamp as bts 
 
 class TestBitstamp(TestCase):
 

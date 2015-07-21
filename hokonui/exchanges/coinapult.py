@@ -1,4 +1,4 @@
-from hoko.utils.helpers import get_response, apply_format
+from hokonui.utils.helpers import get_response, apply_format
 
 class Coinapult(object):
 

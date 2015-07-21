@@ -2,8 +2,8 @@ import string
 import nose
 from nose.tools import ok_
 from unittest import TestCase
-from context import hoko
-from hoko.exchanges.bitfinex import Bitfinex as bfx
+from context import hokonui
+from hokonui.exchanges.bitfinex import Bitfinex as bfx
 
 class TestBitfinex(TestCase):
 

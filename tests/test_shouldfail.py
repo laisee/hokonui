@@ -3,8 +3,8 @@ from nose.tools import ok_
 from nose.tools import assert_raises
 from unittest import TestCase
 
-from context import hoko
-from hoko.exchanges.mock import MockExchange as mock
+from context import hokonui
+from hokonui.exchanges.mock import MockExchange as mock
 
 class TestMockExchange(TestCase):
 
