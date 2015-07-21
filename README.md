@@ -10,6 +10,7 @@ Forked from https://github.com/dursk/bitcoin-price-api.
  - CoinBase
  - CoinSetter
  - Huobi
+ - itBit
  - OKCoin
  - MexBT
  - Quoine
