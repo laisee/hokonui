@@ -30,7 +30,8 @@ class Exchange(object):
     @classmethod
     def get_current_price(cls,ccy=None,params=None):
         body = cls.BODY if hasattr(cls, 'BODY') else None
-        data = get_response(cls.TICKER_URL,ccy,body,params)
+        url = cls.PRICE_URL if hasattr(cls,'PRICE_URL') else cls.TICKER_URL
+        data = get_response(url,ccy,body,params)
         return cls._current_price_extractor(data)
 
     @classmethod
