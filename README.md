@@ -4,14 +4,16 @@ Forked from https://github.com/dursk/bitcoin-price-api.
 
 ##Exchanges included##
  - BTC-E
- - CoinBase
- - CoinSetter
+ - BitX
  - Bitfinex
  - Bitstamp
+ - CoinBase
+ - CoinSetter
  - Huobi
+ - itBit
  - OKCoin
- - Quoine
  - MexBT
+ - Quoine
 
 ##Data Providers##
  - CoinDesk
