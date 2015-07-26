@@ -24,6 +24,10 @@ class Exchange(object):
         raise NotImplementedError
 
     @classmethod
+    def _current_ticker_extractor(cls, data):
+        raise NotImplementedError
+
+    @classmethod
     def _current_orders_extractor(cls, data):
         raise NotImplementedError
 

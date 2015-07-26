@@ -1,5 +1,6 @@
 import time
 from hokonui.exchanges.base import Exchange
+from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 class CoinSetter(Exchange):
@@ -19,6 +20,10 @@ class CoinSetter(Exchange):
     @classmethod
     def _current_ask_extractor(cls, data):
         return apply_format(data["ask"].get('price'))
+
+    @classmethod
+    def _current_ticker_extractor(cls, data):
+        return Ticker('USD',apply_format(data["bid"].get('price')),apply_format(data["ask"].get('price')))
 
     @classmethod
     def _current_orders_extractor(cls,data,max_qty=3):

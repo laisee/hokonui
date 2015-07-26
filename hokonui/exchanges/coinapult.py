@@ -1,4 +1,5 @@
 from hokonui.utils.helpers import get_response, apply_format
+from hokonui.models.ticker import Ticker
 
 class Coinapult(object):
 
@@ -34,6 +35,13 @@ class Coinapult(object):
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
         price = str(data[level]['ask'])
         return apply_format(price)
+
+    @classmethod
+    def _current_ticker_extractor(cls, data):
+        url = cls.TICKER_URL.format(ccy)
+        data = get_response(url,ccy)
+        level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
+        return Ticker('USD',apply_format(str(data[level]['ask'])),apply_format(str(data[level]['bid']))).toJSON()
 
     @classmethod
     def get_current_orders(cls,ccy):
