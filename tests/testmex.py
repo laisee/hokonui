@@ -1,6 +1,7 @@
 import nose
-from nose.tools import ok_
 import string
+import json
+from nose.tools import ok_
 from unittest import TestCase
 from context import hokonui
 from hokonui.exchanges.mexbtc import MexBtc as mex
@@ -24,6 +25,13 @@ class TestMexBtc(TestCase):
 
   def test_ask(self):
       ok_(mex.get_current_ask() > 0.00)
+
+  def test_ticker(self):
+      data = json.loads(mex.get_current_ticker())
+      ok_(data["pair"]=='USD',"pair should be 'USD'")
+      ok_(data["ask"]>0.00,"ask should not be empty")
+      ok_(data["bid"]>0.00,"bid should not be empty")
+      ok_(float(data["timestamp"])>0,"Timestamp should be greater than zero")
 
   def test_orders(self):
       orders = mex.get_current_orders()

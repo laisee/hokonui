@@ -1,4 +1,5 @@
 import nose
+import json
 from nose.tools import ok_
 from nose.tools import assert_raises
 from unittest import TestCase

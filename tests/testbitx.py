@@ -1,5 +1,6 @@
 import string
 import nose
+import json
 from nose.tools import ok_
 from unittest import TestCase
 from context import hokonui
@@ -24,6 +25,13 @@ class TestBitX(TestCase):
 
   def test_ask(self):
       ok_(btx.get_current_ask('ZAR')>0.00)
+
+  def test_ticker(self):
+      data = json.loads(btx.get_current_ticker('ZAR'))
+      ok_(data["pair"]=='USD',"pair should be 'ZAR'")
+      ok_(data["ask"]>0.00,"ask should not be empty")
+      ok_(data["bid"]>0.00,"bid should not be empty")
+      ok_(float(data["timestamp"])>0,"Timestamp should be greater than zero")
 
   def test_orders(self):
       orders = btx.get_current_orders('ZAR',5)

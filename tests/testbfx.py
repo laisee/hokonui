@@ -1,5 +1,6 @@
 import string
 import nose
+import json
 from nose.tools import ok_
 from unittest import TestCase
 from context import hokonui
@@ -11,16 +12,20 @@ class TestBitfinex(TestCase):
       ok_(bfx.NAME==string.replace(type(self).__name__,'Test',''))
 
   def test_price(self):
-      #print 'Ask   ', bfx.get_current_ask()
       ok_(bfx.get_current_price('USD')>0.00)
 
   def test_bid(self):
-      #print 'Bid   ', bfx.get_current_bid()
       ok_(bfx.get_current_bid('USD')>0.00)
 
   def test_ask(self):
-      #print 'Ask   ', bfx.get_current_ask()
       ok_(bfx.get_current_ask('USD')>0.00)
+
+  def test_ticker(self):
+      data = json.loads(bfx.get_current_ticker('USD'))
+      ok_(data["pair"]=='USD',"pair should be 'USD'")
+      ok_(data["ask"]>0.00,"ask should not be empty")
+      ok_(data["bid"]>0.00,"bid should not be empty")
+      ok_(float(data["timestamp"])>0,"Timestamp should be greater than zero")
 
   def test_orders(self):
       orders = bfx.get_current_orders(None,20)

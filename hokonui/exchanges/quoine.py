@@ -23,7 +23,7 @@ class Quoine(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker('USD',apply_format(data.get('market_bid')),apply_format(data.get('market_ask')))
+        return Ticker('USD',apply_format(data.get('market_bid')),apply_format(data.get('market_ask'))).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls,data,max_qty=3):
