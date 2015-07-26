@@ -30,7 +30,6 @@ class TestitBit(TestCase):
       ok_(itb.get_current_ask('USD')>0.00)
 
   def test_ticker(self):
-      #TODOraise ValueError(itb.get_current_ticker('USD'))
       data = json.loads(itb.get_current_ticker('USD'))
       ok_(data["pair"]=='USD',"pair should be 'USD'")
       ok_(data["ask"]>0.00,"ask should not be empty")
@@ -39,10 +38,10 @@ class TestitBit(TestCase):
 
   def test_orders(self):
       orders = itb.get_current_orders('USD')
-      ok_(len(orders["Asks"])>0, "Asks array should not be empty")
-      ok_(len(orders["Bids"])>0, "Bids array should not be empty")
-      ok_(orders["Source"]=="ITBIT", "Source should be 'ITBIT'")
-      ok_(float(orders["Timestamp"])>0,"Timestamp should be greater than zero")
+      ok_(len(orders["asks"])>0, "Asks array should not be empty")
+      ok_(len(orders["bids"])>0, "Bids array should not be empty")
+      ok_(orders["source"]=="ITBIT", "Source should be 'ITBIT'")
+      ok_(float(orders["timestamp"])>0,"Timestamp should be greater than zero")
       #raise ValueError(str(orders))
 
 if __name__ == '__main__':

@@ -42,8 +42,8 @@ class BitFlyer(Exchange):
                 bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
             sellMax = sellMax + float(level["size"])
  
-        orders["Source"] = "BitFlyer"
-        orders["Bids"] = bids
-        orders["Asks"] = asks
-        orders["Timestamp"] = str(int(time.time()))
+        orders["source"] = "BitFlyer"
+        orders["bids"] = bids
+        orders["asks"] = asks
+        orders["timestamp"] = str(int(time.time()))
         return orders

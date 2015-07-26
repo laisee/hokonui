@@ -11,15 +11,12 @@ class TestCoinapult(TestCase):
       ok_(cplt.NAME==string.replace(type(self).__name__,'Test',''))
 
   def test_price(self):
-      #print 'Ask   ', cplt.get_current_ask()
       ok_(cplt.get_current_price('USD')>0.00)
 
   def test_bid(self):
-      #print 'Bid   ', cplt.get_current_bid()
       ok_(cplt.get_current_bid('USD')>0.00)
 
   def test_ask(self):
-      #print 'Ask   ', cplt.get_current_ask()
       ok_(cplt.get_current_ask('USD')>0.00)
 
 if __name__ == '__main__':

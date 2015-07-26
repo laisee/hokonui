@@ -43,9 +43,8 @@ class MexBtc(Exchange):
                 asks[apply_format_level(level["px"])] = "{:.8f}".format(float(level["qty"]))
             sellMax = sellMax + float(level["qty"])
 
-        orders["Source"] = "MexBtc"
-        orders["Bids"] = bids
-        orders["Asks"] = asks
-        orders["Timestamp"] = str(int(time.time()))
-        #raise ValueError(str(orders))
+        orders["source"] = "MexBtc"
+        orders["bids"] = bids
+        orders["asks"] = asks
+        orders["timestamp"] = str(int(time.time()))
         return orders

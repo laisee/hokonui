@@ -27,8 +27,8 @@ class TestCoinBase(TestCase):
 
   def test_orders(self):
       orders = cba.get_current_orders('USD')
-      ok_(len(orders["Asks"])>0, "Asks array should not be empty")
-      ok_(len(orders["Bids"])>0, "Bids array should not be empty")
-      ok_(orders["Source"]=="CoinBase", "Source should be 'CoinBase'")
-      ok_(float(orders["Timestamp"])>0,"Timestamp should be greater than zero")
+      ok_(len(orders["asks"])>0, "Asks array should not be empty")
+      ok_(len(orders["bids"])>0, "Bids array should not be empty")
+      ok_(orders["source"]=="CoinBase", "Source should be 'CoinBase'")
+      ok_(float(orders["timestamp"])>0,"Timestamp should be greater than zero")
       #raise ValueError(str(orders))

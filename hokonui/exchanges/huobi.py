@@ -41,8 +41,8 @@ class Huobi(Exchange):
             else:
                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
             sellMax = sellMax + float(level["amount"])
-        orders["Source"] = "Huobi"
-        orders["Bids"] = bids
-        orders["Asks"] = asks
-        orders["Timestamp"] = str(int(time.time()))
+        orders["source"] = "Huobi"
+        orders["bids"] = bids
+        orders["asks"] = asks
+        orders["timestamp"] = str(int(time.time()))
         return orders

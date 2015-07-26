@@ -41,8 +41,8 @@ class BitX(Exchange):
                 bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["volume"]))
             sellMax = sellMax + float(level["volume"])
  
-        orders["Source"] = "BitX"
-        orders["Bids"] = bids
-        orders["Asks"] = asks
-        orders["Timestamp"] = str(int(time.time()))
+        orders["source"] = "BitX"
+        orders["bids"] = bids
+        orders["asks"] = asks
+        orders["timestamp"] = str(int(time.time()))
         return orders

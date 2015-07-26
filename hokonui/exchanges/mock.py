@@ -4,6 +4,7 @@ from hokonui.utils.helpers import apply_format
 class MockExchange(Exchange):
 
     TICKER_URL = 'https://api.mock.com/v1/markets/XBT%s/ticker'
+    ORDER_BOOK_URL = 'https://api.mock.com/v1/markets/XBT%s/order_book'
     NAME = 'MockExchange'
 
     @classmethod
@@ -12,8 +13,14 @@ class MockExchange(Exchange):
 
     @classmethod
     def _current_bid_extractor(cls, data):
+        raise ValueError('Not implemented yet')
         return apply_format(data.get('bid'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
+        raise ValueError('Not implemented yet')
         return apply_format(data.get('ask'))
+
+    @classmethod
+    def _current_orders_extractor(cls,data,max_qty=3):
+        raise ValueError('Not implemented yet')

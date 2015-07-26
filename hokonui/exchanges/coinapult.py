@@ -36,6 +36,10 @@ class Coinapult(object):
         return apply_format(price)
 
     @classmethod
+    def get_current_orders(cls,ccy):
+        raise ValueError("not implemented for this class")
+
+    @classmethod
     def _pick_level(cls, btc_amount):
         """
         Choose between small, medium, large, ... depending on the

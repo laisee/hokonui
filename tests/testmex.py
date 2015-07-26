@@ -27,10 +27,10 @@ class TestMexBtc(TestCase):
 
   def test_orders(self):
       orders = mex.get_current_orders()
-      ok_(len(orders["Asks"])>0, "Asks array should not be empty")
-      ok_(len(orders["Bids"])>0, "Bids array should not be empty")
-      ok_(orders["Source"]=="MexBtc", "Source should be 'MexBtc'")
-      ok_(float(orders["Timestamp"])>0,"Timestamp should be greater than zero")
+      ok_(len(orders["asks"])>0, "Asks array should not be empty")
+      ok_(len(orders["bids"])>0, "Bids array should not be empty")
+      ok_(orders["source"]=="MexBtc", "Source should be 'MexBtc'")
+      ok_(float(orders["timestamp"])>0,"Timestamp should be greater than zero")
       #raise ValueError(str(orders))
 
 if __name__ == '__main__':

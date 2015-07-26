@@ -42,8 +42,8 @@ class BTCE(Exchange):
                 bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
             sellMax = sellMax + float(level[1])
  
-        orders["Source"] = "BTCE"
-        orders["Bids"] = bids
-        orders["Asks"] = asks
-        orders["Timestamp"] = str(int(time.time()))
+        orders["source"] = "BTCE"
+        orders["bids"] = bids
+        orders["asks"] = asks
+        orders["timestamp"] = str(int(time.time()))
         return orders
