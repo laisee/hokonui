@@ -1,13 +1,13 @@
 import time
 from hokonui.exchanges.base import Exchange
+from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 class Itbit(Exchange):
 
     TICKER_URL = 'https://api.itbit.com/v1/markets/XBT%s/ticker'
     ORDER_BOOK_URL = 'https://api.itbit.com/v1/markets/XBT%s/order_book'
-    DEFAULT_MAX_ORDERBOOK_CUM_QTY = 10000.00
-    NAME = 'Itbit'
+    NAME = 'itBit'
 
     @classmethod
     def _current_price_extractor(cls, data):
@@ -20,6 +20,10 @@ class Itbit(Exchange):
     @classmethod
     def _current_ask_extractor(cls, data):
         return apply_format(data.get('ask'))
+
+    @classmethod
+    def _current_ticker_extractor(cls, data):
+        return Ticker('USD',apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls,data,max_qty=3):
