@@ -53,8 +53,7 @@ class Exchange(object):
     @classmethod
     def get_current_ticker(cls,ccy=None,params=None):
         body = cls.BODY if hasattr(cls, 'BODY') else None
-        url = cls.PRICE_URL if hasattr(cls,'PRICE_URL') else cls.TICKER_URL
-        data = get_response(url,ccy,body,params)
+        data = get_response(cls.TICKER_URL,ccy,body,params)
         return cls._current_ticker_extractor(data)
 
     @classmethod

@@ -27,7 +27,7 @@ class TestCoinBase(TestCase):
       ok_(cba.get_current_ask('USD','book')>0.00)
 
   def test_ticker(self):
-      data = json.loads(cba.get_current_ticker('USD'))
+      data = json.loads(cba.get_current_ticker('USD','book'))
       ok_(data["pair"]=='USD',"pair should be 'USD'")
       ok_(data["ask"]>0.00,"ask should not be empty")
       ok_(data["bid"]>0.00,"bid should not be empty")

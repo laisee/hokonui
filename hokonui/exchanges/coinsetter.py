@@ -23,7 +23,7 @@ class CoinSetter(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker('USD',apply_format(data["bid"].get('price')),apply_format(data["ask"].get('price')))
+        return Ticker('USD',apply_format(data["bid"].get('price')),apply_format(data["ask"].get('price'))).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls,data,max_qty=3):

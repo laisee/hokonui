@@ -23,7 +23,7 @@ class BTCE(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker('USD',apply_format(data["btc_usd"].get('buy')), apply_format(data["btc_usd"].get('sell')))
+        return Ticker('USD',apply_format(data["btc_usd"].get('buy')), apply_format(data["btc_usd"].get('sell'))).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls,data,max_qty=3):

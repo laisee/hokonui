@@ -1,11 +1,12 @@
+import time
 from hokonui.exchanges.base import Exchange
-from hokonui.utils.helpers import apply_format
+from hokonui.utils.helpers import apply_format, apply_format_level
 from hokonui.models.ticker import Ticker
 
 class Bitstamp(Exchange):
 
     TICKER_URL = 'https://bitstamp.net/api/ticker/'
-    ORDER_BOOK_URL = 'https://www.bitstamp.net/api/order_book'
+    ORDER_BOOK_URL = 'https://www.bitstamp.net/api/order_book/'
     NAME = 'Bitstamp'
 
     @classmethod
@@ -31,19 +32,20 @@ class Bitstamp(Exchange):
         asks = {}
         buyMax = 0
         sellMax = 0
-        for level in data["bids"]:
-            if buyMax > max_qty:
-               continue
-            else:
-               bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            buyMax = buyMax + float(level["amount"])
+        if data:
+            for level in data["bids"]:
+                if buyMax > max_qty:
+                   continue
+                else:
+                   bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                buyMax = buyMax + float(level[1])
 
-        for level in data["asks"]:
-            if sellMax > max_qty:
-                continue
-            else:
-               asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            sellMax = sellMax + float(level["amount"])
+            for level in data["asks"]:
+                if sellMax > max_qty:
+                    continue
+                else:
+                   asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                sellMax = sellMax + float(level[1])
 
         orders["source"] = "Bitfinex"
         orders["bids"] = bids

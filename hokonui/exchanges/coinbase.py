@@ -16,7 +16,6 @@ class CoinBase(Exchange):
     @classmethod
     def _current_bid_extractor(cls, data):
         return apply_format(data["bids"][0][0])
-        # {"sequence":155230585,"bids":[["281.7","2.33",1]],"asks":[["281.71","0.00036374",1]]}
 
     @classmethod
     def _current_ask_extractor(cls, data):
@@ -24,7 +23,7 @@ class CoinBase(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker('USD',apply_format((data["bids"][0][0]), apply_format((data["asks"][0][0])).toJSON()
+        return Ticker('USD',apply_format(data["bids"][0][0]), apply_format(data["asks"][0][0])).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls,data,max_qty=3):

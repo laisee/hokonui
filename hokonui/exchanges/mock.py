@@ -25,7 +25,7 @@ class MockExchange(Exchange):
     @classmethod
     def _current_ticker_extractor(cls, data):
         raise ValueError('Not implemented yet')
-        return Ticker('USD',apply_format(data.get('ask')),apply_format(data.get('bid')))
+        return Ticker('USD',apply_format(data.get('bid')),apply_format(data.get('ask'))).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls,data,max_qty=3):
