@@ -61,3 +61,9 @@ class Exchange(object):
         body = cls.BODY if hasattr(cls, 'BODY') else None
         data = get_response(cls.ORDER_BOOK_URL,ccy,body)
         return cls._current_orders_extractor(data,max_qty)
+
+    @classmethod
+    def get_current_volume(cls,ccy='USD',params=None):
+        url = cls.VOLUME_URL if hasattr(cls,'VOLUME_URL') else cls.TICKER_URL
+        data = get_response(url,ccy,None,params)
+        return cls._current_volume_extractor(data)

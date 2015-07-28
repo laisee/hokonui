@@ -15,6 +15,7 @@ Forked from https://github.com/dursk/bitcoin-price-api.
  - OKCoin
  - MexBT
  - Quoine
+ ... and more 
 
 ##Data Providers##
  - CoinDesk
@@ -30,5 +31,7 @@ Forked from https://github.com/dursk/bitcoin-price-api.
 ##TODO##
  - add simple arbitrage between selected exchanges
  - add session class for querying account balances
- - add buy/sell
+ - add buy/sell order handling
+ - add account management (balances, funding, withdrawals, addresses)
  - add library to PyPi
+ - add support for Python 3
