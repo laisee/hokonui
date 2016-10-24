@@ -32,6 +32,7 @@ class BitX(Exchange):
         asks = {}
         buyMax = 0
         sellMax = 0
+        print data
         for level in data["bids"]:
             if buyMax > max_qty:
                 pass

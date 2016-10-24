@@ -35,7 +35,7 @@ class TestQuoine(TestCase):
 
   def test_orders(self):
       ccy_id = self.Ccy2Id('USD')
-      orders = q.get_current_orders(ccy_id,50)
+      orders = q.get_current_orders(ccy_id)
       ok_(len(orders["asks"])>0, "Asks array should not be empty")
       ok_(len(orders["bids"])>0, "Bids array should not be empty")
       ok_(orders["source"]=="Quoine", "Source should be 'Quoine'")

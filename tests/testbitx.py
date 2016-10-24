@@ -34,7 +34,7 @@ class TestBitX(TestCase):
       ok_(float(data["timestamp"])>0,"Timestamp should be greater than zero")
 
   def test_orders(self):
-      orders = btx.get_current_orders('ZAR',5)
+      orders = btx.get_current_orders('ZAR')
       ok_(len(orders["asks"])>0, "Asks array should not be empty")
       ok_(len(orders["bids"])>0, "Bids array should not be empty")
       ok_(orders["source"]=="BitX", "Source should be 'BitX'")

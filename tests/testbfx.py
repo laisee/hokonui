@@ -28,7 +28,7 @@ class TestBitfinex(TestCase):
       ok_(float(data["timestamp"])>0,"Timestamp should be greater than zero")
 
   def test_orders(self):
-      orders = bfx.get_current_orders(None,20)
+      orders = bfx.get_current_orders(None)
       ok_(len(orders["asks"])>0, "Asks array should not be empty")
       ok_(len(orders["bids"])>0, "Bids array should not be empty")
       ok_(orders["source"]=="Bitfinex", "Source should be 'Bitfinex'")

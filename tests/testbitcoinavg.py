@@ -18,17 +18,18 @@ class TestBitcoinAverage(TestCase):
       ok_(avg.NAME==string.replace(type(self).__name__,'Test',''))
 
   def test_price(self):
-      ok_(avg.get_current_price('JPY')>0.00)
+      ok_(avg.get_current_price('USD')>0.00)
 
   def test_bid(self):
-      ok_(avg.get_current_bid('JPY')>0.00)
+      ok_(avg.get_current_bid('USD')>0.00)
 
   def test_ask(self):
-      ok_(avg.get_current_ask('JPY')>0.00)
+      ok_(avg.get_current_ask('USD')>0.00)
 
   def test_ticker(self):
-      data = json.loads(avg.get_current_ticker('JPY'))
-      ok_(data["pair"]=='JPY',"pair should be 'JPY'")
+      data = json.loads(avg.get_current_ticker('USD'))
+      print data
+      ok_(data["pair"]=='USD',"pair should be 'USD'")
       ok_(data["ask"]>0.00,"ask should not be empty")
       ok_(data["bid"]>0.00,"bid should not be empty")
       ok_(float(data["timestamp"])>0,"Timestamp should be greater than zero")

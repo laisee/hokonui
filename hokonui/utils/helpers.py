@@ -14,10 +14,7 @@ def get_datetime():
 def get_timestamp():
     return time.mktime(time.gmtime())
 
-def get_response(url,ccy,body=None,params=None):
-    #print "URL ", url 
-    #print "CCY ", ccy 
-    #print "BODY ", body 
+def get_response(url,ccy,params=None,body=None):
     guard(url, ccy)
     if ccy:
        url = url % ccy 
@@ -36,6 +33,31 @@ def get_response(url,ccy,body=None,params=None):
         print '-'*60
         traceback.print_exc(file=sys.stdout)
         print '-'*60
+
+def get_orders(data,max_qty,bids_tag,asks_tag,price_tag=0,qty_tag=1):
+    orders = {}
+    bids = {}
+    asks = {}
+    buyMax = 0
+    sellMax = 0
+    for level in data[bids_tag]:
+        if buyMax > max_qty:
+            continue
+        else:
+            bids[apply_format_level(level[price_tag])] = "{:.8f}".format(float(level[qty_tag]))
+        buyMax = buyMax + float(level[qty_tag])
+
+    for level in data[asks_tag]:
+        if sellMax > max_qty:
+            continue
+        else:
+            asks[apply_format_level(level[price_tag])] = "{:.8f}".format(float(level[qty_tag]))
+        sellMax = sellMax + float(level[qty_tag])
+    orders["source"] = "ITBIT"
+    orders["bids"] = bids
+    orders["asks"] = asks
+    orders["timestamp"] = str(int(time.time()))
+    return orders
 
 def guard(url,ccy):
     if ccy:

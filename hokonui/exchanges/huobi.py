@@ -5,7 +5,7 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 
 class Huobi(Exchange):
 
-    TICKER_URL = 'https://market.huobi.com/staticmarket/ticker_btc_json.js'
+    TICKER_URL = 'http://api.huobi.com/staticmarket/ticker_btc_json.js'
     ORDER_BOOK_URL = 'http://api.huobi.com/staticmarket/detail_btc_json.js'
     # = '{"total":118268152.7731,"p_high":1720.58,"p_open":1691.22,"p_new":1689,"p_low":1651.08,"top_buy":[{"amount":14.1121,"level":0,"price":1689,"accu":14.1121},'
     NAME = 'Huobi'
