@@ -35,6 +35,7 @@ class TestKraken(TestCase):
       ok_(data["pair"]=='XXBTZJPY',"pair should be 'XXBTZJPY'")
       ok_(data["ask"]>0.00,"ask should not be empty")
       ok_(data["bid"]>0.00,"bid should not be empty")
+      ok_(data["bid"]<=data["ask"],"bid should be <= ask")
       ok_(float(data["timestamp"])>0,"Timestamp should be greater than zero")
 
   def test_orders(self):

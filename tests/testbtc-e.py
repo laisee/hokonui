@@ -26,11 +26,19 @@ class TestBTCE(TestCase):
   def test_ask(self):
       ok_(btce.get_current_ask('usd')>0.00)
 
+  def test_ask_GT_bid(self):
+      bid = btce.get_current_bid('usd') 
+      ask = btce.get_current_ask('usd')
+      ok_(bid > ask,"bid should be > ask - Bid : %s Ask %s " % (bid,ask))
+
   def test_ticker(self):
       data = json.loads(btce.get_current_ticker('usd'))
+      bid = btce.get_current_bid('usd') 
+      ask = btce.get_current_ask('usd')
       ok_(data["pair"]=='USD',"pair should be 'USD'")
-      ok_(data["ask"]>0.00,"ask should not be empty")
-      ok_(data["bid"]>0.00,"bid should not be empty")
+      ok_(ask>0.00,"ask should not be empty")
+      ok_(bid>0.00,"bid should not be empty")
+      ok_(bid > ask,"bid should be > ask - Bid : %s Ask %s " % (bid,ask))
       ok_(float(data["timestamp"])>0,"Timestamp should be greater than zero")
 
   def test_orders(self):

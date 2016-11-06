@@ -19,5 +19,9 @@ class TestCoinapult(TestCase):
   def test_ask(self):
       ok_(cplt.get_current_ask('USD')>0.00)
 
+
+  def test_bif_gt_ask(self):
+      ok_(cplt.get_current_bid('USD') <= cplt.get_current_ask('USD'), "bid should be < ask")
+
 if __name__ == '__main__':
     unittest.main()

@@ -11,11 +11,9 @@ class TestCoinDesk(TestCase):
       ok_(coin.NAME==string.replace(type(self).__name__,'Test',''))
 
   def test_price(self):
-      #print 'Ask   ', coin.get_current_ask()
       ok_(coin.get_current_price()>0.00)
 
   def test_past_price(self):
-      #print 'Ask   ', coin.get_current_ask()
       ok_(coin.get_past_price('2015-07-05')>0.00)
 
 if __name__ == '__main__':

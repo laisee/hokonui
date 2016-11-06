@@ -5,7 +5,7 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 
 class OKCoin(Exchange):
 
-    TICKER_URL = 'https://www.okcoin.com/api/ticker.do?ok=1'
+    TICKER_URL = 'https://www.okcoin.com/api/v1/ticker.do?symbol=btc_usd'
     ORDER_BOOK_URL = 'https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd&size=10'
 
     @classmethod

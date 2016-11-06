@@ -9,7 +9,7 @@ class Bitfinex(Exchange):
         Please refer to https://btc-e.com/api/documentation for API documentation.
     """
     TICKER_URL = 'https://api.bitfinex.com/v1/pubticker/btc%s'
-    ORDER_BOOK_URL = 'https://api.bitfinex.com/v1/book/BTCUSD'
+    ORDER_BOOK_URL = 'https://api.bitfinex.com/v1/book/btc%s'
     NAME = 'Bitfinex'
 
     @classmethod
