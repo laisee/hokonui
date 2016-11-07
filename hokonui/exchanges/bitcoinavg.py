@@ -28,7 +28,7 @@ class BitcoinAverage(Exchange):
     @classmethod
     def _current_volume_extractor(cls,data):
         vol = {}
-        vol["source"] = "BitcoinAverage"
+        vol["source"] = cls.NAME
         vol["quantity"] = data.get('volume_btc')
         vol["timestamp"] = str(int(time.time()))
         return vol
