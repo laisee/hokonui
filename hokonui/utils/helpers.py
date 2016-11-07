@@ -29,7 +29,7 @@ def get_response(url,ccy,params=None,body=None):
         response.raise_for_status()
         return response.json()
     except Exception as e:
-        print "Exception in API request %s : %s " % (url, e)
+        print "Exception during request %s : %s " % (url, e)
         print '-'*60
         traceback.print_exc(file=sys.stdout)
         print '-'*60
