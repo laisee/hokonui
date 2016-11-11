@@ -5,7 +5,7 @@ class CoinDesk(object):
     NAME = 'CoinDesk'
 
     @classmethod
-    def get_current_price(cls,ccy='USD'):
+    def get_current_price(cls,ccy=cls.CCY_DEFAULT):
         url = 'https://api.coindesk.com/v1/bpi/currentprice/%s.json'
         data = get_response(url,ccy)
         price = data['bpi'][ccy]['rate']

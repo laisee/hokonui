@@ -25,7 +25,7 @@ class BitFlyer(Exchange):
     @classmethod
     def _current_ticker_extractor(cls, data):
         print str(data)
-        return Ticker('USD',apply_format(data.get('best_bid')), apply_format(data.get('best_ask'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT,apply_format(data.get('best_bid')), apply_format(data.get('best_ask'))).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls,data,max_qty=3):

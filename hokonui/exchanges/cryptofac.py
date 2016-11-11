@@ -28,7 +28,7 @@ class CryptoFacility(Exchange):
     def _current_ticker_extractor(cls, data):
         ask = data["tickers"][0]["ask"]
         bid = data["tickers"][0]["bid"]
-        return Ticker('USD',apply_format(bid), apply_format(ask)).toJSON()
+        return Ticker(cls.CCY_DEFAULT,apply_format(bid), apply_format(ask)).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls,data,max_qty=3):

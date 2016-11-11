@@ -23,7 +23,7 @@ class BitcoinAverage(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker('USD',apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT,apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
 
     @classmethod
     def _current_volume_extractor(cls,data):
