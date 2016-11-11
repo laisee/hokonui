@@ -3,20 +3,15 @@ from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
-class BitX(Exchange):
+class gdax(Exchange):
 
-    TICKER_URL = 'https://api.mybitx.com/api/1/ticker?pair=XBT%s'
-    ORDER_BOOK_URL = 'https://api.mybitx.com/api/1/orderbook?pair=XBT%s'
-    NAME = 'BitX'
-
-    @classmethod
-    def test_name(cls):
-       print " Name = ",cls.NAME
-       print " test NAME : ", self.__name__
+    TICKER_URL = 'https://api.exchange.coinbase.com/products/btc-usd/ticker'
+    ORDER_BOOK_URL = 'https://api.bitflyer.jp/v1/getboard?product_code=%s'
+    NAME = 'gdax'
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return apply_format(data.get('last_trade'))
+        return apply_format(data.get('price'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
@@ -37,20 +32,19 @@ class BitX(Exchange):
         asks = {}
         buyMax = 0
         sellMax = 0
-        print data
         for level in data["bids"]:
             if buyMax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["volume"]))
-            buyMax = buyMax + float(level["volume"])
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
+            buyMax = buyMax + float(level["size"])
 
         for level in data["asks"]:
             if sellMax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["volume"]))
-            sellMax = sellMax + float(level["volume"])
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
+            sellMax = sellMax + float(level["size"])
  
         orders["source"] = cls.NAME
         orders["bids"] = bids
