@@ -4,6 +4,7 @@ import json
 from nose.tools import ok_
 from unittest import TestCase
 from context import hokonui
+from hokonui.exchange.base import Exchange as base
 from hokonui.exchanges.btce import BTCE as btce
 
 class TestBTCE(TestCase):
@@ -18,31 +19,31 @@ class TestBTCE(TestCase):
       ok_(btce.NAME==string.replace(type(self).__name__,'Test',''))
 
   def test_price(self):
-      ok_(btce.get_current_price('usd')>0.00)
+      ok_(btce.get_current_price(base.CCY_DEFAULT)>0.00)
 
   def test_bid(self):
-      ok_(btce.get_current_bid('usd')>0.00)
+      ok_(btce.get_current_bid(base.CCY_DEFAULT)>0.00)
 
   def test_ask(self):
-      ok_(btce.get_current_ask('usd')>0.00)
+      ok_(btce.get_current_ask(base.CCY_DEFAULT)>0.00)
 
   def test_ask_GT_bid(self):
-      bid = btce.get_current_bid('usd') 
-      ask = btce.get_current_ask('usd')
+      bid = btce.get_current_bid(base.CCY_DEFAULT) 
+      ask = btce.get_current_ask(base.CCY_DEFAULT)
       ok_(bid > ask,"bid should be > ask - Bid : %s Ask %s " % (bid,ask))
 
   def test_ticker(self):
-      data = json.loads(btce.get_current_ticker('usd'))
-      bid = btce.get_current_bid('usd') 
-      ask = btce.get_current_ask('usd')
-      ok_(data["pair"]=='USD',"pair should be 'USD'")
+      data = json.loads(btce.get_current_ticker(base.CCY_DEFAULT))
+      bid = btce.get_current_bid(base.CCY_DEFAULT) 
+      ask = btce.get_current_ask(base.CCY_DEFAULT)
+      ok_(data["pair"]==base.CCY_DEFAULT,"pair should be '%s'" % base.CCY_DEFAULT)
       ok_(ask>0.00,"ask should not be empty")
       ok_(bid>0.00,"bid should not be empty")
       ok_(bid > ask,"bid should be > ask - Bid : %s Ask %s " % (bid,ask))
       ok_(float(data["timestamp"])>0,"Timestamp should be greater than zero")
 
   def test_orders(self):
-      orders = btce.get_current_orders('usd')
+      orders = btce.get_current_orders(base.CCY_DEFAULT)
       ok_(len(orders["asks"])>0, "Asks array should not be empty")
       ok_(len(orders["bids"])>0, "Bids array should not be empty")
       ok_(orders["source"]=="BTCE", "Source should be 'BTCE'")

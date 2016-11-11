@@ -4,6 +4,7 @@ import json
 from nose.tools import ok_
 from unittest import TestCase
 from context import hokonui
+from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.bitstamp import Bitstamp as bts 
 
 class TestBitstamp(TestCase):
@@ -28,7 +29,7 @@ class TestBitstamp(TestCase):
 
   def test_ticker(self):
       data = json.loads(bts.get_current_ticker())
-      ok_(data["pair"]=='USD',"pair should be 'USD'")
+      ok_(data["pair"]==base.CCY_DEFAULT,"pair should be '%s'" % base.CCY_DEFAULT)
       ok_(data["ask"]>0.00,"ask should not be empty")
       ok_(data["bid"]>0.00,"bid should not be empty")
       ok_(data["bid"]<=data["ask"],"bid should be < ask")

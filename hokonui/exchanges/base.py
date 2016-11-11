@@ -6,7 +6,7 @@ class Exchange(object):
     TICKER_URL = None
     ORDER_BOOK_URL = None
     NAME = 'Base'
-    CCY_DEFAULT = "USD"
+    CCY_DEFAULT = 'USD'
 
     @classmethod
     def _current_price_extractor(cls, data):
@@ -61,7 +61,7 @@ class Exchange(object):
         return cls._current_orders_extractor(data,max_qty)
 
     @classmethod
-    def get_current_volume(cls,ccy=cls.CCY_DEFAULT,params=None):
+    def get_current_volume(cls,ccy='USD',params=None):
         url = cls.VOLUME_URL if hasattr(cls,'VOLUME_URL') else cls.TICKER_URL
         data = get_response(url,ccy,None,params)
         return cls._current_volume_extractor(data)

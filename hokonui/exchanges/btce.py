@@ -8,7 +8,7 @@ class BTCE(Exchange):
     TICKER_URL = 'https://btc-e.com/api/3/ticker/btc_%s'
     ORDER_BOOK_URL = 'https://btc-e.com/api/3/depth/btc_%s'
     NAME = 'BTCE'
-    PAIR = "btc_usd"
+    PAIR = "btc_%s" % 'usd'
 
     @classmethod
     def _current_price_extractor(cls, data):

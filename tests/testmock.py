@@ -4,6 +4,7 @@ from nose.tools import ok_
 from nose.tools import assert_raises
 from unittest import TestCase
 from context import hokonui
+from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.mock import MockExchange as mock
 
 class TestMockExchange(TestCase):
@@ -19,21 +20,22 @@ class TestMockExchange(TestCase):
 
   def test_ask(self):
       with assert_raises(ValueError) as cm:
-          mock.get_current_ask('USD')
+          mock.get_current_ask(base.CCY_DEFAULT)
       ex = cm.exception # raised exception is available through exception property of context
       ok_(ex.message == "Not implemented yet")
 
   def test_bid(self):
       with assert_raises(ValueError) as cm:
-          mock.get_current_bid('USD')
+          mock.get_current_bid(base.CCY_DEFAULT)
       ex = cm.exception # raised exception is available through exception property of context
       ok_(ex.message == "Not implemented yet")
 
   def test_orders(self):
       with assert_raises(ValueError) as cm:
-          mock.get_current_orders('USD')
+          mock.get_current_orders(base.CCY_DEFAULT)
       ex = cm.exception # raised exception is available through exception property of context
       ok_(ex.message == "Not implemented yet")
 
 if __name__ == '__main__':
     nose.runmodule()
+    print str(base)

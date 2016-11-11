@@ -4,6 +4,7 @@ import nose
 from nose.tools import ok_
 from unittest import TestCase
 from context import hokonui
+from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.itbit import Itbit as itb
 
 class TestitBit(TestCase):
@@ -21,24 +22,24 @@ class TestitBit(TestCase):
 
   def test_price(self):
       #print 'Ask   ', itb.get_current_ask()
-      ok_(itb.get_current_price('USD')>0.00)
+      ok_(itb.get_current_price(base.CCY_DEFAULT)>0.00)
 
   def test_bid(self):
-      ok_(itb.get_current_bid('USD')>0.00)
+      ok_(itb.get_current_bid(base.CCY_DEFAULT)>0.00)
 
   def test_ask(self):
-      ok_(itb.get_current_ask('USD')>0.00)
+      ok_(itb.get_current_ask(base.CCY_DEFAULT)>0.00)
 
   def test_ticker(self):
-      data = json.loads(itb.get_current_ticker('USD'))
-      ok_(data["pair"]=='USD',"pair should be 'USD'")
+      data = json.loads(itb.get_current_ticker(base.CCY_DEFAULT))
+      ok_(data["pair"]==base.CCY_DEFAULT,"pair should be '%s'" % base.CCY_DEFAULT)
       ok_(data["ask"]>0.00,"ask should not be empty")
       ok_(data["bid"]>0.00,"bid should not be empty")
       ok_(data["bid"]<=data["ask"],"bid should be <= ask")
       ok_(float(data["timestamp"])>0,"Timestamp should be greater than zero")
 
   def test_orders(self):
-      orders = itb.get_current_orders('USD')
+      orders = itb.get_current_orders(base.CCY_DEFAULT)
       ok_(len(orders["asks"])>0, "Asks array should not be empty")
       ok_(len(orders["bids"])>0, "Bids array should not be empty")
       ok_(orders["source"]=="ITBIT", "Source should be 'ITBIT'")

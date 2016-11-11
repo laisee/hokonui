@@ -28,7 +28,7 @@ class TestCryptoFacility(TestCase):
 
   def test_ticker(self):
       data = json.loads(cfc.get_current_ticker())
-      ok_(data["pair"]=='USD',"pair should be 'USD'")
+      ok_(data["pair"]==cfc.CCY_DEFAULT,"pair should be '%s'" % cfc.CCY_DEFAULT)
       ok_(data["ask"]>0.00,"ask should not be empty")
       ok_(data["bid"]>0.00,"bid should not be empty")
       ok_(data["bid"]<=data["ask"],"bid should be <= ask")
