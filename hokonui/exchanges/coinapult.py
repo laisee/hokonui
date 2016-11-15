@@ -1,6 +1,7 @@
 from hokonui.utils.helpers import get_response, apply_format
 from hokonui.models.ticker import Ticker
 
+
 class Coinapult(object):
 
     TICKER_URL = 'https://api.coinapult.com/api/ticker?market=%s_BTC'
@@ -14,37 +15,37 @@ class Coinapult(object):
     NAME = 'Coinapult'
 
     @classmethod
-    def get_current_price(cls,ccy):
+    def get_current_price(cls, ccy):
         url = cls.TICKER_URL.format(ccy)
-        data = get_response(url,ccy)
+        data = get_response(url, ccy)
         price = str(data['index'])
         return apply_format(price)
 
     @classmethod
-    def get_current_bid(cls,ccy, btc_amount=0.1):
+    def get_current_bid(cls, ccy, btc_amount=0.1):
         url = cls.TICKER_URL.format(ccy)
-        data = get_response(url,ccy)
+        data = get_response(url, ccy)
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
         price = str(data[level]['bid'])
         return apply_format(price)
 
     @classmethod
-    def get_current_ask(cls,ccy, btc_amount=0.1):
+    def get_current_ask(cls, ccy, btc_amount=0.1):
         url = cls.TICKER_URL.format(ccy)
-        data = get_response(url,ccy)
+        data = get_response(url, ccy)
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
         price = str(data[level]['ask'])
         return apply_format(price)
 
     @classmethod
-    def _current_ticker_extractor(cls, data):
-        url = cls.TICKER_URL.format(ccy)
-        data = get_response(url,ccy)
+    def _current_ticker_extractor(cls, data, btc_amount=0):
+        url = cls.TICKER_URL.format(cls.CCY_DEFAULT)
+        data = get_response(url, cls.CCY_DEFAULT)
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
-        return Ticker(cls.CCY_DEFAULT,apply_format(str(data[level]['ask'])),apply_format(str(data[level]['bid']))).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(str(data[level]['ask'])), apply_format(str(data[level]['bid']))).toJSON()
 
     @classmethod
-    def get_current_orders(cls,ccy):
+    def get_current_orders(cls, ccy):
         raise ValueError("not implemented for this class")
 
     @classmethod

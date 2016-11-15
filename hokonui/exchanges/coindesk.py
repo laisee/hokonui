@@ -1,24 +1,27 @@
-from hokonui.utils.helpers import get_datetime, get_response, apply_format
+from hokonui.utils.helpers import apply_format
+from hokonui.utils.helpers import get_response
+from hokonui.exchanges.base import Exchange as base
+
 
 class CoinDesk(object):
 
     NAME = 'CoinDesk'
 
     @classmethod
-    def get_current_price(cls,ccy=cls.CCY_DEFAULT):
+    def get_current_price(cls, ccy=base.CCY_DEFAULT):
         url = 'https://api.coindesk.com/v1/bpi/currentprice/%s.json'
-        data = get_response(url,ccy)
+        data = get_response(url, ccy)
         price = data['bpi'][ccy]['rate']
         return apply_format(price)
 
     @classmethod
-    def get_past_price(cls,date):
+    def get_past_price(cls, date):
         data = cls._get_historical_data(date)
         price = data['bpi'][date]
         return apply_format(str(price))
 
     @classmethod
-    def _get_historical_data(cls,start,end=None):
+    def _get_historical_data(cls, start, end=None):
         if not end:
             end = start
         url = (
@@ -27,4 +30,4 @@ class CoinDesk(object):
                 start, end
             )
         )
-        return get_response(url,None)
+        return get_response(url, None)

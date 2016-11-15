@@ -1,7 +1,9 @@
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
-from hokonui.utils.helpers import apply_format, apply_format_level
+from hokonui.utils.helpers import apply_format
+from hokonui.utils.helpers import apply_format_level
+
 
 class BTCC(Exchange):
 
@@ -23,10 +25,10 @@ class BTCC(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT,apply_format(data.get('ticker', {}).get('buy')),apply_format(data.get('ticker', {}).get('sell'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('ticker', {}).get('buy')), apply_format(data.get('ticker', {}).get('sell'))).toJSON()
 
     @classmethod
-    def _current_orders_extractor(cls,data,max_qty=3):
+    def _current_orders_extractor(cls, data, max_qty=3):
         orders = {}
         bids = {}
         asks = {}

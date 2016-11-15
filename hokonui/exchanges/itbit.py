@@ -1,7 +1,9 @@
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
-from hokonui.utils.helpers import apply_format, apply_format_level
+from hokonui.utils.helpers import apply_format
+from hokonui.utils.helpers import apply_format_level
+
 
 class Itbit(Exchange):
 
@@ -23,29 +25,29 @@ class Itbit(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT,apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
 
     @classmethod
-    def _current_orders_extractor(cls,data,max_qty=3):
+    def _current_orders_extractor(cls, data, max_qty=3):
         orders = {}
         bids = {}
         asks = {}
-        buyMax = 0
-        sellMax = 0
+        buymax = 0
+        sellmax = 0
         for level in data["bids"]:
-            if buyMax > max_qty:
-               continue
+            if buymax > max_qty:
+                continue
             else:
-               bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            buyMax = buyMax + float(level[1])
+                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+            buymax = buymax + float(level[1])
 
         for level in data["asks"]:
-            if sellMax > max_qty:
+            if sellmax > max_qty:
                 continue
             else:
                 asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            sellMax = sellMax + float(level[1])
- 
+            sellmax = sellmax + float(level[1])
+
         orders["source"] = "ITBIT"
         orders["bids"] = bids
         orders["asks"] = asks

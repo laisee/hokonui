@@ -1,11 +1,12 @@
 from hokonui.exchanges.base import Exchange
-from hokonui.utils.helpers import apply_format                                 
+from hokonui.utils.helpers import apply_format
 from hokonui.models.ticker import Ticker
+
 
 class MockExchange(Exchange):
 
-    TICKER_URL = 'https://api.mock.com/v1/markets/XBT%s/ticker'
-    ORDER_BOOK_URL = 'https://api.mock.com/v1/markets/XBT%s/order_book'
+    TICKER_URL = 'https://api.mock.com/XBT%s/ticker'
+    ORDER_BOOK_URL = 'https://api.mock.com/XBT%s/order_book'
     NAME = 'MockExchange'
 
     @classmethod
@@ -25,8 +26,8 @@ class MockExchange(Exchange):
     @classmethod
     def _current_ticker_extractor(cls, data):
         raise ValueError('Not implemented yet')
-        return Ticker(cls.CCY_DEFAULT,apply_format(data.get('bid')),apply_format(data.get('ask'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
 
     @classmethod
-    def _current_orders_extractor(cls,data,max_qty=3):
+    def _current_orders_extractor(cls, data, max_qty=3):
         raise ValueError('Not implemented yet')

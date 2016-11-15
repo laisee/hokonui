@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+Hokonui
 
-# Hokonui
-
-""" 
 common library for accessing bitcoin exchanges
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

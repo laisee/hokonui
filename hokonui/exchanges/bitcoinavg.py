@@ -1,8 +1,8 @@
-import json
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
-from hokonui.utils.helpers import get_datetime, get_response, apply_format
+from hokonui.utils.helper import apply_format
+
 
 class BitcoinAverage(Exchange):
 
@@ -23,10 +23,10 @@ class BitcoinAverage(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT,apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
 
     @classmethod
-    def _current_volume_extractor(cls,data):
+    def _current_volume_extractor(cls, data):
         vol = {}
         vol["source"] = cls.NAME
         vol["quantity"] = data.get('volume_btc')

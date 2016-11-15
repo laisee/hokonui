@@ -3,6 +3,7 @@ from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
+
 class Huobi(Exchange):
 
     TICKER_URL = 'http://api.huobi.com/staticmarket/ticker_btc_json.js'
@@ -24,10 +25,10 @@ class Huobi(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT,apply_format(data.get('ticker', {}).get('buy')), apply_format(data.get('ticker', {}).get('sell'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('ticker', {}).get('buy')), apply_format(data.get('ticker', {}).get('sell'))).toJSON()
 
     @classmethod
-    def _current_orders_extractor(cls,data, max_qty):
+    def _current_orders_extractor(cls, data, max_qty):
         orders = {}
         bids = {}
         asks = {}
@@ -35,16 +36,16 @@ class Huobi(Exchange):
         sellMax = 0
         for level in data["top_buy"]:
             if buyMax > max_qty:
-               continue
+                continue
             else:
-               bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
             buyMax = buyMax + float(level["amount"])
 
         for level in data["top_sell"]:
             if sellMax > max_qty:
                 continue
             else:
-               asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
             sellMax = sellMax + float(level["amount"])
         orders["source"] = "Huobi"
         orders["bids"] = bids

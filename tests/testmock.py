@@ -1,40 +1,54 @@
+''' Module for testing Mock Exchange '''
 import string
-import nose
+from unittest import TestCase
 from nose.tools import ok_
 from nose.tools import assert_raises
-from unittest import TestCase
-from context import hokonui
+import nose
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.mock import MockExchange as mock
 
+
 class TestMockExchange(TestCase):
+    ''' Class for testing Mock Exchange '''
 
-  def setUp(self):
-      print(__name__, ': TestClass.setup_class() ----------')
+    @classmethod
+    def setUp(cls):
+        ''' Method for test setup '''
+        print(__name__, ': TestClass.setup_class() ----------')
 
-  def tearDown(self):
-      print(__name__, ': TestClass.teardown_class() -------')
+    @classmethod
+    def tearDown(cls):
+        ''' Method for test teardown '''
+        print(__name__, ': TestClass.teardown_class() -------')
 
-  def test_name(self):
-      ok_(mock.NAME==string.replace(type(self).__name__,'Test',''))
+    @classmethod
+    def test_name(cls):
+        ''' Method for testing name '''
+        ok_(mock.NAME == string.replace(cls.__name__, 'Test', ''))
 
-  def test_ask(self):
-      with assert_raises(ValueError) as cm:
-          mock.get_current_ask(base.CCY_DEFAULT)
-      ex = cm.exception # raised exception is available through exception property of context
-      ok_(ex.message == "Not implemented yet")
+    @classmethod
+    def test_ask(cls):
+        ''' Method for testing ask price '''
+        with assert_raises(ValueError) as cme:
+            mock.get_current_ask(base.CCY_DEFAULT)
+        ex = cme.exception
+        ok_(ex.message == "Not implemented yet")
 
-  def test_bid(self):
-      with assert_raises(ValueError) as cm:
-          mock.get_current_bid(base.CCY_DEFAULT)
-      ex = cm.exception # raised exception is available through exception property of context
-      ok_(ex.message == "Not implemented yet")
+    @classmethod
+    def test_bid(cls):
+        ''' Method for testing bid price '''
+        with assert_raises(ValueError) as cme:
+            mock.get_current_bid(base.CCY_DEFAULT)
+        ex = cme.exception
+        ok_(ex.message == "Not implemented yet")
 
-  def test_orders(self):
-      with assert_raises(ValueError) as cm:
-          mock.get_current_orders(base.CCY_DEFAULT)
-      ex = cm.exception # raised exception is available through exception property of context
-      ok_(ex.message == "Not implemented yet")
+    @classmethod
+    def test_orders(cls):
+        ''' Method for testing orders '''
+        with assert_raises(ValueError) as cme:
+            mock.get_current_orders(base.CCY_DEFAULT)
+        ex = cme.exception
+        ok_(ex.message == "Not implemented yet")
 
 if __name__ == '__main__':
     nose.runmodule()

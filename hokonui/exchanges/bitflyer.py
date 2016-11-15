@@ -1,7 +1,9 @@
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
-from hokonui.utils.helpers import apply_format, apply_format_level
+from hokonui.utils.helpers import apply_format
+from hokonui.utils.helpers import apply_format_level
+
 
 class BitFlyer(Exchange):
 
@@ -24,11 +26,10 @@ class BitFlyer(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        print str(data)
-        return Ticker(cls.CCY_DEFAULT,apply_format(data.get('best_bid')), apply_format(data.get('best_ask'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('best_bid')), apply_format(data.get('best_ask'))).toJSON()
 
     @classmethod
-    def _current_orders_extractor(cls,data,max_qty=3):
+    def _current_orders_extractor(cls, data, max_qty=3):
         orders = {}
         bids = {}
         asks = {}
@@ -47,7 +48,7 @@ class BitFlyer(Exchange):
             else:
                 bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
             sellMax = sellMax + float(level["size"])
- 
+
         orders["source"] = cls.NAME
         orders["bids"] = bids
         orders["asks"] = asks

@@ -1,68 +1,88 @@
-import requests,json, sys, traceback
+''' Module containing helper methods '''
+
+import json
+import sys
+import traceback
+import time
 from datetime import datetime
 from decimal import Decimal
+import requests
+
 
 def apply_format(value):
-    return format(Decimal(value),'.5f')
+    ''' Method for applying formats '''
+    return format(Decimal(value), '.5f')
+
 
 def apply_format_level(value):
-    return format(Decimal(value),'.2f')
+    ''' Method for applying format levels '''
+    return format(Decimal(value), '.2f')
+
 
 def get_datetime():
+    ''' Method for generating datetime valsuies '''
     return datetime.now().strftime('%Y-%m-%d %h:%m:%s')
 
+
 def get_timestamp():
+    ''' Method for calculating timestamps '''
     return time.mktime(time.gmtime())
 
-def get_response(url,ccy,params=None,body=None):
+
+def get_response(url, ccy, params=None, body=None):
+    ''' Method for executing API requests '''
     guard(url, ccy)
     if ccy:
-       url = url % ccy 
+        url = url % ccy
     if params:
-       url = "%s%s" % (url,params) 
+        url = "%s%s" % (url, params)
     try:
         if body:
             data = json.loads(body)
-            response = requests.post(url,json=data)
+            response = requests.post(url, json=data)
         else:
             response = requests.get(url)
         response.raise_for_status()
         return response.json()
-    except Exception as e:
-        print "Exception during request %s : %s " % (url, e)
-        print '-'*60
+    except Exception as exc:
+        print "Exception during request %s : %s " % (url, exc)
+        print '-' * 60
         traceback.print_exc(file=sys.stdout)
-        print '-'*60
+        print '-' * 60
 
-def get_orders(data,max_qty,bids_tag,asks_tag,price_tag=0,qty_tag=1):
+
+def get_orders(data, max_qty, bids_tag, asks_tag, price_tag=0, qty_tag=1):
+    ''' Method for extracting orders '''
     orders = {}
     bids = {}
     asks = {}
-    buyMax = 0
-    sellMax = 0
+    buymax = 0
+    sellmax = 0
     for level in data[bids_tag]:
-        if buyMax > max_qty:
+        if buymax > max_qty:
             continue
         else:
             bids[apply_format_level(level[price_tag])] = "{:.8f}".format(float(level[qty_tag]))
-        buyMax = buyMax + float(level[qty_tag])
+        buymax = buymax + float(level[qty_tag])
 
     for level in data[asks_tag]:
-        if sellMax > max_qty:
+        if sellmax > max_qty:
             continue
         else:
             asks[apply_format_level(level[price_tag])] = "{:.8f}".format(float(level[qty_tag]))
-        sellMax = sellMax + float(level[qty_tag])
+        sellmax = sellmax + float(level[qty_tag])
     orders["source"] = "ITBIT"
     orders["bids"] = bids
     orders["asks"] = asks
     orders["timestamp"] = str(int(time.time()))
     return orders
 
-def guard(url,ccy):
+
+def guard(url, ccy):
+    ''' Method for checking inputs '''
     if ccy:
-       if '%' not in url: # should have slot for the currency in URL
-         raise ValueError("URL %s does not have a '%' for adding currency value supplied" % (url,ccy))
+        if '%' not in url:
+            raise ValueError("URL %s does not have a % for insertin supplied ccy " % (url, ccy))
     else:
-       if '%' in url: # should have ccy to pass via URL
-         raise ValueError("URL %s should have a currency value supplied" % url)
+        if '%' in url:
+            raise ValueError("URL %s should have a currency value supplied" % url)

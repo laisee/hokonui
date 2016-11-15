@@ -1,40 +1,56 @@
-import nose
-import json
+''' Module for tests that should always fail '''
+from unittest import TestCase
 from nose.tools import ok_
 from nose.tools import assert_raises
-from unittest import TestCase
+import nose
 
-from context import hokonui
 from hokonui.exchanges.mock import MockExchange as mock
 
+
 class TestMockExchange(TestCase):
+    ''' Class for executing tests that should always fail '''
 
-  def setUp(self):
-      print(__name__, ': TestClass.setup_class() ----------')
+    @classmethod
+    def setup(cls):
+        ''' method for test setup '''
+        print(__name__, ': TestClass.setup_class() ----------')
 
-  def tearDown(self):
-      print(__name__, ': TestClass.teardown_class() -------')
+    @classmethod
+    def teardown(cls):
+        ''' method for test teardown '''
+        print(__name__, ': TestClass.teardown_class() -------')
 
-  def test_exchange_name(self):
-      ok_(mock.NAME != '')
+    @classmethod
+    def test_exchange_name(cls):
+        ''' method for testing name '''
+        ok_(mock.NAME != '')
 
-  def test_price_fails_no_currency(self):
-      with assert_raises(ValueError) as cm:
-          mock.get_current_price(None)
-      ex = cm.exception # raised exception is available through exception property of context
-      ok_(ex.message == "URL https://api.mock.com/v1/markets/XBT%s/ticker should have a currency value supplied")
+    @classmethod
+    def test_price_fails_no_currency(cls):
+        ''' method for testing no ccy '''
+        msg = "URL https://api.mock.com/XBT%s/ticker should have a currency value supplied"
+        with assert_raises(ValueError) as cme:
+            mock.get_current_price(None)
+        ex = cme.exception
+        ok_(ex.message == msg, "error %s should be %s " % (ex.message, msg))
 
-  def test_ask_fails_no_currency(self):
-      with assert_raises(ValueError) as cm:
-          mock.get_current_ask(None)
-      ex = cm.exception # raised exception is available through exception property of context
-      ok_(ex.message == "URL https://api.mock.com/v1/markets/XBT%s/ticker should have a currency value supplied")
+    @classmethod
+    def test_ask_fails_no_currency(cls):
+        ''' method for testing no ask price '''
+        msg = "URL https://api.mock.com/XBT%s/ticker should have a currency value supplied"
+        with assert_raises(ValueError) as cme:
+            mock.get_current_ask(None)
+        ex = cme.exception
+        ok_(ex.message == msg, "error %s should be %s " % (ex.message, msg))
 
-  def test_bid_fails_no_currency(self):
-      with assert_raises(ValueError) as cm:
-          mock.get_current_bid(None)
-      ex = cm.exception # raised exception is available through exception property of context
-      ok_(ex.message == "URL https://api.mock.com/v1/markets/XBT%s/ticker should have a currency value supplied")
+    @classmethod
+    def test_bid_fails_no_currency(cls):
+        ''' method for testing no bid price '''
+        msg = "URL https://api.mock.com/XBT%s/ticker should have a currency value supplied"
+        with assert_raises(ValueError) as cme:
+            mock.get_current_bid(None)
+        ex = cme.exception
+        ok_(ex.message == msg, "error %s should be %s " % (ex.message, msg))
 
 if __name__ == '__main__':
     nose.runmodule()

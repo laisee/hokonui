@@ -3,6 +3,7 @@ from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
+
 class Quoine(Exchange):
 
     TICKER_URL = 'https://api.quoine.com/products/code/CASH/BTC%s'
@@ -23,10 +24,10 @@ class Quoine(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT,apply_format(data.get('market_bid')),apply_format(data.get('market_ask'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('market_bid')), apply_format(data.get('market_ask'))).toJSON()
 
     @classmethod
-    def _current_orders_extractor(cls,data,max_qty=3):
+    def _current_orders_extractor(cls, data, max_qty=3):
 
         orders = {}
         bids = {}
@@ -47,7 +48,7 @@ class Quoine(Exchange):
             else:
                 bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
             sellMax = sellMax + float(level[1])
- 
+
         orders["source"] = cls.NAME
         orders["bids"] = bids
         orders["asks"] = asks
