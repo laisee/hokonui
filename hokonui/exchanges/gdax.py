@@ -1,10 +1,13 @@
+''' Module for testing GDAX API '''
+# pylint: disable=duplicate-code, line-too-long
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 
-class gdax(Exchange):
+class GDAX(Exchange):
+    ''' Class for testing GDAX API '''
 
     TICKER_URL = 'https://api.exchange.coinbase.com/products/btc-%s/ticker'
     ORDER_BOOK_URL = 'https://api.exchange.coinbase.com/products/btc-%s/book?level=2'

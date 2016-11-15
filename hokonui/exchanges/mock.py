@@ -1,9 +1,12 @@
+''' Module for testing Mock Exchange API '''
+# pylint: disable=duplicate-code, line-too-long
 from hokonui.exchanges.base import Exchange
 from hokonui.utils.helpers import apply_format
 from hokonui.models.ticker import Ticker
 
 
 class MockExchange(Exchange):
+    ''' Class for testing Mock Exchange API '''
 
     TICKER_URL = 'https://api.mock.com/XBT%s/ticker'
     ORDER_BOOK_URL = 'https://api.mock.com/XBT%s/order_book'
@@ -15,17 +18,14 @@ class MockExchange(Exchange):
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        raise ValueError('Not implemented yet')
         return apply_format(data.get('bid'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        raise ValueError('Not implemented yet')
         return apply_format(data.get('ask'))
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        raise ValueError('Not implemented yet')
         return Ticker(cls.CCY_DEFAULT, apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
 
     @classmethod

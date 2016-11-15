@@ -1,3 +1,5 @@
+''' Module for testing Quoine API '''
+# pylint: disable=duplicate-code, line-too-long
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
@@ -5,6 +7,7 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 
 
 class Quoine(Exchange):
+    ''' Class for testing Quoine API '''
 
     TICKER_URL = 'https://api.quoine.com/products/code/CASH/BTC%s'
     ORDER_BOOK_URL = 'https://api.quoine.com/products/%s/price_levels'
@@ -24,7 +27,9 @@ class Quoine(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('market_bid')), apply_format(data.get('market_ask'))).toJSON()
+        bid = apply_format(data.get('market_bid'))
+        ask = apply_format(data.get('market_ask'))
+        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):
@@ -32,22 +37,22 @@ class Quoine(Exchange):
         orders = {}
         bids = {}
         asks = {}
-        buyMax = 0
-        sellMax = 0
+        buymax = 0
+        sellmax = 0
         print data
         for level in data["buy_price_levels"]:
-            if buyMax > max_qty:
+            if buymax > max_qty:
                 pass
             else:
                 asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            buyMax = buyMax + float(level[1])
+            buymax = buymax + float(level[1])
 
         for level in data["sell_price_levels"]:
-            if sellMax > max_qty:
+            if sellmax > max_qty:
                 pass
             else:
                 bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            sellMax = sellMax + float(level[1])
+            sellmax = sellmax + float(level[1])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids

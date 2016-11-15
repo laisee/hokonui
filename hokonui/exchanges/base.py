@@ -1,4 +1,5 @@
 ''' Module for Exchange base class '''
+# pylint: disable=duplicate-code, line-too-long
 from hokonui.utils.helpers import get_response
 
 
@@ -38,11 +39,6 @@ class Exchange(object):
         raise NotImplementedError
 
     @classmethod
-    def _current_volume_extractor(cls, data):
-        ''' Method for extracting volume '''
-        raise NotImplementedError
-
-    @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None):
         ''' Method for retrieving last price '''
         url = cls.PRICE_URL if hasattr(cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
@@ -72,10 +68,3 @@ class Exchange(object):
         ''' Method for retrieving current orders '''
         data = get_response(cls.ORDER_BOOK_URL, ccy, params, body)
         return cls._current_orders_extractor(data, max_qty)
-
-    @classmethod
-    def get_current_volume(cls, ccy='USD', params=None):
-        ''' Method for retrieving current volume '''
-        url = cls.VOLUME_URL if hasattr(cls, 'VOLUME_URL') else cls.TICKER_URL
-        data = get_response(url, ccy, None, params)
-        return cls._current_volume_extractor(data)

@@ -1,3 +1,5 @@
+''' Module for testing BTC-E API '''
+# pylint: disable=duplicate-code, line-too-long
 import time
 import string
 from hokonui.exchanges.base import Exchange
@@ -7,6 +9,7 @@ from hokonui.utils.helpers import apply_format_level
 
 
 class BTCE(Exchange):
+    ''' Class for testing BTCE API '''
 
     PAIR = "btc_%s" % string.lower(Exchange.CCY_DEFAULT)
     TICKER_URL = 'https://btc-e.com/api/3/ticker/%s' % PAIR
@@ -35,22 +38,22 @@ class BTCE(Exchange):
         orders = {}
         bids = {}
         asks = {}
-        buyMax = 0
-        sellMax = 0
+        buymax = 0
+        sellmax = 0
         print data
         for level in data[cls.PAIR]["bids"]:
-            if buyMax > max_qty:
+            if buymax > max_qty:
                 pass
             else:
                 asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            buyMax = buyMax + float(level[1])
+            buymax = buymax + float(level[1])
 
         for level in data[cls.PAIR]["asks"]:
-            if sellMax > max_qty:
+            if sellmax > max_qty:
                 pass
             else:
                 bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            sellMax = sellMax + float(level[1])
+            sellmax = sellmax + float(level[1])
 
         orders["source"] = "BTCE"
         orders["bids"] = bids

@@ -1,3 +1,5 @@
+''' Module for testing ItBit API '''
+# pylint: disable=duplicate-code, line-too-long
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
@@ -6,6 +8,7 @@ from hokonui.utils.helpers import apply_format_level
 
 
 class Itbit(Exchange):
+    ''' Class for testing ItBit API '''
 
     TICKER_URL = 'https://api.itbit.com/v1/markets/XBT%s/ticker'
     ORDER_BOOK_URL = 'https://api.itbit.com/v1/markets/XBT%s/order_book'

@@ -1,3 +1,6 @@
+''' Module for testing Huobi API '''
+# pylint: disable=duplicate-code, line-too-long
+
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
@@ -5,48 +8,53 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 
 
 class Huobi(Exchange):
+    ''' Class for testing Huobi API '''
 
     TICKER_URL = 'http://api.huobi.com/staticmarket/ticker_btc_json.js'
     ORDER_BOOK_URL = 'http://api.huobi.com/staticmarket/detail_btc_json.js'
-    # = '{"total":118268152.7731,"p_high":1720.58,"p_open":1691.22,"p_new":1689,"p_low":1651.08,"top_buy":[{"amount":14.1121,"level":0,"price":1689,"accu":14.1121},'
     NAME = 'Huobi'
 
     @classmethod
     def _current_price_extractor(cls, data):
+        ''' Method for extracting current price '''
         return apply_format(data.get('ticker', {}).get('last'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
+        ''' Method for extracting current bid price '''
         return apply_format(data.get('ticker', {}).get('buy'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
+        ''' Method for extracting current ask price '''
         return apply_format(data.get('ticker', {}).get('sell'))
 
     @classmethod
     def _current_ticker_extractor(cls, data):
+        ''' Method for extracting current ticker '''
         return Ticker(cls.CCY_DEFAULT, apply_format(data.get('ticker', {}).get('buy')), apply_format(data.get('ticker', {}).get('sell'))).toJSON()
 
     @classmethod
-    def _current_orders_extractor(cls, data, max_qty):
+    def _current_orders_extractor(cls, data, max_qty=100):
+        ''' Method for extracting current orders '''
         orders = {}
         bids = {}
         asks = {}
-        buyMax = 0
-        sellMax = 0
+        buymax = 0
+        sellmax = 0
         for level in data["top_buy"]:
-            if buyMax > max_qty:
+            if buymax > max_qty:
                 continue
             else:
                 bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
-            buyMax = buyMax + float(level["amount"])
+            buymax = buymax + float(level["amount"])
 
         for level in data["top_sell"]:
-            if sellMax > max_qty:
+            if sellmax > max_qty:
                 continue
             else:
                 asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
-            sellMax = sellMax + float(level["amount"])
+            sellmax = sellmax + float(level["amount"])
         orders["source"] = "Huobi"
         orders["bids"] = bids
         orders["asks"] = asks

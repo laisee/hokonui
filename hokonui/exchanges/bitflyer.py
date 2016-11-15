@@ -1,3 +1,5 @@
+''' Module for testing BitFlyer API '''
+# pylint: disable=duplicate-code, line-too-long
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
@@ -6,6 +8,7 @@ from hokonui.utils.helpers import apply_format_level
 
 
 class BitFlyer(Exchange):
+    ''' Class for testing BitFlyer API '''
 
     TICKER_URL = 'https://api.bitflyer.jp/v1/ticker?product_code=%s'
     ORDER_BOOK_URL = 'https://api.bitflyer.jp/v1/getboard?product_code=%s'
@@ -14,40 +17,47 @@ class BitFlyer(Exchange):
 
     @classmethod
     def _current_price_extractor(cls, data):
+        ''' Method for extracting current price '''
         return apply_format(data[0].get('price'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
+        ''' Method for extracting bid price '''
         return apply_format(data.get('best_bid'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
+        ''' Method for extracting ask price '''
         return apply_format(data.get('best_ask'))
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('best_bid')), apply_format(data.get('best_ask'))).toJSON()
+        ''' Method for extracting ticker '''
+        bid = apply_format(data.get('best_bid'))
+        ask = apply_format(data.get('best_ask'))
+        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):
+        ''' Method for extracting orders '''
         orders = {}
         bids = {}
         asks = {}
-        buyMax = 0
-        sellMax = 0
+        buymax = 0
+        sellmax = 0
         for level in data["bids"]:
-            if buyMax > max_qty:
+            if buymax > max_qty:
                 pass
             else:
                 asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
-            buyMax = buyMax + float(level["size"])
+            buymax = buymax + float(level["size"])
 
         for level in data["asks"]:
-            if sellMax > max_qty:
+            if sellmax > max_qty:
                 pass
             else:
                 bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
-            sellMax = sellMax + float(level["size"])
+            sellmax = sellmax + float(level["size"])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids

@@ -1,3 +1,5 @@
+''' Module for testing BitX API '''
+# pylint: disable=duplicate-code, line-too-long
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
@@ -5,6 +7,7 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 
 
 class BitX(Exchange):
+    ''' Class for testing BitX API '''
 
     TICKER_URL = 'https://api.mybitx.com/api/1/ticker?pair=XBT%s'
     ORDER_BOOK_URL = 'https://api.mybitx.com/api/1/orderbook?pair=XBT%s'
@@ -24,29 +27,31 @@ class BitX(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
+        bid = apply_format(data.get('bid'))
+        ask = apply_format(data.get('ask'))
+        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):
         orders = {}
         bids = {}
         asks = {}
-        buyMax = 0
-        sellMax = 0
+        buymax = 0
+        sellmax = 0
         print data
         for level in data["bids"]:
-            if buyMax > max_qty:
+            if buymax > max_qty:
                 pass
             else:
                 asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["volume"]))
-            buyMax = buyMax + float(level["volume"])
+            buymax = buymax + float(level["volume"])
 
         for level in data["asks"]:
-            if sellMax > max_qty:
+            if sellmax > max_qty:
                 pass
             else:
                 bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["volume"]))
-            sellMax = sellMax + float(level["volume"])
+            sellmax = sellmax + float(level["volume"])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids

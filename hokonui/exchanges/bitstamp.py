@@ -1,3 +1,5 @@
+''' Module for testing BitFlyer API '''
+# pylint: disable=duplicate-code, line-too-long
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
@@ -6,6 +8,7 @@ from hokonui.utils.helpers import apply_format_level
 
 
 class Bitstamp(Exchange):
+    ''' Class for testing Bitflyer API '''
 
     TICKER_URL = 'https://bitstamp.net/api/ticker/'
     ORDER_BOOK_URL = 'https://www.bitstamp.net/api/order_book/'
@@ -25,7 +28,9 @@ class Bitstamp(Exchange):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('bid')), apply_format(data.get('ask'))).toJSON()
+        bid = apply_format(data.get('bid'))
+        ask = apply_format(data.get('ask'))
+        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):

@@ -1,3 +1,5 @@
+''' Module for testing Cryptofacility API '''
+# pylint: disable=duplicate-code, line-too-long
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
@@ -5,6 +7,7 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 
 
 class CryptoFacility(Exchange):
+    ''' Class for testing Cryptofac API '''
 
     TICKER_URL = 'https://www.cryptofacilities.com/derivatives/api/v2/tickers/'
     ORDER_BOOK_URL = 'https://www.cryptofacilities.com/derivatives/api/v2/orderbook?symbol=%s'
@@ -36,22 +39,22 @@ class CryptoFacility(Exchange):
         orders = {}
         bids = {}
         asks = {}
-        buyMax = 0
-        sellMax = 0
+        buymax = 0
+        sellmax = 0
         print data
         for level in data["orderBook"]["bids"]:
-            if buyMax > max_qty:
+            if buymax > max_qty:
                 continue
             else:
                 bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            buyMax = buyMax + float(level[1])
+            buymax = buymax + float(level[1])
 
         for level in data["orderBook"]["asks"]:
-            if sellMax > max_qty:
+            if sellmax > max_qty:
                 continue
             else:
                 asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            sellMax = sellMax + float(level[1])
+            sellmax = sellmax + float(level[1])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids

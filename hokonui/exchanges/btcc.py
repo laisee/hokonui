@@ -1,3 +1,5 @@
+''' Module for testing BTCC API '''
+# pylint: disable=duplicate-code, line-too-long
 import time
 from hokonui.exchanges.base import Exchange
 from hokonui.models.ticker import Ticker
@@ -6,6 +8,7 @@ from hokonui.utils.helpers import apply_format_level
 
 
 class BTCC(Exchange):
+    ''' Class for testing BTCC API '''
 
     TICKER_URL = 'https://data.btcchina.com/data/ticker?market=btccny'
     ORDER_BOOK_URL = 'https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd&size=10'
@@ -32,21 +35,21 @@ class BTCC(Exchange):
         orders = {}
         bids = {}
         asks = {}
-        buyMax = 0
-        sellMax = 0
+        buymax = 0
+        sellmax = 0
         for level in data["bids"]:
-            if buyMax > max_qty:
+            if buymax > max_qty:
                 pass
             else:
                 bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            buyMax = buyMax + float(level[1])
+            buymax = buymax + float(level[1])
 
         for level in data["asks"]:
-            if sellMax > max_qty:
+            if sellmax > max_qty:
                 pass
             else:
                 asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            sellMax = sellMax + float(level[1])
+            sellmax = sellmax + float(level[1])
 
         orders["source"] = "BTCC"
         orders["bids"] = bids
