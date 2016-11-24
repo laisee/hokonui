@@ -9,28 +9,27 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 class CoinBase(Exchange):
     ''' Class for testing Coinbase API '''
 
-    TICKER_URL = 'https://api.exchange.coinbase.com/products/BTC-%s/'
+    TICKER_URL = 'https://api.exchange.coinbase.com/products/BTC-%s/ticker'
     ORDER_BOOK_URL = 'https://api.exchange.coinbase.com/products/BTC-%s/book?level=2'
     NAME = 'CoinBase'
 
     @classmethod
     def _current_price_extractor(cls, data):
-        print data
-        return apply_format(data.get('price'))
+        return apply_format(data['price'])
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return apply_format(data["bids"][0][0])
+        return apply_format(data["bid"])
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return apply_format(data["asks"][0][0])
+        return apply_format(data["ask"])
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        bid = apply_format(data["bids"][0][0])
-        ask = apply_format(data["asks"][0][0])
-        return Ticker(cls.CCY_DEFAULT, bid, ask)
+        bid = apply_format(data["bid"])
+        ask = apply_format(data["ask"])
+        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):

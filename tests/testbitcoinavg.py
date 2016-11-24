@@ -3,6 +3,7 @@
 import string
 import json
 from unittest import TestCase
+import unittest
 from nose.tools import ok_
 import nose
 from hokonui.exchanges.base import Exchange as base
@@ -53,6 +54,7 @@ class TestBitcoinAverage(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
+    @unittest.skip("skip while API volume call is rebuilt")
     def test_volume(cls):
         ''' method for testing volumes '''
         vol = avg.get_current_volume(base.CCY_DEFAULT)

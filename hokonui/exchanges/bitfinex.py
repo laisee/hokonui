@@ -32,8 +32,8 @@ class Bitfinex(Exchange):
     @classmethod
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting ticker '''
-        bid = apply_format(data.get('best_bid'))
-        ask = apply_format(data.get('best_ask'))
+        bid = apply_format(data.get('bid'))
+        ask = apply_format(data.get('ask'))
         return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod

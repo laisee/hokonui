@@ -5,7 +5,7 @@ from unittest import TestCase
 from nose.tools import ok_
 import nose
 from hokonui.exchanges.base import Exchange as base
-from hokonui.exchanges.gdax import gdax as gdx
+from hokonui.exchanges.gdax import GDAX as gdx
 
 
 class Testgdax(TestCase):

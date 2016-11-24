@@ -36,6 +36,7 @@ def get_response(url, ccy, params=None, body=None):
         url = url % ccy
     if params:
         url = "%s%s" % (url, params)
+    print url
     try:
         if body:
             data = json.loads(body)

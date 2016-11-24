@@ -7,7 +7,18 @@ from hokonui.utils.helpers import apply_format
 
 
 class BitcoinAverage(Exchange):
-    ''' Class for testing Bitcoinaverage API '''
+    ''' 
+    Class for testing Bitcoinaverage API 
+    {
+    "24h_avg": 748.64,
+    "ask": 751.73,
+    "bid": 750.38,
+    "last": 751.2,
+    "timestamp": "Thu, 24 Nov 2016 00:48:23 -0000",
+    "volume_btc": 42523.1,
+    "volume_percent": 56.36
+     }
+    '''
 
     TICKER_URL = 'https://api.bitcoinaverage.com/ticker/global/%s/'
     NAME = 'BitcoinAverage'

@@ -30,22 +30,22 @@ class TestCoinBase(TestCase):
     @classmethod
     def test_price(cls):
         ''' method for testing last price'''
-        ok_(cba.get_current_price(base.CCY_DEFAULT, 'ticker') > 0.00)
+        ok_(cba.get_current_price(base.CCY_DEFAULT, None) > 0.00)
 
     @classmethod
     def test_bid(cls):
         ''' method for testing bid price'''
-        ok_(cba.get_current_bid(base.CCY_DEFAULT, 'book') > 0.00)
+        ok_(cba.get_current_bid(base.CCY_DEFAULT, None) > 0.00)
 
     @classmethod
     def test_ask(cls):
         ''' method for testing ask price'''
-        ok_(cba.get_current_ask(base.CCY_DEFAULT, 'book') > 0.00)
+        ok_(cba.get_current_ask(base.CCY_DEFAULT, None) > 0.00)
 
     @classmethod
     def test_ticker(cls):
         ''' method for testing ticker'''
-        data = json.loads(cba.get_current_ticker(base.CCY_DEFAULT, 'book'))
+        data = json.loads(cba.get_current_ticker(base.CCY_DEFAULT, None))
         ok_(data["pair"] == base.CCY_DEFAULT, "pair should be base.CCY_DEFAULT")
         ok_(data["ask"] > 0.00, "ask should not be empty")
         ok_(data["bid"] > 0.00, "bid should not be empty")
