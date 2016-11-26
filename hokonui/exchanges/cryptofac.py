@@ -20,18 +20,18 @@ class CryptoFacility(Exchange):
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        bid = data["tickers"][0]["bid"]
+        bid = data["tickers"][1]["bid"]
         return apply_format(bid)
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        ask = data["tickers"][0]["ask"]
+        ask = data["tickers"][1]["ask"]
         return apply_format(ask)
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        ask = data["tickers"][0]["ask"]
-        bid = data["tickers"][0]["bid"]
+        ask = data["tickers"][1]["ask"]
+        bid = data["tickers"][1]["bid"]
         return Ticker(cls.CCY_DEFAULT, apply_format(bid), apply_format(ask)).toJSON()
 
     @classmethod
