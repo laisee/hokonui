@@ -7,7 +7,10 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 
 
 class Quoine(Exchange):
-    ''' Class for testing Quoine API '''
+    '''
+    Class for r/w Quoine API
+
+    '''
 
     TICKER_URL = 'https://api.quoine.com/products/code/CASH/BTC%s'
     ORDER_BOOK_URL = 'https://api.quoine.com/products/%s/price_levels'
