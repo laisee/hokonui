@@ -9,8 +9,8 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 class GDAX(Exchange):
     ''' Class for testing GDAX API '''
 
-    TICKER_URL = 'https://api.exchange.coinbase.com/products/btc-%s/ticker'
-    ORDER_BOOK_URL = 'https://api.exchange.coinbase.com/products/btc-%s/book?level=2'
+    TICKER_URL = 'https://api.gdax.com/products/BTC-%s/ticker'
+    ORDER_BOOK_URL = 'https://api.gdax.com/products/BTC-%s/book?level=2'
     NAME = 'gdax'
 
     @classmethod

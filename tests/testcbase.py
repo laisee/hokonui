@@ -2,6 +2,7 @@
 
 import string
 import json
+import unittest
 from unittest import TestCase
 import nose
 from nose.tools import ok_
@@ -9,7 +10,7 @@ from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.coinbase import CoinBase as cba
 
 
-class TestCoinBase(TestCase):
+class TestCoinbase(TestCase):
     ''' Class for testing Coinbase API '''
 
     @classmethod
@@ -30,12 +31,12 @@ class TestCoinBase(TestCase):
     @classmethod
     def test_price(cls):
         ''' method for testing last price'''
-        ok_(cba.get_current_price(base.CCY_DEFAULT, None) > 0.00)
+        ok_(cba.get_current_price(base.CCY_DEFAULT, None, None, cba.HEADER) > 0.00)
 
     @classmethod
     def test_bid(cls):
         ''' method for testing bid price'''
-        ok_(cba.get_current_bid(base.CCY_DEFAULT, None) > 0.00)
+        ok_(cba.get_current_bid(base.CCY_DEFAULT, None, None, cba.HEADER) > 0.00)
 
     @classmethod
     def test_ask(cls):
@@ -43,6 +44,7 @@ class TestCoinBase(TestCase):
         ok_(cba.get_current_ask(base.CCY_DEFAULT, None) > 0.00)
 
     @classmethod
+    @unittest.skip("coinbase has no /ticker method")
     def test_ticker(cls):
         ''' method for testing ticker'''
         data = json.loads(cba.get_current_ticker(base.CCY_DEFAULT, None))
@@ -58,7 +60,7 @@ class TestCoinBase(TestCase):
         orders = cba.get_current_orders(base.CCY_DEFAULT)
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
-        ok_(orders["source"] == "CoinBase", "Source should be 'CoinBase'")
+        ok_(orders["source"] == "Coinbase", "Source should be 'CoinBase'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
 
 if __name__ == '__main__':

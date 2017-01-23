@@ -29,20 +29,19 @@ def get_timestamp():
     return time.mktime(time.gmtime())
 
 
-def get_response(url, ccy, params=None, body=None):
+def get_response(url, ccy, params=None, body=None, header=None):
     ''' Method for executing API requests '''
     guard(url, ccy)
     if ccy:
         url = url % ccy
     if params:
         url = "%s%s" % (url, params)
-    print url
     try:
         if body:
             data = json.loads(body)
             response = requests.post(url, json=data)
         else:
-            response = requests.get(url)
+            response = requests.get(url,headers=header)
         response.raise_for_status()
         return response.json()
     except Exception as exc:
