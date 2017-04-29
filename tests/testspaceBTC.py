@@ -2,6 +2,7 @@
 import json
 import string
 from unittest import TestCase
+import unittest
 import nose
 from nose.tools import ok_
 from hokonui.exchanges.base import Exchange as base
@@ -27,21 +28,25 @@ class TestSpaceBTC(TestCase):
         ok_(space.NAME == string.replace(cls.__name__, 'Test', ''))
 
     @classmethod
+    @unittest.skip("internal server error - skip until resolved") 
     def test_price(cls):
         ''' Method for testing last price '''
         ok_(space.get_current_price('BTC_USD') > 0.00)
 
     @classmethod
+    @unittest.skip("internal server error - skip until resolved") 
     def test_bid(cls):
         ''' Method for testing bid price '''
         ok_(space.get_current_bid('BTC_USD') > 0.00)
 
     @classmethod
+    @unittest.skip("internal server error - skip until resolved") 
     def test_ask(cls):
         ''' Method for testing ask price '''
         ok_(space.get_current_ask('BTC_USD') > 0.00)
 
     @classmethod
+    @unittest.skip("internal server error - skip until resolved") 
     def test_ticker(cls):
         ''' Method for testing ticker '''
         data = json.loads(space.get_current_ticker('BTC_USD'))
@@ -52,6 +57,7 @@ class TestSpaceBTC(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
+    @unittest.skip("internal server error - skip until resolved") 
     def test_orders(cls):
         ''' Method for testing orders '''
         orders = space.get_current_orders('BTC_USD')
