@@ -2,6 +2,7 @@
 import json
 import string
 from unittest import TestCase
+import unittest
 import nose
 from nose.tools import ok_
 from hokonui.exchanges.base import Exchange as base
