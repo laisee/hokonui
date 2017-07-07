@@ -12,28 +12,32 @@ class TestOkCoin(TestCase):
     ''' Class for testing OkCoin API '''
 
 
+def test_name():
+    ''' Method for testing last price '''
+    ok_(okc.__name__ != "")
+
 def test_price():
     ''' Method for testing last price '''
-    ok_(okc.get_current_price() > 0.00)
+    ok_(float(okc.get_current_price()) > 0.00)
 
 
 def test_bid():
     ''' Method for testing bid price '''
-    ok_(okc.get_current_bid() > 0.00)
+    ok_(float(okc.get_current_bid()) > 0.00)
 
 
 def test_ask():
     ''' Method for testing ask price '''
-    ok_(okc.get_current_ask() > 0.00)
+    ok_(float(okc.get_current_ask()) > 0.00)
 
 
 def test_ticker():
     ''' Method for testing ticker '''
     data = json.loads(okc.get_current_ticker())
     ok_(data["pair"] == base.CCY_DEFAULT, "shd be '%s'" % base.CCY_DEFAULT)
-    ok_(data["ask"] > 0.00, "ask should not be empty")
-    ok_(data["bid"] > 0.00, "bid should not be empty")
-    ok_(data["bid"] <= data["ask"], "bid should be <= ask")
+    ok_(float(data["ask"]) > 0.00, "ask should not be empty")
+    ok_(float(data["bid"]) > 0.00, "bid should not be empty")
+    ok_(float(data["bid"]) <= float(data["ask"]), "bid should be <= ask")
     ok_(float(data["timestamp"]) > 0, "Timestamp should be greater than zero")
 
 

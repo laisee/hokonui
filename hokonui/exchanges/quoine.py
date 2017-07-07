@@ -42,7 +42,6 @@ class Quoine(Exchange):
         asks = {}
         buymax = 0
         sellmax = 0
-        print data
         for level in data["buy_price_levels"]:
             if buymax > max_qty:
                 pass

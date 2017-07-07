@@ -1,5 +1,5 @@
 
-''' module for testing Zaif API '''
+''' module for testing NEM API '''
 
 import json
 import string
@@ -7,12 +7,12 @@ from unittest import TestCase
 from nose.tools import ok_
 import nose
 from hokonui.exchanges.base import Exchange as base
-from hokonui.exchanges.zaif import Zaif as zf
+from hokonui.exchanges.nem import Nem as nem
 
 
-class TestZaif(TestCase):
+class TestNEM(TestCase):
 
-    ''' Class for testing Zaif API '''
+    ''' Class for testing NEM API '''
 
     @classmethod
     def setup(cls):
@@ -27,29 +27,29 @@ class TestZaif(TestCase):
     @classmethod
     def test_name(cls):
         ''' name test method '''
-        ok_(zf.NAME == cls.__name__.replace('Test', ''))
+        ok_(nem.NAME == cls.__name__.replace('Test', ''))
 
     @classmethod
     def test_price(cls):
         ''' last price test method '''
-        ok_(float(zf.get_current_price(zf.CCY_DEFAULT)) > 0.00)
+        ok_(float(nem.get_current_price()) > 0.00)
 
     @classmethod
     def test_bid(cls):
         ''' bid price test method '''
-        ok_(float(zf.get_current_bid(zf.CCY_DEFAULT)) > 0.00)
+        ok_(float(nem.get_current_bid()) > 0.00)
 
     @classmethod
     def test_ask(cls):
         ''' ask price test method '''
-        ok_(float(zf.get_current_ask(zf.CCY_DEFAULT)) > 0.00)
+        ok_(float(nem.get_current_ask()) > 0.00)
 
     @classmethod
     def test_ticker(cls):
         ''' ticket test method '''
 
-        data = json.loads(zf.get_current_ticker(zf.CCY_DEFAULT))
-        ok_(data["pair"] == zf.CCY_DEFAULT, "shd be '%s'" % zf.CCY_DEFAULT)
+        data = json.loads(nem.get_current_ticker())
+        ok_(data["pair"] == nem.CCY_DEFAULT, "shd be '%s'" % nem.CCY_DEFAULT)
         ok_(float(data["ask"]) > 0.00, "ask should not be empty")
         ok_(float(data["bid"]) > 0.00, "bid should not be empty")
         ok_(float(data["bid"]) <= float(data["ask"]), "bid should be < ask")
@@ -58,10 +58,10 @@ class TestZaif(TestCase):
     @classmethod
     def test_orders(cls):
         ''' orders test method '''
-        orders = zf.get_current_orders(zf.CCY_DEFAULT)
-        ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
-        ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
-        ok_(orders["source"] == "Zaif", "Source should be 'Zaif'")
+        orders = nem.get_current_orders()
+        ok_(len(orders["asks"]) >= 0, "Asks array should not be empty")
+        ok_(len(orders["bids"]) >= 0, "Bids array should not be empty")
+        ok_(orders["source"] == "NEM", "Source should be 'NEM'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
 
 if __name__ == '__main__':

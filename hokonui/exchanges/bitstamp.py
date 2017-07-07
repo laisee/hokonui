@@ -10,9 +10,10 @@ from hokonui.utils.helpers import apply_format_level
 class Bitstamp(Exchange):
     ''' Class for testing Bitflyer API '''
 
-    TICKER_URL = 'https://bitstamp.net/api/ticker/'
-    ORDER_BOOK_URL = 'https://www.bitstamp.net/api/order_book/'
+    TICKER_URL = 'https://www.bitstamp.net/api/v2/ticker/%s'
+    ORDER_BOOK_URL = 'https://www.bitstamp.net/api/v2/order_book/%s'
     NAME = 'Bitstamp'
+    CCY_DEFAULT = 'btcusd'
 
     @classmethod
     def _current_price_extractor(cls, data):
@@ -54,7 +55,7 @@ class Bitstamp(Exchange):
                     asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
                 sellmax = sellmax + float(level[1])
 
-        orders["source"] = "Bitfinex"
+        orders["source"] = cls.NAME
         orders["bids"] = bids
         orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))

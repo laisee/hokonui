@@ -1,5 +1,4 @@
-
-''' Module for testing Zaif API '''
+''' Module for testing Gemini API '''
 # pylint: disable=duplicate-code, line-too-long
 import time
 from hokonui.exchanges.base import Exchange
@@ -7,20 +6,20 @@ from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 
-class Zaif(Exchange):
+class Gemini(Exchange):
     '''
-    Class for r/w Zaif API
+    Class for r/w Gemini API
 
     '''
 
-    TICKER_URL = 'https://api.zaif.jp/api/1/ticker/%s'
-    ORDER_BOOK_URL = 'https://api.zaif.jp/api/1/depth/%s'
-    CCY_DEFAULT = "btc_jpy"
-    NAME = "Zaif"
+    TICKER_URL = 'https://api.sandbox.gemini.com/v1/pubticker/%s'
+    ORDER_BOOK_URL =  'https://api.sandbox.gemini.com/v1/book/%s'
+    NAME = "Gemini"
+    CCY_DEFAULT = "btcusd"
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return apply_format(str(data.get('last')))
+        return apply_format(data.get('last'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
@@ -48,15 +47,15 @@ class Zaif(Exchange):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            buymax = buymax + float(level[1])
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
+            buymax = buymax + float(level["amount"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            sellmax = sellmax + float(level[1])
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
+            sellmax = sellmax + float(level["amount"])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids

@@ -11,6 +11,7 @@ import requests
 
 def apply_format(value):
     ''' Method for applying formats '''
+    print(value)
     return format(Decimal(value), '.5f')
 
 
@@ -45,10 +46,10 @@ def get_response(url, ccy, params=None, body=None, header=None):
         response.raise_for_status()
         return response.json()
     except Exception as exc:
-        print "Exception during request %s : %s " % (url, exc)
-        print '-' * 60
+        print("Exception during request %s : %s " % (url, exc))
+        print('-' * 60)
         traceback.print_exc(file=sys.stdout)
-        print '-' * 60
+        print('-' * 60)
 
 
 def get_orders(data, max_qty, bids_tag, asks_tag, price_tag=0, qty_tag=1):

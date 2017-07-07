@@ -15,7 +15,7 @@ class CoinDesk(object):
         ''' Method for retrieving current price '''
         url = 'https://api.coindesk.com/v1/bpi/currentprice/%s.json'
         data = get_response(url, ccy)
-        price = data['bpi'][ccy]['rate']
+        price = data['bpi'][ccy]['rate_float']
         return apply_format(price)
 
     @classmethod

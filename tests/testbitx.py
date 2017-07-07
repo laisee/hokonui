@@ -27,31 +27,31 @@ class TestBitX(TestCase):
     @classmethod
     def test_name(cls):
         ''' method for testing name '''
-        ok_(btx.NAME == string.replace(cls.__name__, 'Test', ''))
+        ok_(btx.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
     def test_price(cls):
         ''' method for testing last price '''
-        ok_(btx.get_current_price(cls.TEST_CCY) > 0.00)
+        ok_(float(btx.get_current_price(cls.TEST_CCY)) > 0.00)
 
     @classmethod
     def test_bid(cls):
         ''' method for testing bid price '''
-        ok_(btx.get_current_bid(cls.TEST_CCY) > 0.00)
+        ok_(float(btx.get_current_bid(cls.TEST_CCY)) > 0.00)
 
     @classmethod
     def test_ask(cls):
         ''' method for testing ask price '''
-        ok_(btx.get_current_ask(cls.TEST_CCY) > 0.00)
+        ok_(float(btx.get_current_ask(cls.TEST_CCY)) > 0.00)
 
     @classmethod
     def test_ticker(cls):
         ''' method for testing ticker '''
         data = json.loads(btx.get_current_ticker(cls.TEST_CCY))
         ok_(data["pair"] == base.CCY_DEFAULT, "shd be '%s'" % cls.TEST_CCY)
-        ok_(data["ask"] > 0.00, "ask should not be empty")
-        ok_(data["bid"] > 0.00, "bid should not be empty")
-        ok_(data["bid"] <= data["ask"], "bid should be < ask")
+        ok_(float(data["ask"]) > 0.00, "ask should not be empty")
+        ok_(float(data["bid"]) > 0.00, "bid should not be empty")
+        ok_(float(data["bid"]) <= float(data["ask"]), "bid should be < ask")
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod

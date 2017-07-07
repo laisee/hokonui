@@ -9,7 +9,7 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 class CryptoFacility(Exchange):
     ''' Class for testing Cryptofac API '''
 
-    TICKER_URL = 'https://www.cryptofacilities.com/derivatives/api/v2/tickers/'
+    TICKER_URL = 'https://www.cryptofacilities.com/derivatives/api/v3/tickers/'
     ORDER_BOOK_URL = 'https://www.cryptofacilities.com/derivatives/api/v2/orderbook?symbol=%s'
     NAME = 'CryptoFacility'
 
@@ -41,7 +41,6 @@ class CryptoFacility(Exchange):
         asks = {}
         buymax = 0
         sellmax = 0
-        print data
         for level in data["orderBook"]["bids"]:
             if buymax > max_qty:
                 continue

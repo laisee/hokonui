@@ -23,25 +23,25 @@ class TestKraken(TestCase):
     @classmethod
     def test_name(cls):
         ''' Method for testing name '''
-        ok_(kraken.NAME == string.replace(cls.__name__, 'Test', ''))
+        ok_(kraken.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
     def test_price(cls):
         ''' Method for testing last price '''
         body = '{"pair":"XXBTZJPY"}'
-        ok_(kraken.get_current_price(None, None, body) > 0.00)
+        ok_(float(kraken.get_current_price(None, None, body)) > 0.00)
 
     @classmethod
     def test_bid(cls):
         ''' Method for testing bid price '''
         body = '{"pair":"XXBTZJPY"}'
-        ok_(kraken.get_current_bid(None, None, body) > 0.00)
+        ok_(float(kraken.get_current_bid(None, None, body)) > 0.00)
 
     @classmethod
     def test_ask(cls):
         ''' Method for testing ask price '''
         body = '{"pair":"XXBTZJPY"}'
-        ok_(kraken.get_current_ask(None, None, body) > 0.00)
+        ok_(float(kraken.get_current_ask(None, None, body)) > 0.00)
 
     @classmethod
     def test_ticker(cls):
@@ -49,9 +49,9 @@ class TestKraken(TestCase):
         body = '{"pair":"XXBTZJPY"}'
         data = json.loads(kraken.get_current_ticker(None, None, body))
         ok_(data["pair"] == 'XXBTZJPY', "pair should be 'XXBTZJPY'")
-        ok_(data["ask"] > 0.00, "ask should not be empty")
-        ok_(data["bid"] > 0.00, "bid should not be empty")
-        ok_(data["bid"] <= data["ask"], "bid should be <= ask")
+        ok_(float(data["ask"]) > 0.00, "ask should not be empty")
+        ok_(float(data["bid"]) > 0.00, "bid should not be empty")
+        ok_(float(data["bid"]) <= float(data["ask"]), "bid should be <= ask")
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod

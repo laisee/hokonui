@@ -25,7 +25,7 @@ class TestMockExchange(TestCase):
     @classmethod
     def test_name(cls):
         ''' Method for testing name '''
-        ok_(mock.NAME == string.replace(cls.__name__, 'Test', ''))
+        ok_(mock.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
     @unittest.skip("skip while building mock service")
@@ -56,4 +56,3 @@ class TestMockExchange(TestCase):
 
 if __name__ == '__main__':
     nose.runmodule()
-    print str(base)
