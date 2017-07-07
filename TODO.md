@@ -1,14 +1,11 @@
 - [ ] add new exchanges 
-  - [ ] Kraken(EURO)
-  - [x] Quoine
-  - [x] BitFlyer
-  - [x] BitX
+  - [x] Kraken(EURO) - DONE
 - [ ] user ticker object for ask/bid prices
-  - [x] ITBIT   
-- [x] add UTC timestamp to returned data ( orders )
-- [ ] add UTC timestamp to returned data ( ticker )
+  - [x] DONE   
+- [x] add UTC timestamp to returned data ( orders ) - DONE
+- [x] add UTC timestamp to returned data ( ticker ) - DONE
 - [ ] move URLs into config file
 - [ ] refactor formatter to allow passing precision as a parameter 
 - [ ] refactor orders creation through common object like Ticker
 - [ ] add example using threads
-- [ ] support python3
+- [x] support python3 - DONE
