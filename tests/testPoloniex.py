@@ -1,11 +1,11 @@
 
 ''' module for testing Poloniex API '''
 
-import json
-import string
-from unittest import TestCase
-from nose.tools import ok_
-import nose
+from tests import *
+
+libPath = '../hokonui'
+if not libPath in sys.path: sys.path.append(libPath)
+
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.polo import Poloniex as p
 

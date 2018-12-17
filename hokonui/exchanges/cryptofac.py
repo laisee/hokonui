@@ -10,7 +10,7 @@ class CryptoFacility(Exchange):
     ''' Class for testing Cryptofac API '''
 
     TICKER_URL = 'https://www.cryptofacilities.com/derivatives/api/v3/tickers/'
-    ORDER_BOOK_URL = 'https://www.cryptofacilities.com/derivatives/api/v2/orderbook?symbol=%s'
+    ORDER_BOOK_URL = 'https://www.cryptofacilities.com/derivatives/api/v3/orderbook?symbol=%s'
     NAME = 'CryptoFacility'
 
     @classmethod
@@ -41,22 +41,24 @@ class CryptoFacility(Exchange):
         asks = {}
         buymax = 0
         sellmax = 0
-        for level in data["orderBook"]["bids"]:
-            if buymax > max_qty:
-                continue
-            else:
-                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            buymax = buymax + float(level[1])
+        print("HEREHEREHERE\n\n")
+        print(data)
+        #for level in data["orderBook"]["bids"]:
+        #    if buymax > max_qty:
+        #        continue
+        #    else:
+        #        bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+        #    buymax = buymax + float(level[1])
 
-        for level in data["orderBook"]["asks"]:
-            if sellmax > max_qty:
-                continue
-            else:
-                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            sellmax = sellmax + float(level[1])
+        #for level in data["orderBook"]["asks"]:
+        #    if sellmax > max_qty:
+        #        continue
+        #    else:
+        #        asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+        #    sellmax = sellmax + float(level[1])
 
         orders["source"] = cls.NAME
-        orders["bids"] = bids
-        orders["asks"] = asks
+        #orders["bids"] = bids
+        #orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))
         return orders

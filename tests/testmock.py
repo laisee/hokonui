@@ -1,10 +1,10 @@
 ''' Module for testing Mock Exchange '''
-import string
-import unittest
-from unittest import TestCase
-from nose.tools import ok_
-from nose.tools import assert_raises
-import nose
+
+from tests import *
+
+libPath = '../hokonui'
+if not libPath in sys.path: sys.path.append(libPath)
+
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.mock import MockExchange as mock
 

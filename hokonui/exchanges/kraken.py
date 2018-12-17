@@ -10,8 +10,8 @@ from hokonui.utils.helpers import apply_format_level
 class Kraken(Exchange):
     ''' Class for testing Kraken API '''
 
-    TICKER_URL = 'https://api.kraken.com/0/public/Ticker'
-    ORDER_BOOK_URL = 'https://api.kraken.com/0/public/Depth'
+    TICKER_URL = 'https://api.kraken.com/0/public/Ticker?pair=xbtusd'
+    ORDER_BOOK_URL = 'https://api.kraken.com/0/public/Depth?pair=XBTUSD&count=100'
     NAME = 'Kraken'
 
     @classmethod

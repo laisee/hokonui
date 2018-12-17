@@ -1,9 +1,10 @@
 ''' Module for testing ITBIT exchange '''
-import json
-import string
-from unittest import TestCase
-import nose
-from nose.tools import ok_
+
+from tests import *
+
+libPath = '../hokonui'
+if not libPath in sys.path: sys.path.append(libPath)
+
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.itbit import Itbit as itb
 

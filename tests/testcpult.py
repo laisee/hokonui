@@ -1,12 +1,12 @@
 ''' Module for testing Coinapult exchange '''
 
-import string
-from unittest import TestCase
-import nose
-from nose.tools import ok_
+from tests import *
+
+libPath = '../hokonui'
+if not libPath in sys.path: sys.path.append(libPath)
+
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.coinapult import Coinapult as cplt
-
 
 class TestCoinapult(TestCase):
     ''' Class for testing Coinapult exchange '''

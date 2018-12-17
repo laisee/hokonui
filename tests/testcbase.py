@@ -1,11 +1,10 @@
 ''' Module for testing CoinBasse API '''
 
-import string
-import json
-import unittest
-from unittest import TestCase
-import nose
-from nose.tools import ok_
+from tests import *
+
+libPath = '../hokonui'
+if not libPath in sys.path: sys.path.append(libPath)
+
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.coinbase import CoinBase as cba
 

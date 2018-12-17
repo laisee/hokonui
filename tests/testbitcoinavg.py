@@ -1,11 +1,10 @@
 ''' MOdule for testing Bitcoinaverage API '''
 
-import string
-import json
-from unittest import TestCase
-import unittest
-from nose.tools import ok_
-import nose
+from test import *
+
+libPath = '../hokonui'
+if not libPath in sys.path: sys.path.append(libPath)
+
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.bitcoinavg import BitcoinAverage as avg
 

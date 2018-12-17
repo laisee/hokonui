@@ -1,9 +1,11 @@
 ''' Module for testing Kraken API '''
-import string
-import json
-from unittest import TestCase
-from nose.tools import ok_
-import nose
+
+from tests import *
+
+libPath = '../hokonui'
+if not libPath in sys.path: sys.path.append(libPath)
+
+from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.kraken import Kraken as kraken
 
 
@@ -28,7 +30,7 @@ class TestKraken(TestCase):
     @classmethod
     def test_price(cls):
         ''' Method for testing last price '''
-        body = '{"pair":"XXBTZJPY"}'
+        body = '{"pair":"XXBTZUSD"}'
         ok_(float(kraken.get_current_price(None, None, body)) > 0.00)
 
     @classmethod
