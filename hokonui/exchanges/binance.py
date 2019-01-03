@@ -2,14 +2,14 @@
 # pylint: disable=duplicate-code, line-too-long
 from hokonui.utils.helpers import get_response
 
-class Exchange(object):
+class Binance(object):
     ''' Class Exchange base class for all exchanges '''
 
     TICKER_URL = None
     ORDER_BOOK_URL = None
     VOLUME_URL = None
     PRICE_URL = None
-    NAME = 'Base'
+    NAME = 'Bonance'
     CCY_DEFAULT = 'USD'
 
     @classmethod
@@ -41,7 +41,9 @@ class Exchange(object):
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving last price '''
         url = cls.PRICE_URL if hasattr(cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
+        print(url)
         data = get_response(url, ccy, params, body, header)
+        print(data)
         return cls._current_price_extractor(data)
 
     @classmethod

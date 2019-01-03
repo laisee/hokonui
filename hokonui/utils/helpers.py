@@ -16,7 +16,6 @@ def docstring_parameter(*sub):
 
 def apply_format(value):
     ''' Method for applying formats '''
-    print(value)
     return format(Decimal(value), '.5f')
 
 
@@ -37,6 +36,8 @@ def get_timestamp():
 
 def get_response(url, ccy, params=None, body=None, header=None):
     ''' Method for executing API requests '''
+    print(ccy)
+    print(url)
     guard(url, ccy)
     if ccy:
         url = url % ccy

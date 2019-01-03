@@ -66,7 +66,7 @@ class TestCoinbase(TestCase):
         orders = cba.get_current_orders(base.CCY_DEFAULT)
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
-        ok_(orders["source"] == "Coinbase", "Source should be 'CoinBase'")
+        ok_(orders["source"] == "Coinbase", "Source should be 'Coinbase'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
 
 if __name__ == '__main__':
