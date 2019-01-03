@@ -8,6 +8,11 @@ from datetime import datetime
 from decimal import Decimal
 import requests
 
+def docstring_parameter(*sub):
+    def dec(obj):
+        obj.__doc__ = obj.__doc__.format(*sub)
+        return obj
+    return dec
 
 def apply_format(value):
     ''' Method for applying formats '''

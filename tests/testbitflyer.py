@@ -15,38 +15,45 @@ class TestBitFlyer(TestCase):
     TEST_CCY = "BTC_JPY"
 
     @classmethod
+    @docparams(btf.__name__,"setup")
     def setUp(cls):
-        ''' Method for testing setup '''
+        ''' {0}.{1} '''
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
+    @docparams(btf.__name__,"teardown")
     def tearDown(cls):
-        ''' Method for testing teardonw '''
+        ''' {0}.{1} '''
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
+    @docparams(btf.__name__,"name")
     def test_name(cls):
-        ''' Method for testing name '''
+        ''' {0}.{1}'''
         ok_(btf.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
+    @docparams(btf.__name__,"price")
     def test_price(cls):
-        ''' Method for testing last price '''
+        ''' {0}.{1}'''
         ok_(float(btf.get_current_price(cls.TEST_CCY)) > 0.00)
 
     @classmethod
+    @docparams(btf.__name__,"bid")
     def test_bid(cls):
-        ''' Method for testing bid price '''
+        ''' {0}.{1}'''
         ok_(float(btf.get_current_bid(cls.TEST_CCY)) > 0.00)
 
     @classmethod
+    @docparams(btf.__name__,"ask")
     def test_ask(cls):
-        ''' Method for testing ask price '''
+        ''' {0}.{1}'''
         ok_(float(btf.get_current_ask(cls.TEST_CCY)) > 0.00)
 
     @classmethod
+    @docparams(btf.__name__,"ticker")
     def test_ticker(cls):
-        ''' Method for testing ticker '''
+        ''' {0}.{1}'''
         data = json.loads(btf.get_current_ticker(cls.TEST_CCY))
         ok_(data["pair"] == base.CCY_DEFAULT, "shd be '%s'" % base.CCY_DEFAULT)
         ok_(float(data["ask"]) > 0.00, "ask should not be empty")
@@ -55,8 +62,9 @@ class TestBitFlyer(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
+    @docparams(btf.__name__,"orders")
     def test_orders(cls):
-        ''' Method for testing orders '''
+        ''' {0}.{1}'''
         orders = btf.get_current_orders(cls.TEST_CCY)
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")

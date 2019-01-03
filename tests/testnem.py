@@ -14,38 +14,51 @@ class TestNEM(TestCase):
     ''' Class for testing NEM API '''
 
     @classmethod
+    @docparams(nem.__name__,"setup")
     def setup(cls):
-        ''' setup method '''
+        ''' {0}.{1} '''
+
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
+    @docparams(nem.__name__,"teardown")
     def teardown(cls):
-        ''' test teardown method '''
+        ''' {0}.{1} '''
+
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
+    @docparams(nem.__name__,"name")
     def test_name(cls):
-        ''' name test method '''
+        ''' {0}.{1}'''
+
         ok_(nem.NAME == cls.__name__.replace('Test', ''))
 
     @classmethod
+    @docparams(nem.__name__,"price")
     def test_price(cls):
-        ''' last price test method '''
+        ''' {0}.{1}'''
+
         ok_(float(nem.get_current_price()) > 0.00)
 
     @classmethod
+    @docparams(nem.__name__,"bid")
     def test_bid(cls):
-        ''' bid price test method '''
+        ''' {0}.{1}'''
+
         ok_(float(nem.get_current_bid()) > 0.00)
 
     @classmethod
+    @docparams(nem.__name__,"ask")
     def test_ask(cls):
-        ''' ask price test method '''
+        ''' {0}.{1}'''
+
         ok_(float(nem.get_current_ask()) > 0.00)
 
     @classmethod
+    @docparams(nem.__name__,"ticker")
     def test_ticker(cls):
-        ''' ticket test method '''
+        ''' {0}.{1}'''
 
         data = json.loads(nem.get_current_ticker())
         ok_(data["pair"] == nem.CCY_DEFAULT, "shd be '%s'" % nem.CCY_DEFAULT)
@@ -55,8 +68,10 @@ class TestNEM(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
+    @docparams(nem.__name__,"orders")
     def test_orders(cls):
-        ''' orders test method '''
+        ''' {0}.{1}'''
+
         orders = nem.get_current_orders()
         ok_(len(orders["asks"]) >= 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) >= 0, "Bids array should not be empty")

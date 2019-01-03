@@ -7,7 +7,7 @@ libPath = '../hokonui'
 if not libPath in sys.path: sys.path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
-from hokonui.exchanges.gemini import Gemini as q
+from hokonui.exchanges.gemini import Gemini as g2
 
 
 class TestGemini(TestCase):
@@ -15,50 +15,65 @@ class TestGemini(TestCase):
     ''' Class for testing Gemini API '''
 
     @classmethod
+    @docparams(g2.__name__,"setup")
     def setup(cls):
-        ''' setup method '''
+        ''' {0}.{1} '''
+
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
+    @docparams(g2.__name__,"teardown")
     def teardown(cls):
-        ''' test teardown method '''
+        ''' {0}.{1} '''
+
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
+    @docparams(g2.__name__,"name")
     def test_name(cls):
-        ''' name test method '''
-        ok_(q.NAME == cls.__name__.replace( 'Test', ''))
+        ''' {0}.{1} '''
+
+        ok_(g2.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
+    @docparams(g2.__name__,"price")
     def test_price(cls):
-        ''' last price test method '''
-        ok_(float(q.get_current_price(q.CCY_DEFAULT)) > 0.00)
+        ''' {0}.{1} '''
+
+        ok_(float(g2.get_current_price(g2.CCY_DEFAULT)) > 0.00)
 
     @classmethod
+    @docparams(g2.__name__,"bid")
     def test_bid(cls):
-        ''' bid price test method '''
-        ok_(float(q.get_current_bid(q.CCY_DEFAULT)) > 0.00)
+        ''' {0}.{1} '''
+
+        ok_(float(g2.get_current_bid(g2.CCY_DEFAULT)) > 0.00)
 
     @classmethod
+    @docparams(g2.__name__,"ask")
     def test_ask(cls):
-        ''' ask price test method '''
-        ok_(float(q.get_current_ask(q.CCY_DEFAULT)) > 0.00)
+        ''' {0}.{1} '''
+
+        ok_(float(g2.get_current_ask(g2.CCY_DEFAULT)) > 0.00)
 
     @classmethod
+    @docparams(g2.__name__,"ticker")
     def test_ticker(cls):
-        ''' ticker test method '''
+        ''' {0}.{1} '''
 
-        data = json.loads(q.get_current_ticker(q.CCY_DEFAULT))
-        ok_(data["pair"] == q.CCY_DEFAULT, "shd be '%s'" % q.CCY_DEFAULT)
+        data = json.loads(g2.get_current_ticker(g2.CCY_DEFAULT))
+        ok_(data["pair"] == g2.CCY_DEFAULT, "shd be '%s'" % g2.CCY_DEFAULT)
         ok_(float(data["ask"]) > 0.00, "ask should not be empty")
         ok_(float(data["bid"]) > 0.00, "bid should not be empty")
         ok_(float(data["bid"]) <= float(data["ask"]), "bid should be < ask")
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
+    @docparams(g2.__name__,"orders")
     def test_orders(cls):
-        ''' orders test method '''
-        orders = q.get_current_orders(q.CCY_DEFAULT)
+        ''' {0}.{1} '''
+
+        orders = g2.get_current_orders(g2.CCY_DEFAULT)
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
         ok_(orders["source"] == "Gemini", "Source should be 'Gemini'")

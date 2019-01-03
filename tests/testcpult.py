@@ -12,28 +12,38 @@ class TestCoinapult(TestCase):
     ''' Class for testing Coinapult exchange '''
 
     @classmethod
+    @docparams(cplt.__name__,"name")
     def test_name(cls):
-        ''' Method for testing name '''
+        ''' {0}.{1} '''
+
         ok_(cplt.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
+    @docparams(cplt.__name__,"price")
     def test_price(cls):
-        ''' Method for testing last price '''
+        ''' {0}.{1} '''
+
         ok_(float(cplt.get_current_price(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
+    @docparams(cplt.__name__,"bid")
     def test_bid(cls):
-        ''' Method for testing bid price '''
+        ''' {0}.{1} '''
+
         ok_(float(cplt.get_current_bid(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
+    @docparams(cplt.__name__,"ask")
     def test_ask(cls):
-        ''' Method for testing ask price '''
+        ''' {0}.{1} '''
+
         ok_(float(cplt.get_current_ask(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
+    @docparams(cplt.__name__,"bid-lt-ask")
     def test_bid_lt_ask(cls):
-        ''' Method for testing bid price < ask price '''
+        ''' {0}.{1} '''
+
         bid = float(cplt.get_current_bid(base.CCY_DEFAULT))
         ask = float(cplt.get_current_ask(base.CCY_DEFAULT))
         ok_(bid < ask, "bid should be < ask")

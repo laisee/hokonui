@@ -9,8 +9,8 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 class CoinBase(Exchange):
     ''' Class for testing Coinbase API '''
 
-    TICKER_URL = "https://api.coinbase.com/v2/products/BTC-%s/book"
-    PRICE_URL = "https://api.coinbase.com/v2/prices/BTC-%s/spot"
+    TICKER_URL = "https://api.coinbase.com/v2/prices/BTC-%s/spot"
+    PRICE_URL  = "https://api.coinbase.com/v2/prices/BTC-%s/spot"
     BID_URL = "https://api.coinbase.com/v2/prices/BTC-%s/buy"
     ASK_URL = "https://api.coinbase.com/v2/prices/BTC-%s/sell"
     HEADER = { "CB-VERSION": "2016-02-18" }

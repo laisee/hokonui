@@ -14,38 +14,52 @@ class TestCryptoFacility(TestCase):
     SYMBOL = 'fi_xbtusd_180615'
 
     @classmethod
+    @docparams(cfc.__name__,"setup")
     def setUp(cls):
-        ''' method for test setup '''
+        ''' {0}.{1} '''
+
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
+    @docparams(cfc.__name__,"teardown")
     def tearDown(cls):
-        ''' method for test teardown '''
+        ''' {0}.{1} '''
+
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
+    @docparams(cfc.__name__,"name")
     def test_name(cls):
-        ''' name test method '''
+        ''' {0}.{1} '''
+
         ok_(cfc.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
+    @docparams(cfc.__name__,"price")
     def test_price(cls):
-        ''' method for testing last price '''
+        ''' {0}.{1} '''
+
         ok_(float(cfc.get_current_price()) > 0.00)
 
     @classmethod
+    @docparams(cfc.__name__,"bid")
     def test_bid(cls):
-        ''' method for testing bid prices '''
+        ''' {0}.{1} '''
+
         ok_(float(cfc.get_current_bid()) > 0.00)
 
     @classmethod
+    @docparams(cfc.__name__,"ask")
     def test_ask(cls):
-        ''' method for testing ask prices '''
+        ''' {0}.{1} '''
+
         ok_(float(cfc.get_current_ask()) > 0.00)
 
     @classmethod
+    @docparams(cfc.__name__,"ticker")
     def test_ticker(cls):
-        ''' method for testing ticker '''
+        ''' {0}.{1} '''
+
         data = json.loads(cfc.get_current_ticker())
         ok_(data["pair"] == cfc.CCY_DEFAULT, "shd be '%s'" % cfc.CCY_DEFAULT)
         ok_(float(data["ask"]) > 0.00, "ask shd not be empty")
@@ -54,8 +68,10 @@ class TestCryptoFacility(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
+    @docparams(cfc.__name__,"orders")
     def test_orders(cls):
-        ''' method for testing orders '''
+        ''' {0}.{1} '''
+
         orders = cfc.get_current_orders(cls.SYMBOL)
         print(orders)
         #ok_(len(orders["asks"]) > 0, "Asks array shd not be empty")

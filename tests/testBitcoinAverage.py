@@ -1,6 +1,6 @@
-''' MOdule for testing Bitcoinaverage API '''
+''' Module for testing Bitcoinaverage API '''
 
-from test import *
+from tests import *
 
 libPath = '../hokonui'
 if not libPath in sys.path: sys.path.append(libPath)
@@ -13,43 +13,50 @@ class TestBitcoinAverage(TestCase):
     ''' Class for executing Bitcoinaverage API test '''
 
     @classmethod
+    @docparams(avg.__name__,"setup")
     def setup(cls):
-        ''' setup method '''
+        ''' {0}.{1} '''
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
+    @docparams(avg.__name__,"teardown")
     def teardown(cls):
-        ''' teardown method '''
+        ''' {0}.{1} '''
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
     @unittest.skip("skip while API volume call is rebuilt")
+    @docparams(avg.__name__,"name")
     def test_name(cls):
-        ''' method for testing name '''
+        ''' {0}.{1} '''
         ok_(avg.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
     @unittest.skip("skip while API volume call is rebuilt")
+    @docparams(avg.__name__,"price")
     def test_price(cls):
-        ''' method for testing last price '''
+        ''' {0}.{1} '''
         ok_(avg.get_current_price(base.CCY_DEFAULT) > 0.00)
 
     @classmethod
     @unittest.skip("skip while API volume call is rebuilt")
+    @docparams(avg.__name__,"bid")
     def test_bid(cls):
-        ''' method for testing bid price '''
+        ''' {0}.{1} '''
         ok_(avg.get_current_bid(base.CCY_DEFAULT) > 0.00)
 
     @classmethod
     @unittest.skip("skip while API volume call is rebuilt")
+    @docparams(avg.__name__,"ask")
     def test_ask(cls):
-        ''' method for testing ask price '''
+        ''' {0}.{1} '''
         ok_(avg.get_current_ask(base.CCY_DEFAULT) > 0.00)
 
     @classmethod
     @unittest.skip("skip while API volume call is rebuilt")
+    @docparams(avg.__name__,"ticker")
     def test_ticker(cls):
-        ''' method for testing ticker '''
+        ''' {0}.{1} '''
         data = json.loads(avg.get_current_ticker(base.CCY_DEFAULT))
         ok_(data["pair"] == base.CCY_DEFAULT, "shd be '%s'" % base.CCY_DEFAULT)
         ok_(data["ask"] > 0.00, "ask should not be empty")
@@ -59,8 +66,9 @@ class TestBitcoinAverage(TestCase):
 
     @classmethod
     @unittest.skip("skip while API volume call is rebuilt")
+    @docparams(avg.__name__,"orders")
     def test_volume(cls):
-        ''' method for testing volumes '''
+        ''' {0}.{1} '''
         vol = avg.get_current_volume(base.CCY_DEFAULT)
         ok_(float(vol["quantity"]) >= 0, "quantity shd be valid number >= 0")
         ok_(vol["source"] == "BitcoinAverage", "Source should be 'BitcoinAverage'")
