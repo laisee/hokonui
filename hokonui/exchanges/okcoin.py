@@ -1,13 +1,14 @@
 ''' Module for testing OkCoin API '''
 # pylint: disable=fixme, line-too-long
+
 import time
-from hokonui.exchanges.base import Exchange
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 
 
-class OKCoin(Exchange):
+class OKCoin(Base):
     ''' Class for testing OkCoin API '''
 
     TICKER_URL = 'https://www.okcoin.com/api/v1/ticker.do?symbol=btc_usd'

@@ -1,4 +1,4 @@
-''' Module for testing Binance exchange '''
+''' Module for testing BitThumb exchange '''
 
 from tests import *
 
@@ -6,11 +6,11 @@ libPath = '../hokonui'
 if not libPath in sys.path: sys.path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
-from hokonui.exchanges.binance import Binance as bin
+from hokonui.exchanges.binance import BitThumb as bin
 
 
 class TestBitThumb(TestCase):
-    ''' Class for testing Binance exchange '''
+    ''' Class for testing BitThumb exchange '''
 
     @classmethod
     @docparams(bin.__name__,"setup")
@@ -26,35 +26,35 @@ class TestBitThumb(TestCase):
 
     @classmethod
     @docparams(bin.__name__,"name")
-    @unittest.skip("skip while creating Binance API calls ")
+    @unittest.skip("skip while creating BitThumb API calls ")
     def test_name(cls):
         ''' {0}.{1} '''
         ok_(bin.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
     @docparams(bin.__name__,"price")
-    @unittest.skip("skip while creating Binance API calls ")
+    @unittest.skip("skip while creating BitThumb API calls ")
     def test_price(cls):
         ''' {0}.{1} '''
         ok_(float(bin.get_current_price(bin.CCY_DEFAULT)) > 0.00)
 
     @classmethod
     @docparams(bin.__name__,"bid")
-    @unittest.skip("skip while creating Binance API calls ")
+    @unittest.skip("skip while creating BitThumb API calls ")
     def test_bid(cls):
         ''' {0}.{1} '''
         ok_(float(bin.get_current_bid(bin.CCY_DEFAULT)) > 0.00)
 
     @classmethod
     @docparams(bin.__name__,"ask")
-    @unittest.skip("skip while creating Binance API calls ")
+    @unittest.skip("skip while creating BitThumb API calls ")
     def test_ask(cls):
         ''' {0}.{1} '''
         ok_(float(bin.get_current_ask(bin.CCY_DEFAULT)) > 0.00)
 
     @classmethod
     @docparams(bin.__name__,"ticker")
-    @unittest.skip("skip while creating Binance API calls ")
+    @unittest.skip("skip while creating BitThumb API calls ")
     def test_ticker(cls):
         ''' {0}.{1} '''
         data = json.loads(bin.get_current_ticker(bin.CCY_DEFAULT))
@@ -66,13 +66,13 @@ class TestBitThumb(TestCase):
 
     @classmethod
     @docparams(bin.__name__,"orders")
-    @unittest.skip("skip while creating Binance API calls ")
+    @unittest.skip("skip while creating BitThumb API calls ")
     def test_orders(cls):
         ''' {0}.{1} '''
         orders = bin.get_current_orders(bin.CCY_DEFAULT)
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
-        ok_(orders["source"] == "Binance", "Source should be 'Binance'")
+        ok_(orders["source"] == "BitThumb", "Source should be 'BitThumb'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
 
 if __name__ == '__main__':

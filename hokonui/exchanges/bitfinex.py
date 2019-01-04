@@ -1,13 +1,14 @@
 ''' Module for testing Bitfinex API '''
 # pylint: disable=duplicate-code, line-too-long
+
 import time
-from hokonui.exchanges.base import Exchange
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 
 
-class Bitfinex(Exchange):
+class Bitfinex(Base):
     ''' class for testing Bitfinex public information API  '''
 
     TICKER_URL = 'https://api.bitfinex.com/v1/pubticker/btc%s'

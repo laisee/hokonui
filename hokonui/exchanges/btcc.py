@@ -1,13 +1,14 @@
 ''' Module for testing BTCC API '''
 # pylint: disable=duplicate-code, line-too-long
+
 import time
-from hokonui.exchanges.base import Exchange
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 
 
-class BTCC(Exchange):
+class BTCC(Base):
     ''' Class for testing BTCC API '''
 
     TICKER_URL = 'https://data.btcchina.com/data/ticker?market=btccny'

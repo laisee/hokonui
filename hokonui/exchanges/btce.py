@@ -1,17 +1,17 @@
 ''' Module for testing BTC-E API '''
 # pylint: disable=duplicate-code, line-too-long
+
 import time
-import string
-from hokonui.exchanges.base import Exchange
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 
 
-class BTCE(Exchange):
+class BTCE(Base):
     ''' Class for testing BTCE API '''
 
-    PAIR = "btc_%s" % Exchange.CCY_DEFAULT.lower()
+    PAIR = "btc_%s" % Base.CCY_DEFAULT.lower()
     TICKER_URL = 'https://btc-e.com/api/3/ticker/%s' % PAIR
     ORDER_BOOK_URL = 'https://btc-e.com/api/3/depth/%s' % PAIR
     NAME = 'BTCE'

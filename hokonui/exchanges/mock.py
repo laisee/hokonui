@@ -1,11 +1,12 @@
 ''' Module for testing Mock Exchange API '''
 # pylint: disable=duplicate-code, line-too-long
-from hokonui.exchanges.base import Exchange
+
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.utils.helpers import apply_format
 from hokonui.models.ticker import Ticker
 
 
-class MockExchange(Exchange):
+class MockExchange(Base):
     ''' Class for testing Mock Exchange API '''
 
     TICKER_URL = 'https://api.mock.com/XBT%s/ticker'

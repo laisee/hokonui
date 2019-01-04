@@ -1,13 +1,14 @@
 ''' Module for testing ItBit API '''
 # pylint: disable=duplicate-code, line-too-long
+
 import time
-from hokonui.exchanges.base import Exchange
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 
 
-class Itbit(Exchange):
+class Itbit(Base):
     ''' Class for testing ItBit API '''
 
     TICKER_URL = 'https://api.itbit.com/v1/markets/XBT%s/ticker'

@@ -59,7 +59,7 @@ class TestZaif(TestCase):
         ''' {0}.{1} '''
 
         data = json.loads(zf.get_current_ticker(zf.CCY_DEFAULT))
-        ok_(data["pair"] == zf.CCY_DEFAULT, "shd be '%s'" % zf.CCY_DEFAULT)
+        ok_(data["pair"] == zf.CCY_DEFAULT, "Ccy should be '%s', was '%s'" % (zf.CCY_DEFAULT, data["pair"]))
         ok_(float(data["ask"]) > 0.00, "ask should not be empty")
         ok_(float(data["bid"]) > 0.00, "bid should not be empty")
         ok_(float(data["bid"]) <= float(data["ask"]), "bid should be < ask")
@@ -74,6 +74,7 @@ class TestZaif(TestCase):
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
         ok_(orders["source"] == "Zaif", "Source should be 'Zaif'")
+        ok_(orders["ccy"] == zf.CCY_DEFAULT, "Ccy should be %s" % zf.CCY_DEFAULT)
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
 
 if __name__ == '__main__':

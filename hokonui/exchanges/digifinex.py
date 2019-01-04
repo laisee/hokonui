@@ -1,8 +1,10 @@
 ''' Module for Exchange base class '''
 # pylint: disable=duplicate-code, line-too-long
-from hokonui.utils.helpers import get_response
 
-class Exchange(object):
+from hokonui.utils.helpers import get_response
+from hokonui.exchanges.base import Exchange as Base
+
+class Digifinex(Base):
     ''' Class Exchange base class for all exchanges '''
 
     TICKER_URL = None

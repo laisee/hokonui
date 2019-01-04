@@ -1,10 +1,12 @@
 ''' Module for testing Coinapult API '''
 # pylint: disable=duplicate-code, line-too-long
+
 from hokonui.utils.helpers import get_response, apply_format
 from hokonui.models.ticker import Ticker
+from hokonui.exchanges.base import Exchange as Base
 
 
-class Coinapult(object):
+class Coinapult(Base):
     ''' Class for testing Coinapult API '''
 
     TICKER_URL = 'https://api.coinapult.com/api/ticker?market=%s_BTC'

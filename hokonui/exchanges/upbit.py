@@ -1,21 +1,22 @@
 ''' Module for testing Upbit API '''
 # pylint: disable=duplicate-code, line-too-long
+
 import time
-from hokonui.exchanges.base import Exchange
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 
-class Upbit(Exchange):
+class Upbit(Base):
     '''
-    Class for r/w Upbit API
-
+    Class for Upbit API
     '''
 
     PRICE_URL = 'https://api.upbit.com/v1/ticker?markets=KRW-BTC'
     TICKER_URL = 'https://api.upbit.com/v1/ticker?markets=KRW-BTC'
     ORDER_BOOK_URL = 'https://api.upbit.com/v1/orderbook?markets=KRW-BTC'
     NAME = "Upbit"
+    CCY_DEFAULT = "KRW"
 
     @classmethod
     def _current_price_extractor(cls, data):
@@ -33,9 +34,7 @@ class Upbit(Exchange):
     def _current_ticker_extractor(cls, data):
         bid = apply_format(data[0].get('trade_price'))
         ask = apply_format(data[0].get('trade_price'))
-        print(bid)
-        print(ask)
-        return Ticker("KRW-BTC", bid, ask).toJSON()
+        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):

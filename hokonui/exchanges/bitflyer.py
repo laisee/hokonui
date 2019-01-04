@@ -1,13 +1,13 @@
 ''' Module for testing BitFlyer API '''
 # pylint: disable=duplicate-code, line-too-long
 import time
-from hokonui.exchanges.base import Exchange
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 
 
-class BitFlyer(Exchange):
+class BitFlyer(Base):
     ''' Class for testing BitFlyer API '''
 
     TICKER_URL = 'https://api.bitflyer.jp/v1/ticker?product_code=%s'

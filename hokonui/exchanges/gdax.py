@@ -1,12 +1,13 @@
 ''' Module for testing GDAX API '''
 # pylint: disable=duplicate-code, line-too-long
+
 import time
-from hokonui.exchanges.base import Exchange
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 
-class GDAX(Exchange):
+class GDAX(Base):
     ''' Class for testing GDAX API '''
 
     TICKER_URL = 'https://api.gdax.com/products/BTC-%s/ticker'

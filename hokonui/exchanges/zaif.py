@@ -1,22 +1,23 @@
 
 ''' Module for testing Zaif API '''
 # pylint: disable=duplicate-code, line-too-long
+
 import time
-from hokonui.exchanges.base import Exchange
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 
-class Zaif(Exchange):
+class Zaif(Base):
     '''
-    Class for r/w Zaif API
+    Class for Zaif API
 
     '''
 
-    TICKER_URL = 'https://api.zaif.jp/api/1/ticker/%s'
-    ORDER_BOOK_URL = 'https://api.zaif.jp/api/1/depth/%s'
-    CCY_DEFAULT = "btc_jpy"
+    TICKER_URL = 'https://api.zaif.jp/api/1/ticker/btc_%s'
+    ORDER_BOOK_URL = 'https://api.zaif.jp/api/1/depth/btc_%s'
     NAME = "Zaif"
+    CCY_DEFAULT = "jpy"
 
     @classmethod
     def _current_price_extractor(cls, data):
@@ -61,5 +62,6 @@ class Zaif(Exchange):
         orders["source"] = cls.NAME
         orders["bids"] = bids
         orders["asks"] = asks
+        orders["ccy"] = cls.CCY_DEFAULT if cls.CCY_DEFAULT else Base.CCY_DEFAULT
         orders["timestamp"] = str(int(time.time()))
         return orders

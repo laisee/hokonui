@@ -1,12 +1,13 @@
 ''' module for testing Bitcoinaverage API '''
 # pylint: disable=duplicate-code, line-too-long
 import time
-from hokonui.exchanges.base import Exchange
+
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 
 
-class BitcoinAverage(Exchange):
+class BitcoinAverage(Base):
     ''' 
     Class for testing Bitcoinaverage API 
     {

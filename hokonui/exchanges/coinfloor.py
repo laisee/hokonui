@@ -1,37 +1,39 @@
 ''' Module for testing Coinfloor API '''
 # pylint: disable=duplicate-code, line-too-long
+
 import time
-from hokonui.exchanges.base import Exchange
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 
-class Coinfloor(Exchange):
+class Coinfloor(Base):
     '''
-    Class for r/w Coinfloor API
+    Class for Coinfloor API
 
     '''
 
-    TICKER_URL = 'https://api.quoine.com/products/code/CASH/BTC%s'
-    ORDER_BOOK_URL = 'https://api.quoine.com/products/%s/price_levels'
+    TICKER_URL = 'https://webapi.coinfloor.co.uk:8090/bist/XBT/%s/ticker/'
+    ORDER_BOOK_URL = 'https://webapi.coinfloor.co.uk:8090/bist/XBT/%s/order_book/'
     NAME = "Coinfloor"
+    CCY_DEFAULT = 'GBP'
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return apply_format(data.get('last_traded_price'))
+        return apply_format(data.get('last'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return apply_format(data.get('market_bid'))
+        return apply_format(data.get('bid'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return apply_format(data.get('market_ask'))
+        return apply_format(data.get('ask'))
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        bid = apply_format(data.get('market_bid'))
-        ask = apply_format(data.get('market_ask'))
+        bid = apply_format(data.get('bid'))
+        ask = apply_format(data.get('ask'))
         return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod
@@ -42,14 +44,14 @@ class Coinfloor(Exchange):
         asks = {}
         buymax = 0
         sellmax = 0
-        for level in data["buy_price_levels"]:
+        for level in data["bids"]:
             if buymax > max_qty:
                 pass
             else:
                 asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
             buymax = buymax + float(level[1])
 
-        for level in data["sell_price_levels"]:
+        for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
@@ -60,4 +62,5 @@ class Coinfloor(Exchange):
         orders["bids"] = bids
         orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))
+        orders["ccy"] = cls.CCY_DEFAULT if cls.CCY_DEFAULT else base.CCY_DEFAULT
         return orders
