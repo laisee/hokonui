@@ -6,7 +6,7 @@ libPath = '../hokonui'
 if not libPath in sys.path: sys.path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
-from hokonui.exchanges.binance import BitThumb as bin
+from hokonui.exchanges.bitthumb import BitThumb as bin
 
 
 class TestBitThumb(TestCase):
@@ -26,7 +26,6 @@ class TestBitThumb(TestCase):
 
     @classmethod
     @docparams(bin.__name__,"name")
-    @unittest.skip("skip while creating BitThumb API calls ")
     def test_name(cls):
         ''' {0}.{1} '''
         ok_(bin.NAME == cls.__name__.replace( 'Test', ''))

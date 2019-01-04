@@ -4,8 +4,8 @@
 from hokonui.utils.helpers import get_response
 from hokonui.exchanges.base import Exchange as Base
 
-class Exchange(Base):
-    ''' Class Exchange base class for all exchanges '''
+class BitThumb(Base):
+    ''' Class BitThumb base class for all exchanges '''
 
     TICKER_URL = None
     ORDER_BOOK_URL = None

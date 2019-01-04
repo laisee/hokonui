@@ -21,7 +21,7 @@ class BitcoinAverage(Base):
      }
     '''
 
-    TICKER_URL = 'https://api.bitcoinaverage.com/ticker/global/%s/'
+    TICKER_URL = 'https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC%s'
     NAME = 'BitcoinAverage'
 
     @classmethod

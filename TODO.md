@@ -1,11 +1,13 @@
 - [ ] add new exchanges 
     * Bittrex
-    * Binance (DONE)
     * BitThumb
-    * CoinFloor (DONE)
     * Digifinex
+    * Binance (DONE)
+    * CoinFloor (DONE)
     * Upbit (DONE)
 - [ ] fix API to use latest version 
+    * BTCC
+    * BTC-E
     * Huobi
 - [ ] add example using async/threads
 - [ ] move URLs into config file
