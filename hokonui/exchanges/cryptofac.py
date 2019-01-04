@@ -41,8 +41,6 @@ class CryptoFacility(Base):
         asks = {}
         buymax = 0
         sellmax = 0
-        print("HEREHEREHERE\n\n")
-        print(data)
         #for level in data["orderBook"]["bids"]:
         #    if buymax > max_qty:
         #        continue

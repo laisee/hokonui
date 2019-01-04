@@ -34,7 +34,6 @@ class TestBTCE(TestCase):
         ok_(btce.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
-    @unittest.skip("skip while fixing BTC-E url")
     @docparams(btce.__name__,"price")
     def test_price(cls):
         ''' {0}.{1}'''

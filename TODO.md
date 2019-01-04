@@ -1,8 +1,8 @@
 - [ ] add new exchanges 
-    * Bittrex
-    * BitThumb
     * Digifinex
+    * Bittrex (DONE)
     * Binance (DONE)
+    * BitThumb (DONE)
     * CoinFloor (DONE)
     * Upbit (DONE)
 - [ ] fix API to use latest version 

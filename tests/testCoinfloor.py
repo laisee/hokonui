@@ -71,7 +71,6 @@ class TestCoinfloor(TestCase):
         ''' {0}.{1}'''
 
         orders = cfl.get_current_orders(cfl.CCY_DEFAULT)
-        print(orders)
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
         ok_(orders["source"] == "Coinfloor", "Source should be 'Coinfloor'")

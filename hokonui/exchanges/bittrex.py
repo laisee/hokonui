@@ -8,29 +8,29 @@ from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 from hokonui.utils.helpers import get_response
 
-class BitThumb(Base):
-    ''' Class BitThumb base class for all exchanges '''
+class Bittrex(Base):
+    ''' Class Bittrex base class for all exchanges '''
 
-    ORDER_BOOK_URL = 'https://api.bithumb.com/public/orderbook/BTC'
+    ORDER_BOOK_URL = 'https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-%s&type=both'
     PRICE_URL = None
-    TICKER_URL = 'https://api.bithumb.com/public/ticker/BTC'
-    NAME = 'BitThumb'
-    CCY_DEFAULT = 'KRW'
+    TICKER_URL = 'https://bittrex.com/api/v1.1/public/getticker?market=BTC-%s'
+    NAME = 'Bittrex'
+    CCY_DEFAULT = 'TUSD'
 
     @classmethod
     def _current_price_extractor(cls, data):
         ''' Method for extracting current price '''
-        return (float(apply_format(data['data'].get('buy_price'))) + float(apply_format(data['data'].get('sell_price'))))/2
+        return apply_format(data['result'].get('Last')) 
 
     @classmethod
     def _current_bid_extractor(cls, data):
         ''' Method for extracting bid price '''
-        return apply_format(data['data'].get('buy_price')) 
+        return apply_format(data['result'].get('Bid')) 
 
     @classmethod
     def _current_ask_extractor(cls, data):
         ''' Method for extracting ask price '''
-        return apply_format(data['data'].get('sell_price')) 
+        return apply_format(data['result'].get('Ask')) 
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
@@ -40,19 +40,19 @@ class BitThumb(Base):
         asks = {}
         buymax = 0
         sellmax = 0
-        for level in data["data"]["bids"]:
+        for level in data["result"]["buy"]:
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["quantity"]))
-            buymax = buymax + float(level["quantity"])
+                asks[apply_format_level(level["Rate"])] = "{:.8f}".format(float(level["Quantity"]))
+            buymax = buymax + float(level["Quantity"])
 
-        for level in data["data"]["asks"]:
+        for level in data["result"]["sell"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["quantity"]))
-            sellmax = sellmax + float(level["quantity"])
+                bids[apply_format_level(level["Rate"])] = "{:.8f}".format(float(level["Quantity"]))
+            sellmax = sellmax + float(level["Quantity"])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids
@@ -64,8 +64,8 @@ class BitThumb(Base):
     @classmethod
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting ticker '''
-        bid = apply_format(data['data'].get('buy_price'))
-        ask = apply_format(data['data'].get('sell_price'))
+        bid = apply_format(data['result']['Bid'])
+        ask = apply_format(data['result']['Ask'])
         return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod

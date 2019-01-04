@@ -45,9 +45,6 @@ class BitFlyer(Base):
         asks = {}
         buymax = 0
         sellmax = 0
-        print("<< ORDERS = ")
-        print(data)
-        print(">> ORDERS ")
         for level in data["bids"]:
             if buymax > max_qty:
                 pass

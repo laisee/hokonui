@@ -21,7 +21,6 @@ class Nem(Base):
 
     @classmethod
     def _current_price_extractor(cls, data):
-        print(data)
         return apply_format(str(data[0]['price_usd']))
 
     @classmethod
