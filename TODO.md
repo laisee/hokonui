@@ -3,12 +3,13 @@
     * Binance (DONE)
     * BitThumb (DONE)
     * CoinFloor (DONE)
+    * CoinHako (DONE)
     * Simex (DONE)
     * Upbit (DONE)
 - [ ] fix API to use latest version 
     * Digifinex
     * Huobi
-    * Simex (orders)
+    * CoinHako (orders)
 - [ ] add example using async/threads
 - [ ] move URLs into config file
 - [ ] refactor formatter to allow passing precision as a parameter 

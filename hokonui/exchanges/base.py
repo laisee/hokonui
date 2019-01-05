@@ -1,5 +1,6 @@
 ''' Module for Exchange base class '''
 # pylint: disable=duplicate-code, line-too-long
+
 from hokonui.utils.helpers import get_response
 
 class Exchange(object):

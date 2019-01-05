@@ -4,66 +4,41 @@
 import time
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
-from hokonui.utils.helpers import apply_format
-from hokonui.utils.helpers import apply_format_level
-from hokonui.utils.helpers import get_response
+from hokonui.utils.helpers import apply_format,apply_format_level,get_response
 
-class Simex(Base):
-    ''' Class Base class for all exchanges '''
+class Coinhako(Base):
+    ''' Class Exchange base class for all exchanges '''
 
-    ORDER_BOOK_URL = 'https://simex.global/api/orders?pair_id=1'
-    TICKER_URL = 'https://simex.global/api/pairs'
-    NAME = 'Simex'
+    TICKER_URL = 'https://www.coinhako.com/api/v1/price/currency/BTC%s'
+    ORDER_BOOK_URL = None
+    NAME = 'Coinhako'
     CCY_DEFAULT = 'USD'
 
     @classmethod
     def _current_price_extractor(cls, data):
         ''' Method for extracting current price '''
-        return apply_format(data["data"][0].get('last_price'))
+        return apply_format((float(data["data"].get('buy_price')) + float(data["data"].get('sell_price')))/2.00)
 
     @classmethod
     def _current_bid_extractor(cls, data):
         ''' Method for extracting bid price '''
-        return apply_format(data["data"][0].get('buy_price'))
+        return apply_format(data["data"].get('buy_price'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
         ''' Method for extracting ask price '''
-        return apply_format(data["data"][0].get('sell_price'))
+        return apply_format(data["data"].get('sell_price'))
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
         ''' Method for extracting orders '''
-        orders = {}
-        bids = {}
-        asks = {}
-        buymax = 0
-        sellmax = 0
-        for level in data["data"]:
-            if (buymax > max_qty    and level.get("side") == "buy"):
-                pass
-            elif (sellmax > max_qty and level.get("side") == "sell"):
-                pass
-            else:
-                if level.get("side") == "buy":
-                    bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
-                    buymax = buymax + float(level["size"])
-                else:
-                    asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
-                    sellmax = sellmax + float(level["size"])
-
-        orders["source"] = cls.NAME
-        orders["bids"] = bids
-        orders["asks"] = asks
-        orders["ccy"] = cls.CCY_DEFAULT
-        orders["timestamp"] = str(int(time.time()))
-        return orders 
+        raise NotImplementedError("orders API not available for CoinHako")
 
     @classmethod
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting ticker '''
-        bid = apply_format(data["data"][0].get('buy_price'))
-        ask = apply_format(data["data"][0].get('sell_price'))
+        bid = apply_format(data["data"].get('buy_price'))
+        ask = apply_format(data["data"].get('sell_price'))
         return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod
