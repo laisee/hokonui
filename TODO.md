@@ -1,6 +1,5 @@
 - [ ] add new exchanges 
 
-    * HitBTC
     * Mercatox
 
     * Bittrex (DONE)
@@ -9,6 +8,7 @@
     * CoinFloor (DONE)
     * CoinHako (DONE)
     * Gate.io (DONE)
+    * HitBTC (DONE)
     * Kucoin (DONE)
     * Simex (DONE)
     * Upbit (DONE)
