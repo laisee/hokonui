@@ -1,4 +1,4 @@
-''' Module for testing Binance exchange '''
+''' Module for testing GateIo exchange '''
 
 from tests import *
 
@@ -6,11 +6,11 @@ libPath = '../hokonui'
 if not libPath in sys.path: sys.path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
-from hokonui.exchanges.binance import Binance as bin
+from hokonui.exchanges.gateio import GateIo as bin
 
 
-class TestBinance(TestCase):
-    ''' Class for testing Binance exchange '''
+class TestGateIo(TestCase):
+    ''' Class for testing GateIo exchange '''
 
     @classmethod
     @docparams(bin.__name__,"setup")
@@ -74,7 +74,7 @@ class TestBinance(TestCase):
         orders = bin.get_current_orders(bin.CCY_DEFAULT)
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
-        ok_(orders["source"] == "Binance", "Source should be 'Binance'")
+        ok_(orders["source"] == "GateIo", "Source should be 'GateIo'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
 
 if __name__ == '__main__':

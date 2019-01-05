@@ -14,23 +14,23 @@ def docstring_parameter(*sub):
         return obj
     return dec
 
-def apply_format(value):
+def apply_format(value, precision='.5f'):
     ''' Method for applying formats '''
-    return format(Decimal(value), '.5f')
+    return format(Decimal(value), precision)
 
 
-def apply_format_level(value):
+def apply_format_level(value, precision='.2f'):
     ''' Method for applying format levels '''
-    return format(Decimal(value), '.2f')
+    return format(Decimal(value), precision)
 
 
 def get_datetime():
-    ''' Method for generating datetime valsuies '''
+    ''' Method for generating datetime value '''
     return datetime.now().strftime('%Y-%m-%d %h:%m:%s')
 
 
 def get_timestamp():
-    ''' Method for calculating timestamps '''
+    ''' Method for calculating UTC timestamps '''
     return time.mktime(time.gmtime())
 
 
@@ -39,8 +39,10 @@ def get_response(url, ccy, params=None, body=None, header=None):
     guard(url, ccy)
     if ccy:
         url = url % ccy
+
     if params:
         url = "%s%s" % (url, params)
+
     try:
         if body:
             data = json.loads(body)
@@ -54,33 +56,6 @@ def get_response(url, ccy, params=None, body=None, header=None):
         print('-' * 60)
         traceback.print_exc(file=sys.stdout)
         print('-' * 60)
-
-
-def get_orders(data, max_qty, bids_tag, asks_tag, price_tag=0, qty_tag=1):
-    ''' Method for extracting orders '''
-    orders = {}
-    bids = {}
-    asks = {}
-    buymax = 0
-    sellmax = 0
-    for level in data[bids_tag]:
-        if buymax > max_qty:
-            continue
-        else:
-            bids[apply_format_level(level[price_tag])] = "{:.8f}".format(float(level[qty_tag]))
-        buymax = buymax + float(level[qty_tag])
-
-    for level in data[asks_tag]:
-        if sellmax > max_qty:
-            continue
-        else:
-            asks[apply_format_level(level[price_tag])] = "{:.8f}".format(float(level[qty_tag]))
-        sellmax = sellmax + float(level[qty_tag])
-    orders["source"] = "ITBIT"
-    orders["bids"] = bids
-    orders["asks"] = asks
-    orders["timestamp"] = str(int(time.time()))
-    return orders
 
 
 def guard(url, ccy):

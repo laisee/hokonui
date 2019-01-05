@@ -2,101 +2,100 @@
 # pylint: disable=duplicate-code, line-too-long
 
 import time
+from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
+from hokonui.utils.helpers import get_response
 
-class Mock(object):
-    ''' Class Mock exchanges '''
+class Kucoin(Base):
+    ''' Class Exchange base class for all exchanges '''
 
-    TICKER_URL = None
-    ORDER_BOOK_URL = None
-    VOLUME_URL = None
-    PRICE_URL = None
-    NAME = 'Mock'
-    CCY_DEFAULT = 'USD'
-    MOCK_PRICE = 1.2345
-    MOCK_ASK_QTY = 12.88
-    MOCK_BID_QTY = 12.99
+    TICKER_URL = 'https://api.kucoin.com/v1/open/tick?symbol=BTC-%s'
+    ORDER_BOOK_URL = 'https://api.kucoin.com/v1/open/orders?symbol=BTC-%s'
+    NAME = 'Kucoin'
+    CCY_DEFAULT = 'USDT'
 
     @classmethod
     def _current_price_extractor(cls, data):
         ''' Method for extracting current price '''
-        return data["price"]
+        return apply_format(data["data"].get('lastDealPrice'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
         ''' Method for extracting bid price '''
-        return data["bid"]
+        return apply_format(data["data"].get('buy'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
         ''' Method for extracting ask price '''
-        return data["ask"]
+        return apply_format(data["data"].get('sell'))
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
         ''' Method for extracting orders '''
-
         orders = {}
         bids = {}
         asks = {}
         buymax = 0
         sellmax = 0
-        for level in data["bids"]:
+        for level in data["data"]["BUY"]:
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"],'.2f')] = "{:.8f}".format(float(level["quantity"]))
-            buymax = buymax + float(level["quantity"])
+                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+            buymax = buymax + float(level[1])
 
-        for level in data["asks"]:
+        for level in data["data"]["SELL"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"],'.2f')] = "{:.8f}".format(float(level["quantity"]))
-            sellmax = sellmax + float(level["quantity"])
+                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+            sellmax = sellmax + float(level[1])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids
         orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))
-        print(orders)
-        return orders
+        return orders 
 
     @classmethod
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting ticker '''
-
-        return Ticker(cls.CCY_DEFAULT, data["ask"], data["bid"]).toJSON()
+        bid = apply_format(data["data"].get('buy'))
+        ask = apply_format(data["data"].get('sell'))
+        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving last price '''
-        data = { "price": cls.MOCK_PRICE}
+        url = cls.PRICE_URL if hasattr(cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
+        data = get_response(url, ccy, params, body, header)
         return cls._current_price_extractor(data)
 
     @classmethod
     def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current bid price '''
-        data = { "bid": cls.MOCK_PRICE}
+        url = cls.BID_URL if hasattr(cls, 'BID_URL') and cls.BID_URL is not None else cls.TICKER_URL
+        data = get_response(url, ccy, params, body, header)
         return cls._current_bid_extractor(data)
 
     @classmethod
     def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current ask price '''
-        data = { "ask": cls.MOCK_PRICE}
+        url = cls.ASK_URL if hasattr(cls, 'ASK_URL') and cls.ASK_URL is not None else cls.TICKER_URL
+        data = get_response(url, ccy, params, body, header)
         return cls._current_ask_extractor(data)
 
     @classmethod
     def get_current_ticker(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current ticker '''
-
-        data = { "ask": cls.MOCK_PRICE, "bid": cls.MOCK_PRICE }
+        data = get_response(cls.TICKER_URL, ccy, params, body, header)
         return cls._current_ticker_extractor(data)
 
     @classmethod
     def get_current_orders(cls, ccy=None, params=None, body=None, max_qty=5):
         ''' Method for retrieving current orders '''
-        data = { "asks": [ {"price": cls.MOCK_PRICE, "quantity": "12.99"}], "bids": [ {"price": cls.MOCK_PRICE, "quantity": "12.88"}] }
+
+        data = get_response(cls.ORDER_BOOK_URL, ccy, params, body)
         return cls._current_orders_extractor(data, max_qty)

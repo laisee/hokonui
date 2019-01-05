@@ -65,7 +65,7 @@ class TestBitcoinAverage(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @unittest.skip("skip while reviewing BTC AvgAPI ")
+    @unittest.skip("skip orders test while reviewing BTC Avg API ")
     @docparams(avg.__name__,"volumes")
     def test_volume(cls):
         ''' {0}.{1} '''
