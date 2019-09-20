@@ -21,7 +21,6 @@ class TestHuobi(TestCase):
 
     @classmethod
     @docparams(hbi.__name__,"price")
-    @unittest.skip("skip while fixing HBI url")
     def test_price(cls):
         ''' {0}.{1} '''
 
@@ -29,7 +28,6 @@ class TestHuobi(TestCase):
 
     @classmethod
     @docparams(hbi.__name__,"bid")
-    @unittest.skip("skip while fixing HBI url")
     def test_bid(cls):
         ''' {0}.{1} '''
 
@@ -37,7 +35,6 @@ class TestHuobi(TestCase):
 
     @classmethod
     @docparams(hbi.__name__,"ask")
-    @unittest.skip("skip while fixing HBI url")
     def test_ask(cls):
         ''' {0}.{1} '''
 
@@ -45,24 +42,22 @@ class TestHuobi(TestCase):
 
     @classmethod
     @docparams(hbi.__name__,"ticker")
-    @unittest.skip("skip while fixing HBI url")
     def test_ticker(cls):
         ''' {0}.{1} '''
 
         data = json.loads(hbi.get_current_ticker())
-        ok_(data["pair"] == base.CCY_DEFAULT, "shd be '%s'" % base.CCY_DEFAULT)
+        ok_(data["pair"] == hbi.CCY_DEFAULT, "shd be '%s'" % hbi.CCY_DEFAULT)
         ok_(float(data["ask"]) > 0.00, "ask should not be empty")
         ok_(float(data["bid"]) > 0.00, "bid should not be empty")
         ok_(float(data["bid"]) <= float(data["ask"]), "bid should be <= ask")
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @unittest.skip("skip while fixing HBI url")
     @docparams(hbi.__name__,"orders")
     def test_orders(cls):
         ''' {0}.{1} '''
 
-        orders = hbi.get_current_orders(None, 20)
+        orders = hbi.get_current_orders(None)
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
         ok_(orders["source"] == "Huobi", "Source should be 'Huobi'")

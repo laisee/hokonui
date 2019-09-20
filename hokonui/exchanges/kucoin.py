@@ -11,25 +11,27 @@ from hokonui.utils.helpers import get_response
 class Kucoin(Base):
     ''' Class Exchange base class for all exchanges '''
 
-    TICKER_URL = 'https://api.kucoin.com/v1/open/tick?symbol=BTC-%s'
-    ORDER_BOOK_URL = 'https://api.kucoin.com/v1/open/orders?symbol=BTC-%s'
+    #TICKER_URL = 'https://api.kucoin.com/v1/open/tick?symbol=BTC-%s'
+    TICKER_URL = 'https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-%s'
+    #ORDER_BOOK_URL = 'https://api.kucoin.com/api/v1/open/orders?symbol=BTC-%s'
+    ORDER_BOOK_URL  = 'https://api.kucoin.com/api/v2/market/orderbook/level2?symbol=BTC-%s'
     NAME = 'Kucoin'
     CCY_DEFAULT = 'USDT'
 
     @classmethod
     def _current_price_extractor(cls, data):
         ''' Method for extracting current price '''
-        return apply_format(data["data"].get('lastDealPrice'))
+        return apply_format(data["data"].get('price'))
 
     @classmethod
     def _current_bid_extractor(cls, data):
         ''' Method for extracting bid price '''
-        return apply_format(data["data"].get('buy'))
+        return apply_format(data["data"].get('bestBid'))
 
     @classmethod
     def _current_ask_extractor(cls, data):
         ''' Method for extracting ask price '''
-        return apply_format(data["data"].get('sell'))
+        return apply_format(data["data"].get('bestAsk'))
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
@@ -39,14 +41,14 @@ class Kucoin(Base):
         asks = {}
         buymax = 0
         sellmax = 0
-        for level in data["data"]["BUY"]:
+        for level in data["data"]["bids"]:
             if buymax > max_qty:
                 pass
             else:
                 asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
             buymax = buymax + float(level[1])
 
-        for level in data["data"]["SELL"]:
+        for level in data["data"]["asks"]:
             if sellmax > max_qty:
                 pass
             else:
@@ -62,8 +64,8 @@ class Kucoin(Base):
     @classmethod
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting ticker '''
-        bid = apply_format(data["data"].get('buy'))
-        ask = apply_format(data["data"].get('sell'))
+        bid = apply_format(data["data"].get('bestBid'))
+        ask = apply_format(data["data"].get('bestAsk'))
         return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod

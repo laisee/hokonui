@@ -16,7 +16,7 @@ class Poloniex(Base):
 
     TICKER_URL = 'https://poloniex.com/public?command=returnTicker'
     ORDER_BOOK_URL = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=%s&depth=10'
-    CCY_DEFAULT = "BTC_XEM"
+    CCY_DEFAULT = "USDT_BTC"
     NAME = "Poloniex"
 
     @classmethod
