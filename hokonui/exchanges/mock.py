@@ -3,7 +3,6 @@
 
 import time
 from hokonui.models.ticker import Ticker
-from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 
 

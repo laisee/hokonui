@@ -64,6 +64,5 @@ class Coinfloor(Base):
         orders["bids"] = bids
         orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))
-        orders[
-            "ccy"] = cls.CCY_DEFAULT if cls.CCY_DEFAULT else base.CCY_DEFAULT
+        orders["ccy"] = cls.CCY_DEFAULT if cls.CCY_DEFAULT else Base.CCY_DEFAULT
         return orders

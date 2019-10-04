@@ -8,8 +8,8 @@ from hokonui.utils.helpers import apply_format
 
 
 class BitcoinAverage(Base):
-    ''' 
-    Class for testing Bitcoinaverage API 
+    '''
+    Class for testing Bitcoinaverage API
     {
     "24h_avg": 748.64,
     "ask": 751.73,

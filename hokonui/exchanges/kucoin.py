@@ -12,9 +12,7 @@ from hokonui.utils.helpers import get_response
 class Kucoin(Base):
     ''' Class Exchange base class for all exchanges '''
 
-    #TICKER_URL = 'https://api.kucoin.com/v1/open/tick?symbol=BTC-%s'
     TICKER_URL = 'https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-%s'
-    #ORDER_BOOK_URL = 'https://api.kucoin.com/api/v1/open/orders?symbol=BTC-%s'
     ORDER_BOOK_URL = 'https://api.kucoin.com/api/v2/market/orderbook/level2?symbol=BTC-%s'
     NAME = 'Kucoin'
     CCY_DEFAULT = 'USDT'

@@ -3,7 +3,7 @@
 import time
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
-from hokonui.utils.helpers import apply_format, apply_format_level
+from hokonui.utils.helpers import apply_format
 
 
 class CryptoFacility(Base):
@@ -40,16 +40,16 @@ class CryptoFacility(Base):
         orders = {}
         bids = {}
         asks = {}
-        buymax = 0
-        sellmax = 0
-        #for level in data["orderBook"]["bids"]:
+        # buymax = 0
+        # sellmax = 0
+        # for level in data["orderBook"]["bids"]:
         #    if buymax > max_qty:
         #        continue
         #    else:
         #        bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
         #    buymax = buymax + float(level[1])
 
-        #for level in data["orderBook"]["asks"]:
+        # for level in data["orderBook"]["asks"]:
         #    if sellmax > max_qty:
         #        continue
         #    else:
@@ -57,7 +57,7 @@ class CryptoFacility(Base):
         #    sellmax = sellmax + float(level[1])
 
         orders["source"] = cls.NAME
-        #orders["bids"] = bids
-        #orders["asks"] = asks
+        orders["bids"] = bids
+        orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))
         return orders
