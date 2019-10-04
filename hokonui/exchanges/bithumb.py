@@ -20,17 +20,17 @@ class BitThumb(Base):
     @classmethod
     def _current_price_extractor(cls, data):
         ''' Method for extracting current price '''
-        return (float(apply_format(data['data'].get('opening_price'))) + float(apply_format(data['data'].get('closing_price'))))/2
+        return (float(apply_format(data['data'].get('min_price'))) + float(apply_format(data['data'].get('max_price'))))/2
 
     @classmethod
     def _current_bid_extractor(cls, data):
         ''' Method for extracting bid price '''
-        return apply_format(data['data'].get('opening_price')) 
+        return apply_format(data['data'].get('min_price')) 
 
     @classmethod
     def _current_ask_extractor(cls, data):
         ''' Method for extracting ask price '''
-        return apply_format(data['data'].get('closing_price')) 
+        return apply_format(data['data'].get('max_price')) 
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
@@ -64,8 +64,8 @@ class BitThumb(Base):
     @classmethod
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting ticker '''
-        bid = apply_format(data['data'].get('opening_price'))
-        ask = apply_format(data['data'].get('closing_price'))
+        bid = apply_format(data['data'].get('min_price'))
+        ask = apply_format(data['data'].get('max_price'))
         return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod

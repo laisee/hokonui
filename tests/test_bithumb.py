@@ -1,4 +1,4 @@
-''' Module for testing Coinhako exchange '''
+''' Module for testing BitThumb exchange '''
 
 from tests import *
 
@@ -6,76 +6,67 @@ libPath = '../hokonui'
 if not libPath in sys.path: sys.path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
-from hokonui.exchanges.coinhako import Coinhako as chk
+from hokonui.exchanges.bithumb import BitThumb as bth
 
 
-class TestCoinhako(TestCase):
-    ''' Class for testing Coinhako exchange '''
+class TestBitThumb(TestCase):
+    ''' Class for testing BitThumb exchange '''
 
     @classmethod
-    @docparams(chk.__name__,"setup")
+    @docparams(bth.__name__,"setup")
     def setUp(cls):
         ''' {0}.{1}'''
-
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
-    @docparams(chk.__name__,"teardown")
+    @docparams(bth.__name__,"teardown")
     def tearDown(cls):
         ''' {0}.{1}'''
-
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
-    @docparams(chk.__name__,"name")
+    @docparams(bth.__name__,"name")
     def test_name(cls):
         ''' {0}.{1} '''
-
-        ok_(chk.NAME == cls.__name__.replace( 'Test', ''), "Name should be '%s', was '%s'" % (chk.NAME, cls.__name__))
+        ok_(bth.NAME == cls.__name__.replace( 'Test', ''))
 
     @classmethod
-    @docparams(chk.__name__,"price")
+    @docparams(bth.__name__,"price")
     def test_price(cls):
         ''' {0}.{1} '''
-
-        ok_(float(chk.get_current_price(chk.CCY_DEFAULT)) > 0.00)
+        ok_(float(bth.get_current_price()) > 0.00)
 
     @classmethod
-    @docparams(chk.__name__,"bid")
+    @docparams(bth.__name__,"bid")
     def test_bid(cls):
         ''' {0}.{1} '''
-
-        ok_(float(chk.get_current_bid(chk.CCY_DEFAULT)) > 0.00)
+        ok_(float(bth.get_current_bid()) > 0.00)
 
     @classmethod
-    @docparams(chk.__name__,"ask")
+    @docparams(bth.__name__,"ask")
     def test_ask(cls):
         ''' {0}.{1} '''
-
-        ok_(float(chk.get_current_ask(chk.CCY_DEFAULT)) > 0.00)
+        ok_(float(bth.get_current_ask()) > 0.00)
 
     @classmethod
-    @docparams(chk.__name__,"ticker")
+    @docparams(bth.__name__,"ticker")
     def test_ticker(cls):
         ''' {0}.{1} '''
-
-        data = json.loads(chk.get_current_ticker(chk.CCY_DEFAULT))
-        ok_(data["pair"] == chk.CCY_DEFAULT, "shd be '%s'" % chk.CCY_DEFAULT)
+        data = json.loads(bth.get_current_ticker())
+        ok_(data["pair"] == bth.CCY_DEFAULT, "shd be '%s'" % bth.CCY_DEFAULT)
         ok_(float(data["ask"]) > 0.00, "ask should not be empty")
         ok_(float(data["bid"]) > 0.00, "bid should not be empty")
-        ok_(float(data["bid"]) != float(data["ask"]), "bid [%s]should be < ask [%s]" % (data["bid"],data["ask"]))
+        ok_(float(data["bid"]) <= float(data["ask"]), "bid ({}) should be < ask ({})".format(data["bid"],data["ask"]))
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @docparams(chk.__name__,"orders")
-    @unittest.skip("orders API not available for Coinhako")
+    @docparams(bth.__name__,"orders")
     def test_orders(cls):
         ''' {0}.{1} '''
-
-        orders = chk.get_current_orders(chk.CCY_DEFAULT)
+        orders = bth.get_current_orders()
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
-        ok_(orders["source"] == "Coinhako", "Source should be 'Coinhako'")
+        ok_(orders["source"] == "BitThumb", "Source should be 'BitThumb'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
 
 if __name__ == '__main__':
