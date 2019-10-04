@@ -48,19 +48,22 @@ class Coinfloor(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                asks[apply_format_level(level[0])] = "{:.8f}".format(
+                    float(level[1]))
             buymax = buymax + float(level[1])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                bids[apply_format_level(level[0])] = "{:.8f}".format(
+                    float(level[1]))
             sellmax = sellmax + float(level[1])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids
         orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))
-        orders["ccy"] = cls.CCY_DEFAULT if cls.CCY_DEFAULT else base.CCY_DEFAULT
+        orders[
+            "ccy"] = cls.CCY_DEFAULT if cls.CCY_DEFAULT else base.CCY_DEFAULT
         return orders

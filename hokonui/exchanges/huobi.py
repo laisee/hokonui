@@ -13,12 +13,12 @@ class Huobi(Base):
     TICKER_URL = 'https://api.huobi.pro/market/detail/merged?symbol=btcusdt'
     ORDER_BOOK_URL = 'https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1'
     NAME = 'Huobi'
-    CCY_DEFAULT="BTCUSDT"
+    CCY_DEFAULT = "BTCUSDT"
 
     @classmethod
     def _current_price_extractor(cls, data):
         ''' Method for extracting current price '''
-        return apply_format(data["tick"]['ask'][0]-data["tick"]['bid'][0])
+        return apply_format(data["tick"]['ask'][0] - data["tick"]['bid'][0])
 
     @classmethod
     def _current_bid_extractor(cls, data):
@@ -33,7 +33,8 @@ class Huobi(Base):
     @classmethod
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting current ticker '''
-        return Ticker(cls.CCY_DEFAULT, apply_format(data["tick"]['bid'][0]), apply_format(data["tick"]['ask'][0]) ).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(data["tick"]['bid'][0]),
+                      apply_format(data["tick"]['ask'][0])).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
@@ -47,14 +48,16 @@ class Huobi(Base):
             if buymax > max_qty:
                 continue
             else:
-                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                bids[apply_format_level(level[0])] = "{:.8f}".format(
+                    float(level[1]))
             buymax = buymax + float(level[1])
 
         for level in data["tick"]["asks"]:
             if sellmax > max_qty:
                 continue
             else:
-                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                asks[apply_format_level(level[0])] = "{:.8f}".format(
+                    float(level[1]))
             sellmax = sellmax + float(level[1])
         orders["source"] = "Huobi"
         orders["bids"] = bids

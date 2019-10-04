@@ -8,6 +8,7 @@ from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 from hokonui.utils.helpers import get_response
 
+
 class HitBTC(Base):
     ''' Class Exchange base class for all exchanges '''
 
@@ -43,21 +44,23 @@ class HitBTC(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["size"]))
             buymax = buymax + float(level["size"])
 
         for level in data["ask"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["size"]))
             sellmax = sellmax + float(level["size"])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids
         orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))
-        return orders 
+        return orders
 
     @classmethod
     def _current_ticker_extractor(cls, data):
@@ -69,21 +72,24 @@ class HitBTC(Base):
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving last price '''
-        url = cls.PRICE_URL if hasattr(cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
+        url = cls.PRICE_URL if hasattr(
+            cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_price_extractor(data)
 
     @classmethod
     def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current bid price '''
-        url = cls.BID_URL if hasattr(cls, 'BID_URL') and cls.BID_URL is not None else cls.TICKER_URL
+        url = cls.BID_URL if hasattr(
+            cls, 'BID_URL') and cls.BID_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_bid_extractor(data)
 
     @classmethod
     def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current ask price '''
-        url = cls.ASK_URL if hasattr(cls, 'ASK_URL') and cls.ASK_URL is not None else cls.TICKER_URL
+        url = cls.ASK_URL if hasattr(
+            cls, 'ASK_URL') and cls.ASK_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_ask_extractor(data)
 

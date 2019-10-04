@@ -11,49 +11,48 @@ from hokonui.exchanges.digifinex import Digifinex as dfx
 
 class TestDigitfinex(TestCase):
     ''' Class for testing Digitfinex exchange '''
-
     @classmethod
-    @docparams(dfx.__name__,"setup")
+    @docparams(dfx.__name__, "setup")
     def setUp(cls):
         ''' {0}.{1}'''
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
-    @docparams(dfx.__name__,"teardown")
+    @docparams(dfx.__name__, "teardown")
     def tearDown(cls):
         ''' {0}.{1}'''
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
-    @docparams(dfx.__name__,"name")
+    @docparams(dfx.__name__, "name")
     @unittest.skip("skip while creating Digitfinex API calls ")
     def test_name(cls):
         ''' {0}.{1} '''
-        ok_(dfx.NAME == cls.__name__.replace( 'Test', ''))
+        ok_(dfx.NAME == cls.__name__.replace('Test', ''))
 
     @classmethod
-    @docparams(dfx.__name__,"price")
+    @docparams(dfx.__name__, "price")
     @unittest.skip("skip while creating Digitfinex API calls ")
     def test_price(cls):
         ''' {0}.{1} '''
         ok_(float(dfx.get_current_price(dfx.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(dfx.__name__,"bid")
+    @docparams(dfx.__name__, "bid")
     @unittest.skip("skip while creating Digitfinex API calls ")
     def test_bid(cls):
         ''' {0}.{1} '''
         ok_(float(dfx.get_current_bid(dfx.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(dfx.__name__,"ask")
+    @docparams(dfx.__name__, "ask")
     @unittest.skip("skip while creating Digitfinex API calls ")
     def test_ask(cls):
         ''' {0}.{1} '''
         ok_(float(dfx.get_current_ask(dfx.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(dfx.__name__,"ticker")
+    @docparams(dfx.__name__, "ticker")
     @unittest.skip("skip while creating Digitfinex API calls ")
     def test_ticker(cls):
         ''' {0}.{1} '''
@@ -65,7 +64,7 @@ class TestDigitfinex(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @docparams(dfx.__name__,"orders")
+    @docparams(dfx.__name__, "orders")
     @unittest.skip("skip while creating Digitfinex API calls ")
     def test_orders(cls):
         ''' {0}.{1} '''
@@ -74,6 +73,7 @@ class TestDigitfinex(TestCase):
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
         ok_(orders["source"] == "Digitfinex", "Source should be 'Digitfinex'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
+
 
 if __name__ == '__main__':
     nose.runmodule()

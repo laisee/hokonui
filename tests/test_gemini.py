@@ -1,4 +1,3 @@
-
 ''' module for testing Gemini API '''
 
 from tests import *
@@ -11,53 +10,51 @@ from hokonui.exchanges.gemini import Gemini as g2
 
 
 class TestGemini(TestCase):
-
     ''' Class for testing Gemini API '''
-
     @classmethod
-    @docparams(g2.__name__,"setup")
+    @docparams(g2.__name__, "setup")
     def setup(cls):
         ''' {0}.{1} '''
 
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
-    @docparams(g2.__name__,"teardown")
+    @docparams(g2.__name__, "teardown")
     def teardown(cls):
         ''' {0}.{1} '''
 
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
-    @docparams(g2.__name__,"name")
+    @docparams(g2.__name__, "name")
     def test_name(cls):
         ''' {0}.{1} '''
 
-        ok_(g2.NAME == cls.__name__.replace( 'Test', ''))
+        ok_(g2.NAME == cls.__name__.replace('Test', ''))
 
     @classmethod
-    @docparams(g2.__name__,"price")
+    @docparams(g2.__name__, "price")
     def test_price(cls):
         ''' {0}.{1} '''
 
         ok_(float(g2.get_current_price(g2.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(g2.__name__,"bid")
+    @docparams(g2.__name__, "bid")
     def test_bid(cls):
         ''' {0}.{1} '''
 
         ok_(float(g2.get_current_bid(g2.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(g2.__name__,"ask")
+    @docparams(g2.__name__, "ask")
     def test_ask(cls):
         ''' {0}.{1} '''
 
         ok_(float(g2.get_current_ask(g2.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(g2.__name__,"ticker")
+    @docparams(g2.__name__, "ticker")
     def test_ticker(cls):
         ''' {0}.{1} '''
 
@@ -69,7 +66,7 @@ class TestGemini(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @docparams(g2.__name__,"orders")
+    @docparams(g2.__name__, "orders")
     def test_orders(cls):
         ''' {0}.{1} '''
 

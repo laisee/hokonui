@@ -4,6 +4,7 @@
 from hokonui.utils.helpers import get_response
 from hokonui.exchanges.base import Exchange as Base
 
+
 class Digifinex(Base):
     ''' Class Exchange base class for all exchanges '''
 
@@ -42,21 +43,24 @@ class Digifinex(Base):
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving last price '''
-        url = cls.PRICE_URL if hasattr(cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
+        url = cls.PRICE_URL if hasattr(
+            cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_price_extractor(data)
 
     @classmethod
     def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current bid price '''
-        url = cls.BID_URL if hasattr(cls, 'BID_URL') and cls.BID_URL is not None else cls.TICKER_URL
+        url = cls.BID_URL if hasattr(
+            cls, 'BID_URL') and cls.BID_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_bid_extractor(data)
 
     @classmethod
     def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current ask price '''
-        url = cls.ASK_URL if hasattr(cls, 'ASK_URL') and cls.ASK_URL is not None else cls.TICKER_URL
+        url = cls.ASK_URL if hasattr(
+            cls, 'ASK_URL') and cls.ASK_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_ask_extractor(data)
 

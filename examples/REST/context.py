@@ -3,9 +3,9 @@
 if __package__ is None:
     import sys
     from os import path
-    print sys.path 
-    sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-    print sys.path 
+    print sys.path
+    sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+    print sys.path
 
 import hokonui
 import hokonui.exchanges

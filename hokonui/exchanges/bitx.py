@@ -43,14 +43,16 @@ class BitX(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["volume"]))
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["volume"]))
             buymax = buymax + float(level["volume"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["volume"]))
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["volume"]))
             sellmax = sellmax + float(level["volume"])
 
         orders["source"] = cls.NAME

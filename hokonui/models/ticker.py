@@ -11,7 +11,6 @@ class Ticker(object):
         bid:  current market best(highest) buying price
         timestamp: unix timestamp(UTC) when prices were captured
     """
-
     def __init__(self, pair, bid, ask):
         self.pair = pair
         self.bid = bid
@@ -20,4 +19,7 @@ class Ticker(object):
 
     def toJSON(self):
         ''' method for convertingt to Json '''
-        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+        return json.dumps(self,
+                          default=lambda o: o.__dict__,
+                          sort_keys=True,
+                          indent=4)

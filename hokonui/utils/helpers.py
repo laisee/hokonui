@@ -8,11 +8,14 @@ from datetime import datetime
 from decimal import Decimal
 import requests
 
+
 def docstring_parameter(*sub):
     def dec(obj):
         obj.__doc__ = obj.__doc__.format(*sub)
         return obj
+
     return dec
+
 
 def apply_format(value, precision='.5f'):
     ''' Method for applying formats '''
@@ -48,7 +51,7 @@ def get_response(url, ccy, params=None, body=None, header=None):
             data = json.loads(body)
             response = requests.post(url, json=data)
         else:
-            response = requests.get(url,headers=header)
+            response = requests.get(url, headers=header)
         response.raise_for_status()
         return response.json()
     except Exception as exc:
@@ -62,7 +65,10 @@ def guard(url, ccy):
     ''' Method for checking inputs '''
     if ccy:
         if '%' not in url:
-            raise ValueError("URL %s does not have a % for insertin supplied ccy " % (url, ccy))
+            raise ValueError(
+                "URL %s does not have a % for insertin supplied ccy " %
+                (url, ccy))
     else:
         if '%' in url:
-            raise ValueError("URL %s should have a currency value supplied" % url)
+            raise ValueError("URL %s should have a currency value supplied" %
+                             url)

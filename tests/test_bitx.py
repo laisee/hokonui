@@ -15,43 +15,43 @@ class TestBitX(TestCase):
     TEST_CCY = 'ZAR'
 
     @classmethod
-    @docparams(btx.__name__,"setup")
+    @docparams(btx.__name__, "setup")
     def setup(cls):
         ''' {0}.{1}'''
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
-    @docparams(btx.__name__,"teardown")
+    @docparams(btx.__name__, "teardown")
     def teardown(cls):
         ''' {0}.{1}'''
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
-    @docparams(btx.__name__,"name")
+    @docparams(btx.__name__, "name")
     def test_name(cls):
         ''' {0}.{1}'''
-        ok_(btx.NAME == cls.__name__.replace( 'Test', ''))
+        ok_(btx.NAME == cls.__name__.replace('Test', ''))
 
     @classmethod
-    @docparams(btx.__name__,"price")
+    @docparams(btx.__name__, "price")
     def test_price(cls):
         ''' {0}.{1}'''
         ok_(float(btx.get_current_price(cls.TEST_CCY)) > 0.00)
 
     @classmethod
-    @docparams(btx.__name__,"bid")
+    @docparams(btx.__name__, "bid")
     def test_bid(cls):
         ''' {0}.{1}'''
         ok_(float(btx.get_current_bid(cls.TEST_CCY)) > 0.00)
 
     @classmethod
-    @docparams(btx.__name__,"ask")
+    @docparams(btx.__name__, "ask")
     def test_ask(cls):
         ''' {0}.{1}'''
         ok_(float(btx.get_current_ask(cls.TEST_CCY)) > 0.00)
 
     @classmethod
-    @docparams(btx.__name__,"ticker")
+    @docparams(btx.__name__, "ticker")
     def test_ticker(cls):
         ''' {0}.{1}'''
         data = json.loads(btx.get_current_ticker(cls.TEST_CCY))
@@ -62,7 +62,7 @@ class TestBitX(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @docparams(btx.__name__,"orders")
+    @docparams(btx.__name__, "orders")
     def test_orders(cls):
         ''' {0}.{1}'''
         orders = btx.get_current_orders(cls.TEST_CCY)
@@ -70,6 +70,7 @@ class TestBitX(TestCase):
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
         ok_(orders["source"] == "BitX", "Source should be 'BitX'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
+
 
 if __name__ == '__main__':
     nose.runmodule()

@@ -31,10 +31,6 @@ class CoinDesk(Base):
         ''' Method for retrieving historical data '''
         if not end:
             end = start
-        url = (
-            'https://api.coindesk.com/v1/bpi/historical/close.json'
-            '?start={}&end={}'.format(
-                start, end
-            )
-        )
+        url = ('https://api.coindesk.com/v1/bpi/historical/close.json'
+               '?start={}&end={}'.format(start, end))
         return get_response(url, None)

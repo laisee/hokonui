@@ -11,51 +11,50 @@ from hokonui.exchanges.gdax import GDAX as gdx
 
 class Testgdax(TestCase):
     ''' Class for executing test on GDAX API '''
-
     @classmethod
-    @docparams(gdx.__name__,"setup")
+    @docparams(gdx.__name__, "setup")
     def setUp(cls):
         ''' {0}.{1} '''
 
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
-    @docparams(gdx.__name__,"teardown")
+    @docparams(gdx.__name__, "teardown")
     def tearDown(cls):
         ''' {0}.{1} '''
 
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
-    @docparams(gdx.__name__,"name")
+    @docparams(gdx.__name__, "name")
     def test_name(cls):
         ''' {0}.{1} '''
 
         ok_(gdx.NAME == cls.__name__.replace('Test', ''))
 
     @classmethod
-    @docparams(gdx.__name__,"price")
+    @docparams(gdx.__name__, "price")
     def test_price(cls):
         ''' {0}.{1} '''
 
         ok_(float(gdx.get_current_price(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(gdx.__name__,"bid")
+    @docparams(gdx.__name__, "bid")
     def test_bid(cls):
         ''' {0}.{1} '''
 
         ok_(float(gdx.get_current_bid(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(gdx.__name__,"ask")
+    @docparams(gdx.__name__, "ask")
     def test_ask(cls):
         ''' {0}.{1} '''
 
         ok_(float(gdx.get_current_ask(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(gdx.__name__,"ticker")
+    @docparams(gdx.__name__, "ticker")
     def test_ticker(cls):
         ''' {0}.{1} '''
 
@@ -67,7 +66,7 @@ class Testgdax(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @docparams(gdx.__name__,"orders")
+    @docparams(gdx.__name__, "orders")
     def test_orders(cls):
         ''' {0}.{1} '''
 
@@ -76,6 +75,7 @@ class Testgdax(TestCase):
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
         ok_(orders["source"] == "gdax", "Source should be 'gdax'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
+
 
 if __name__ == '__main__':
     nose.runmodule()

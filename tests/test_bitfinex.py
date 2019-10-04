@@ -8,35 +8,35 @@ if not libPath in sys.path: sys.path.append(libPath)
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.bitfinex import Bitfinex as bfx
 
+
 class TestBitfinex(TestCase):
     ''' Class for testing Bitfinex API '''
-
     @classmethod
-    @docparams(bfx.__name__,"name")
+    @docparams(bfx.__name__, "name")
     def test_name(cls):
         ''' {0}.{1} '''
-        ok_(bfx.NAME == cls.__name__.replace( 'Test', ''))
+        ok_(bfx.NAME == cls.__name__.replace('Test', ''))
 
     @classmethod
-    @docparams(bfx.__name__,"price")
+    @docparams(bfx.__name__, "price")
     def test_price(cls):
         ''' {0}.{1} '''
         ok_(float(bfx.get_current_price(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(bfx.__name__,"bid")
+    @docparams(bfx.__name__, "bid")
     def test_bid(cls):
         ''' {0}.{1} '''
         ok_(float(bfx.get_current_bid(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(bfx.__name__,"ask")
+    @docparams(bfx.__name__, "ask")
     def test_ask(cls):
         ''' {0}.{1} '''
         ok_(float(bfx.get_current_ask(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(bfx.__name__,"ticker")
+    @docparams(bfx.__name__, "ticker")
     def test_ticker(cls):
         ''' {0}.{1} '''
         data = json.loads(bfx.get_current_ticker(base.CCY_DEFAULT))
@@ -47,7 +47,7 @@ class TestBitfinex(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @docparams(bfx.__name__,"orders")
+    @docparams(bfx.__name__, "orders")
     def test_orders(cls):
         ''' {0}.{1} '''
         orders = bfx.get_current_orders(base.CCY_DEFAULT)
@@ -55,6 +55,7 @@ class TestBitfinex(TestCase):
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
         ok_(orders["source"] == "Bitfinex", "Source should be 'Bitfinex'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
+
 
 if __name__ == '__main__':
     nose.runmodule()

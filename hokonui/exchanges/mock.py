@@ -6,6 +6,7 @@ from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 
+
 class Mock(object):
     ''' Class Mock exchanges '''
 
@@ -47,14 +48,18 @@ class Mock(object):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"],'.2f')] = "{:.8f}".format(float(level["quantity"]))
+                asks[apply_format_level(level["price"],
+                                        '.2f')] = "{:.8f}".format(
+                                            float(level["quantity"]))
             buymax = buymax + float(level["quantity"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"],'.2f')] = "{:.8f}".format(float(level["quantity"]))
+                bids[apply_format_level(level["price"],
+                                        '.2f')] = "{:.8f}".format(
+                                            float(level["quantity"]))
             sellmax = sellmax + float(level["quantity"])
 
         orders["source"] = cls.NAME
@@ -73,30 +78,39 @@ class Mock(object):
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving last price '''
-        data = { "price": cls.MOCK_PRICE}
+        data = {"price": cls.MOCK_PRICE}
         return cls._current_price_extractor(data)
 
     @classmethod
     def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current bid price '''
-        data = { "bid": cls.MOCK_PRICE}
+        data = {"bid": cls.MOCK_PRICE}
         return cls._current_bid_extractor(data)
 
     @classmethod
     def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current ask price '''
-        data = { "ask": cls.MOCK_PRICE}
+        data = {"ask": cls.MOCK_PRICE}
         return cls._current_ask_extractor(data)
 
     @classmethod
     def get_current_ticker(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current ticker '''
 
-        data = { "ask": cls.MOCK_PRICE, "bid": cls.MOCK_PRICE }
+        data = {"ask": cls.MOCK_PRICE, "bid": cls.MOCK_PRICE}
         return cls._current_ticker_extractor(data)
 
     @classmethod
     def get_current_orders(cls, ccy=None, params=None, body=None, max_qty=5):
         ''' Method for retrieving current orders '''
-        data = { "asks": [ {"price": cls.MOCK_PRICE, "quantity": "12.99"}], "bids": [ {"price": cls.MOCK_PRICE, "quantity": "12.88"}] }
+        data = {
+            "asks": [{
+                "price": cls.MOCK_PRICE,
+                "quantity": "12.99"
+            }],
+            "bids": [{
+                "price": cls.MOCK_PRICE,
+                "quantity": "12.88"
+            }]
+        }
         return cls._current_orders_extractor(data, max_qty)

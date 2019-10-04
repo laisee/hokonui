@@ -28,7 +28,10 @@ class OKCoin(Base):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT, apply_format(data.get('ticker', {}).get('buy')), apply_format(data.get('ticker', {}).get('sell'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT,
+                      apply_format(data.get('ticker', {}).get('buy')),
+                      apply_format(data.get('ticker',
+                                            {}).get('sell'))).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):
@@ -41,14 +44,16 @@ class OKCoin(Base):
             if buymax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                bids[apply_format_level(level[0])] = "{:.8f}".format(
+                    float(level[1]))
             buymax = buymax + float(level[1])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                asks[apply_format_level(level[0])] = "{:.8f}".format(
+                    float(level[1]))
             sellmax = sellmax + float(level[1])
 
         orders["source"] = "OKCoin"

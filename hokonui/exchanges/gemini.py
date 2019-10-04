@@ -14,7 +14,7 @@ class Gemini(Base):
     '''
 
     TICKER_URL = 'https://api.sandbox.gemini.com/v1/pubticker/%s'
-    ORDER_BOOK_URL =  'https://api.sandbox.gemini.com/v1/book/%s'
+    ORDER_BOOK_URL = 'https://api.sandbox.gemini.com/v1/book/%s'
     NAME = "Gemini"
     CCY_DEFAULT = "btcusd"
 
@@ -48,14 +48,16 @@ class Gemini(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["amount"]))
             buymax = buymax + float(level["amount"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["amount"]))
             sellmax = sellmax + float(level["amount"])
 
         orders["source"] = cls.NAME

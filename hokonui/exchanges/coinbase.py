@@ -6,14 +6,15 @@ from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
+
 class CoinBase(Base):
     ''' Class for testing Coinbase API '''
 
     TICKER_URL = "https://api.coinbase.com/v2/prices/BTC-%s/spot"
-    PRICE_URL  = "https://api.coinbase.com/v2/prices/BTC-%s/spot"
+    PRICE_URL = "https://api.coinbase.com/v2/prices/BTC-%s/spot"
     BID_URL = "https://api.coinbase.com/v2/prices/BTC-%s/buy"
     ASK_URL = "https://api.coinbase.com/v2/prices/BTC-%s/sell"
-    HEADER = { "CB-VERSION": "2016-02-18" }
+    HEADER = {"CB-VERSION": "2016-02-18"}
     ORDER_BOOK_URL = 'https://api.gdax.com/products/BTC-%s/book?level=2'
     NAME = 'Coinbase'
 
@@ -31,8 +32,8 @@ class CoinBase(Base):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        bid =  apply_format(data["data"]["amount"])
-        ask =  apply_format(data["data"]["amount"])
+        bid = apply_format(data["data"]["amount"])
+        ask = apply_format(data["data"]["amount"])
         return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod
@@ -46,14 +47,16 @@ class CoinBase(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                asks[apply_format_level(level[0])] = "{:.8f}".format(
+                    float(level[1]))
             buymax = buymax + float(level[1])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                bids[apply_format_level(level[0])] = "{:.8f}".format(
+                    float(level[1]))
             sellmax = sellmax + float(level[1])
 
         orders["source"] = cls.NAME

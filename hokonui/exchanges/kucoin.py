@@ -8,13 +8,14 @@ from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 from hokonui.utils.helpers import get_response
 
+
 class Kucoin(Base):
     ''' Class Exchange base class for all exchanges '''
 
     #TICKER_URL = 'https://api.kucoin.com/v1/open/tick?symbol=BTC-%s'
     TICKER_URL = 'https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-%s'
     #ORDER_BOOK_URL = 'https://api.kucoin.com/api/v1/open/orders?symbol=BTC-%s'
-    ORDER_BOOK_URL  = 'https://api.kucoin.com/api/v2/market/orderbook/level2?symbol=BTC-%s'
+    ORDER_BOOK_URL = 'https://api.kucoin.com/api/v2/market/orderbook/level2?symbol=BTC-%s'
     NAME = 'Kucoin'
     CCY_DEFAULT = 'USDT'
 
@@ -45,21 +46,23 @@ class Kucoin(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                asks[apply_format_level(level[0])] = "{:.8f}".format(
+                    float(level[1]))
             buymax = buymax + float(level[1])
 
         for level in data["data"]["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                bids[apply_format_level(level[0])] = "{:.8f}".format(
+                    float(level[1]))
             sellmax = sellmax + float(level[1])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids
         orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))
-        return orders 
+        return orders
 
     @classmethod
     def _current_ticker_extractor(cls, data):
@@ -71,21 +74,24 @@ class Kucoin(Base):
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving last price '''
-        url = cls.PRICE_URL if hasattr(cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
+        url = cls.PRICE_URL if hasattr(
+            cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_price_extractor(data)
 
     @classmethod
     def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current bid price '''
-        url = cls.BID_URL if hasattr(cls, 'BID_URL') and cls.BID_URL is not None else cls.TICKER_URL
+        url = cls.BID_URL if hasattr(
+            cls, 'BID_URL') and cls.BID_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_bid_extractor(data)
 
     @classmethod
     def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current ask price '''
-        url = cls.ASK_URL if hasattr(cls, 'ASK_URL') and cls.ASK_URL is not None else cls.TICKER_URL
+        url = cls.ASK_URL if hasattr(
+            cls, 'ASK_URL') and cls.ASK_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_ask_extractor(data)
 

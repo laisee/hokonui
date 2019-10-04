@@ -1,4 +1,3 @@
-
 ''' module for testing Poloniex API '''
 
 from tests import *
@@ -11,52 +10,50 @@ from hokonui.exchanges.polo import Poloniex as p
 
 
 class TestPoloniex(TestCase):
-
     ''' Class for testing Quoine API '''
-
     @classmethod
-    @docparams(p.__name__,"setup")
+    @docparams(p.__name__, "setup")
     def setup(cls):
         ''' {0}.{1} '''
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
-    @docparams(p.__name__,"teardown")
+    @docparams(p.__name__, "teardown")
     def teardown(cls):
         ''' {0}.{1} '''
 
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
-    @docparams(p.__name__,"name")
+    @docparams(p.__name__, "name")
     def test_name(cls):
         ''' {0}.{1} '''
 
-        ok_(p.NAME == cls.__name__.replace( 'Test', ''))
+        ok_(p.NAME == cls.__name__.replace('Test', ''))
 
     @classmethod
-    @docparams(p.__name__,"price")
+    @docparams(p.__name__, "price")
     def test_price(cls):
         ''' {0}.{1} '''
 
         ok_(float(p.get_current_price()) > 0.00)
 
     @classmethod
-    @docparams(p.__name__,"bid")
+    @docparams(p.__name__, "bid")
     def test_bid(cls):
         ''' {0}.{1} '''
 
         ok_(float(p.get_current_bid()) > 0.00)
 
     @classmethod
-    @docparams(p.__name__,"ask")
+    @docparams(p.__name__, "ask")
     def test_ask(cls):
         ''' {0}.{1} '''
 
         ok_(float(p.get_current_ask()) > 0.00)
 
     @classmethod
-    @docparams(p.__name__,"ticker")
+    @docparams(p.__name__, "ticker")
     def test_ticker(cls):
         ''' {0}.{1} '''
 
@@ -68,7 +65,7 @@ class TestPoloniex(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @docparams(p.__name__,"orders")
+    @docparams(p.__name__, "orders")
     def test_orders(cls):
         ''' {0}.{1} '''
 

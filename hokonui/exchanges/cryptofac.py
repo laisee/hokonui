@@ -32,7 +32,8 @@ class CryptoFacility(Base):
     def _current_ticker_extractor(cls, data):
         ask = data["tickers"][5]["ask"]
         bid = data["tickers"][5]["bid"]
-        return Ticker(cls.CCY_DEFAULT, apply_format(bid), apply_format(ask)).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(bid),
+                      apply_format(ask)).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):

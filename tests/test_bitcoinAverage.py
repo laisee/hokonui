@@ -11,49 +11,48 @@ from hokonui.exchanges.bitcoinavg import BitcoinAverage as avg
 
 class TestBitcoinAverage(TestCase):
     ''' Class for executing Bitcoinaverage API test '''
-
     @classmethod
-    @docparams(avg.__name__,"setup")
+    @docparams(avg.__name__, "setup")
     def setup(cls):
         ''' {0}.{1} '''
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
-    @docparams(avg.__name__,"teardown")
+    @docparams(avg.__name__, "teardown")
     def teardown(cls):
         ''' {0}.{1} '''
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
-    @docparams(avg.__name__,"name")
+    @docparams(avg.__name__, "name")
     def test_name(cls):
         ''' {0}.{1} '''
 
-        ok_(avg.NAME == cls.__name__.replace( 'Test', ''))
+        ok_(avg.NAME == cls.__name__.replace('Test', ''))
 
     @classmethod
-    @docparams(avg.__name__,"price")
+    @docparams(avg.__name__, "price")
     def test_price(cls):
         ''' {0}.{1} '''
 
         ok_(float(avg.get_current_price(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(avg.__name__,"bid")
+    @docparams(avg.__name__, "bid")
     def test_bid(cls):
         ''' {0}.{1} '''
 
         ok_(float(avg.get_current_bid(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(avg.__name__,"ask")
+    @docparams(avg.__name__, "ask")
     def test_ask(cls):
         ''' {0}.{1} '''
 
         ok_(float(avg.get_current_ask(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(avg.__name__,"ticker")
+    @docparams(avg.__name__, "ticker")
     def test_ticker(cls):
         ''' {0}.{1} '''
 
@@ -66,13 +65,17 @@ class TestBitcoinAverage(TestCase):
 
     @classmethod
     @unittest.skip("skip orders test while reviewing BTC Avg API ")
-    @docparams(avg.__name__,"volumes")
+    @docparams(avg.__name__, "volumes")
     def test_volume(cls):
         ''' {0}.{1} '''
         vol = avg.get_current_volume(base.CCY_DEFAULT)
         ok_(float(vol["quantity"]) >= 0, "quantity shd be valid number >= 0")
-        ok_(vol["source"] == "BitcoinAverage", "Source should be 'BitcoinAverage'")
-        ok_(float(vol["timestamp"]) > 0, "Timestamp should be greater than zero")
+        ok_(vol["source"] == "BitcoinAverage",
+            "Source should be 'BitcoinAverage'")
+        ok_(
+            float(vol["timestamp"]) > 0,
+            "Timestamp should be greater than zero")
+
 
 if __name__ == '__main__':
     nose.runmodule()

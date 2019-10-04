@@ -11,48 +11,47 @@ from hokonui.exchanges.kraken import Kraken as kraken
 
 class TestKraken(TestCase):
     ''' Class for testing Kraken API '''
-
     @classmethod
-    @docparams(kraken.__name__,"setup")
+    @docparams(kraken.__name__, "setup")
     def setUp(cls):
         ''' {0}.{1}'''
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod
-    @docparams(kraken.__name__,"teardown")
+    @docparams(kraken.__name__, "teardown")
     def tearDown(cls):
         ''' {0}.{1}'''
         print(__name__, ': TestClass.teardown_class() -------')
 
     @classmethod
-    @docparams(kraken.__name__,"name")
+    @docparams(kraken.__name__, "name")
     def test_name(cls):
         ''' {0}.{1}'''
-        ok_(kraken.NAME == cls.__name__.replace( 'Test', ''))
+        ok_(kraken.NAME == cls.__name__.replace('Test', ''))
 
     @classmethod
-    @docparams(kraken.__name__,"price")
+    @docparams(kraken.__name__, "price")
     def test_price(cls):
         ''' {0}.{1}'''
         body = '{"pair":"XXBTZUSD"}'
         ok_(float(kraken.get_current_price(None, None, body)) > 0.00)
 
     @classmethod
-    @docparams(kraken.__name__,"bid")
+    @docparams(kraken.__name__, "bid")
     def test_bid(cls):
         ''' {0}.{1}'''
         body = '{"pair":"XXBTZJPY"}'
         ok_(float(kraken.get_current_bid(None, None, body)) > 0.00)
 
     @classmethod
-    @docparams(kraken.__name__,"ask")
+    @docparams(kraken.__name__, "ask")
     def test_ask(cls):
         ''' {0}.{1}'''
         body = '{"pair":"XXBTZJPY"}'
         ok_(float(kraken.get_current_ask(None, None, body)) > 0.00)
 
     @classmethod
-    @docparams(kraken.__name__,"ticker")
+    @docparams(kraken.__name__, "ticker")
     def test_ticker(cls):
         ''' {0}.{1}'''
         body = '{"pair":"XXBTZJPY"}'
@@ -64,7 +63,7 @@ class TestKraken(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @docparams(kraken.__name__,"orders")
+    @docparams(kraken.__name__, "orders")
     def test_orders(cls):
         ''' {0}.{1}'''
         body = '{"pair":"XXBTZJPY", "count":"10"}'
@@ -73,6 +72,7 @@ class TestKraken(TestCase):
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
         ok_(orders["source"] == "Kraken", "Source should be 'Kraken'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
+
 
 if __name__ == '__main__':
     nose.runmodule()

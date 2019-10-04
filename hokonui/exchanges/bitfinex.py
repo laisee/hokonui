@@ -49,14 +49,16 @@ class Bitfinex(Base):
             if buymax > max_qty:
                 continue
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["amount"]))
             buymax = buymax + float(level["amount"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 continue
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["amount"]))
             sellmax = sellmax + float(level["amount"])
 
         orders["source"] = "Bitfinex"
