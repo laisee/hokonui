@@ -7,12 +7,12 @@ from hokonui.utils.helpers import get_response
 class Exchange(object):
     ''' Class Exchange base class for all exchanges '''
 
-    TICKER_URL = None
-    ORDER_BOOK_URL = None
-    VOLUME_URL = None
-    PRICE_URL = None
-    NAME = 'Base'
-    CCY_DEFAULT = 'USD'
+    TICKER_URL: str = ""
+    ORDER_BOOK_URL: str = ""
+    VOLUME_URL: str = ""
+    PRICE_URL: str = ""
+    NAME: str = 'Base'
+    CCY_DEFAULT: str = 'USD'
 
     @classmethod
     def _current_price_extractor(cls, data):

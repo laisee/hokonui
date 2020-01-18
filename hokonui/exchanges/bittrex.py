@@ -12,11 +12,11 @@ from hokonui.utils.helpers import get_response
 class Bittrex(Base):
     ''' Class Bittrex base class for all exchanges '''
 
-    ORDER_BOOK_URL = 'https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-%s&type=both'
-    PRICE_URL = None
-    TICKER_URL = 'https://bittrex.com/api/v1.1/public/getticker?market=BTC-%s'
-    NAME = 'Bittrex'
-    CCY_DEFAULT = 'TUSD'
+    ORDER_BOOK_URL:str = 'https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-%s&type=both'
+    PRICE_URL:str = ""
+    TICKER_URL:str = 'https://bittrex.com/api/v1.1/public/getticker?market=BTC-%s'
+    NAME:str = 'Bittrex'
+    CCY_DEFAULT:str = 'TUSD'
 
     @classmethod
     def _current_price_extractor(cls, data):
