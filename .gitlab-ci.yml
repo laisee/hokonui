@@ -19,7 +19,5 @@ unit-test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
     - echo "Running unit tests... This will take about 60 seconds."
-    - pytest tests/test_liquid.py
-    - pytest tests/test_bittrex.py
-    - pytest tests/test_hitbtc.py
+    - pytest tests/test_liquid.py && pytest tests/test_bittrex.py && pytest tests/test_hitbtc.py
     - echo "Code coverage is NOT CALCULATED YET"
