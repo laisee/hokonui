@@ -12,11 +12,11 @@ from hokonui.utils.helpers import get_response
 class BitThumb(Base):
     ''' Class BitThumb base class for all exchanges '''
 
-    ORDER_BOOK_URL:str = 'https://api.bithumb.com/public/orderbook/BTC'
-    PRICE_URL:str = ""
-    TICKER_URL:str = 'https://api.bithumb.com/public/ticker/BTC'
-    NAME:str = 'BitThumb'
-    CCY_DEFAULT:str = 'KRW'
+    ORDER_BOOK_URL: str = 'https://api.bithumb.com/public/orderbook/BTC'
+    PRICE_URL: str = ""
+    TICKER_URL: str = 'https://api.bithumb.com/public/ticker/BTC'
+    NAME: str = 'BitThumb'
+    CCY_DEFAULT: str = 'KRW'
 
     @classmethod
     def _current_price_extractor(cls, data):

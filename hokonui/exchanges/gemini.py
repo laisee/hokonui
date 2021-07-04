@@ -13,14 +13,14 @@ class Gemini(Base):
 
     '''
 
-    TICKER_URL = 'https://api.sandbox.gemini.com/v1/pubticker/%s'
+    TICKER_URL = 'https://api.gemini.com/v2/ticker/%s'
     ORDER_BOOK_URL = 'https://api.sandbox.gemini.com/v1/book/%s'
     NAME = "Gemini"
     CCY_DEFAULT = "btcusd"
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return apply_format(data.get('last'))
+        return apply_format(data.get('close'))
 
     @classmethod
     def _current_bid_extractor(cls, data):

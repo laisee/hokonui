@@ -63,12 +63,10 @@ def get_response(url, ccy, params=None, body=None, header=None):
 
 def guard(url, ccy):
     ''' Method for checking inputs '''
+    print("URL ", url)
     if ccy:
         if '%' not in url:
-            raise ValueError(
-                "URL %s does not have a % for insertin supplied ccy " %
-                (url, ccy))
+            raise ValueError( "URL %s does not have placeholder for inserting supplied ccy %s " % (url, ccy))
     else:
         if '%' in url:
-            raise ValueError("URL %s should have a currency value supplied" %
-                             url)
+            raise ValueError("URL %s should have a currency value supplied" % url)

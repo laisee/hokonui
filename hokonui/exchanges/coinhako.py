@@ -9,10 +9,10 @@ from hokonui.utils.helpers import apply_format, get_response
 class Coinhako(Base):
     ''' Class Exchange base class for all exchanges '''
 
-    TICKER_URL:str = 'https://www.coinhako.com/api/v1/price/currency/BTC%s'
-    ORDER_BOOK_URL:str = ""
-    NAME:str = 'Coinhako'
-    CCY_DEFAULT:str = 'USD'
+    TICKER_URL: str = 'https://www.coinhako.com/api/v1/price/currency/BTC%s'
+    ORDER_BOOK_URL: str = ""
+    NAME: str = 'Coinhako'
+    CCY_DEFAULT: str = 'USD'
 
     @classmethod
     def _current_price_extractor(cls, data):

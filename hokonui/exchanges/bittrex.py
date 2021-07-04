@@ -12,50 +12,51 @@ from hokonui.utils.helpers import get_response
 class Bittrex(Base):
     ''' Class Bittrex base class for all exchanges '''
 
-    ORDER_BOOK_URL:str = 'https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-%s&type=both'
-    PRICE_URL:str = ""
-    TICKER_URL:str = 'https://bittrex.com/api/v1.1/public/getticker?market=BTC-%s'
-    NAME:str = 'Bittrex'
-    CCY_DEFAULT:str = 'TUSD'
+    ORDER_BOOK_URL: str = 'https://api.bittrex.com/v3/markets/BTC-%s/orderbook'
+    PRICE_URL: str = None
+    TICKER_URL: str = 'https://api.bittrex.com/v3/markets/BTC-%s/ticker'
+    NAME: str = 'Bittrex'
+    CCY_DEFAULT: str = 'USD'
 
     @classmethod
     def _current_price_extractor(cls, data):
         ''' Method for extracting current price '''
-        return apply_format(data['result'].get('Last'))
+        return apply_format(data['lastTradeRate'])
 
     @classmethod
     def _current_bid_extractor(cls, data):
         ''' Method for extracting bid price '''
-        return apply_format(data['result'].get('Bid'))
+        return apply_format(data['bidRate'])
 
     @classmethod
     def _current_ask_extractor(cls, data):
         ''' Method for extracting ask price '''
-        return apply_format(data['result'].get('Ask'))
+        return apply_format(data['askRate'])
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
         ''' Method for extracting orders '''
+        print(data)
         orders = {}
         bids = {}
         asks = {}
         buymax = 0
         sellmax = 0
-        for level in data["result"]["buy"]:
+        for level in data["bid"]:
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["Rate"])] = "{:.8f}".format(
-                    float(level["Quantity"]))
-            buymax = buymax + float(level["Quantity"])
+                asks[apply_format_level(level["rate"])] = "{:.8f}".format(
+                    float(level["quantity"]))
+            buymax = buymax + float(level["quantity"])
 
-        for level in data["result"]["sell"]:
+        for level in data["ask"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["Rate"])] = "{:.8f}".format(
-                    float(level["Quantity"]))
-            sellmax = sellmax + float(level["Quantity"])
+                bids[apply_format_level(level["rate"])] = "{:.8f}".format(
+                    float(level["quantity"]))
+            sellmax = sellmax + float(level["quantity"])
 
         orders["source"] = cls.NAME
         orders["bids"] = bids
@@ -66,8 +67,8 @@ class Bittrex(Base):
     @classmethod
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting ticker '''
-        bid = apply_format(data['result']['Bid'])
-        ask = apply_format(data['result']['Ask'])
+        bid = apply_format(data['bidRate'])
+        ask = apply_format(data['askRate'])
         return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
 
     @classmethod

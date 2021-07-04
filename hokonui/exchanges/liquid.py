@@ -1,4 +1,4 @@
-''' Module for testing Quoine API '''
+''' Module for testing liquid API '''
 # pylint: disable=duplicate-code, line-too-long
 
 import time
@@ -7,15 +7,15 @@ from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 
-class Quoine(Base):
+class Liquid(Base):
     '''
-    Class for r/w Quoine API
+    Class for r/w Liquid API
 
     '''
 
-    TICKER_URL = 'https://api.quoine.com/products/code/CASH/BTC%s'
-    ORDER_BOOK_URL = 'https://api.quoine.com/products/%s/price_levels'
-    NAME = "Quoine"
+    TICKER_URL = 'https://api.liquid.com/products/code/CASH/BTC%s'
+    ORDER_BOOK_URL = 'https://api.liquid.com/products/%s/price_levels'
+    NAME = "Liquid"
 
     @classmethod
     def _current_price_extractor(cls, data):
