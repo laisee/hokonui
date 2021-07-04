@@ -28,7 +28,7 @@ stages:
 flake8:
   stage: check
   script:
-  - flake8 --max-line-length=120 bild/*.py
+  - flake8 --max-line-length=120 hokonui/exchanges/*.py
 
 
 #build-job:       # This job runs in the build stage, which runs first.
