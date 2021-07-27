@@ -12,8 +12,8 @@ from hokonui.utils.helpers import get_response
 class Kucoin(Base):
     ''' Class Exchange base class for all exchanges '''
 
-    TICKER_URL = 'https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-%s'
-    ORDER_BOOK_URL = 'https://api.kucoin.com/api/v2/market/orderbook/level2?symbol=BTC-%s'
+    TICKER_URL     = "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-USDT"
+    ORDER_BOOK_URL = "https://api.kucoin.com/api/v1/market/orderbook/level2_20?symbol=BTC-USDT"
     NAME = 'Kucoin'
     CCY_DEFAULT = 'USDT'
 
@@ -35,6 +35,7 @@ class Kucoin(Base):
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
         ''' Method for extracting orders '''
+        print("DATA ",data) 
         orders = {}
         bids = {}
         asks = {}

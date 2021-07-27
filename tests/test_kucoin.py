@@ -38,28 +38,28 @@ class TestKucoin(TestCase):
     def test_price(cls):
         ''' {0}.{1} '''
 
-        ok_(float(kuc.get_current_price(kuc.CCY_DEFAULT)) > 0.00)
+        ok_(float(kuc.get_current_price()) > 0.00)
 
     @classmethod
     @docparams(kuc.__name__, "bid")
     def test_bid(cls):
         ''' {0}.{1} '''
 
-        ok_(float(kuc.get_current_bid(kuc.CCY_DEFAULT)) > 0.00)
+        ok_(float(kuc.get_current_bid()) > 0.00)
 
     @classmethod
     @docparams(kuc.__name__, "ask")
     def test_ask(cls):
         ''' {0}.{1} '''
 
-        ok_(float(kuc.get_current_ask(kuc.CCY_DEFAULT)) > 0.00)
+        ok_(float(kuc.get_current_ask()) > 0.00)
 
     @classmethod
     @docparams(kuc.__name__, "ticker")
     def test_ticker(cls):
         ''' {0}.{1} '''
 
-        data = json.loads(kuc.get_current_ticker(kuc.CCY_DEFAULT))
+        data = json.loads(kuc.get_current_ticker())
         ok_(data["pair"] == kuc.CCY_DEFAULT,
             "should be '%s'" % kuc.CCY_DEFAULT)
         ok_(float(data["ask"]) > 0.00, "ask should not be empty")
@@ -72,7 +72,7 @@ class TestKucoin(TestCase):
     def test_orders(cls):
         ''' {0}.{1} '''
 
-        orders = kuc.get_current_orders(kuc.CCY_DEFAULT)
+        orders = kuc.get_current_orders()
         print(orders)
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")

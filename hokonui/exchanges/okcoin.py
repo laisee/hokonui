@@ -11,27 +11,24 @@ from hokonui.utils.helpers import apply_format_level
 class OKCoin(Base):
     ''' Class for testing OkCoin API '''
 
-    TICKER_URL = 'https://www.okcoin.com/api/v1/ticker.do?symbol=btc_usd'
-    ORDER_BOOK_URL = 'https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd&size=10'
+    TICKER_URL = "https://www.okcoin.com/api/spot/v3/instruments/BTC-USDT/ticker"
+    ORDER_BOOK_URL = "https://www.okcoin.com/api/spot/v3/instruments/BTC-USDT/book?size=5&depth=0.2"
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return apply_format(data.get('ticker', {}).get('last'))
+        return apply_format(data['last'])
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return apply_format(data.get('ticker', {}).get('buy'))
+        return apply_format(data["bid"])
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return apply_format(data.get('ticker', {}).get('sell'))
+        return apply_format(data["ask"])
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT,
-                      apply_format(data.get('ticker', {}).get('buy')),
-                      apply_format(data.get('ticker',
-                                            {}).get('sell'))).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(data["bid"]), apply_format(data["ask"])).toJSON()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):

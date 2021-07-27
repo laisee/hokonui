@@ -15,6 +15,8 @@ class TestBitThumb(TestCase):
     @docparams(bth.__name__, "setup")
     def setUp(cls):
         ''' {0}.{1}'''
+        print(dir(bth.TICKER_URL))
+        print(dir(bth.TICKER_URL))
         print(__name__, ': TestClass.setup_class() ----------')
 
     @classmethod

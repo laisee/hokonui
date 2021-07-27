@@ -12,9 +12,8 @@ from hokonui.utils.helpers import get_response
 class BitThumb(Base):
     ''' Class BitThumb base class for all exchanges '''
 
-    ORDER_BOOK_URL: str = 'https://api.bithumb.com/public/orderbook/BTC'
-    PRICE_URL: str = ""
-    TICKER_URL: str = 'https://api.bithumb.com/public/ticker/BTC'
+    ORDER_BOOK_URL: str = "https://api.bithumb.com/public/orderbook/BTC"
+    TICKER_URL: str = "https://api.bithumb.com/public/ticker/BTC"
     NAME: str = 'BitThumb'
     CCY_DEFAULT: str = 'KRW'
 
@@ -74,8 +73,7 @@ class BitThumb(Base):
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving last price '''
-        url = cls.PRICE_URL if hasattr(
-            cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
+        url = cls.PRICE_URL if hasattr( cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_price_extractor(data)
 
