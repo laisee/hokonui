@@ -12,12 +12,11 @@ else:
 def main():
     """main function, called at the start of the program"""
 
-    print '-' * 20
+    print('-' * 20)
     askBitfinex = bfx.get_current_ask('USD')
     bidBitfinex = bfx.get_current_bid('USD')
-    print "Bitfinex : Bid %s Ask %s" % (format(
-        Decimal(bid), '.2f'), format(Decimal(ask), '.2f'))
-    print '-' * 20
+    print("Bitfinex : Bid %s Ask %s" % (format(double(bid), '.2f'), format(double(ask), '.2f')))
+    print('-' * 20)
 
 
 if __name__ == "__main__":
