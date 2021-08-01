@@ -1,23 +1,20 @@
-- [ ] add new exchanges 
+Add new exchanges 
+* [ ] Bitboy
+* [ ] Bitflyer
+* [ ] CME
+* [ ] FTX
+* [ ] Luno
+* [ ] Kraken
+* [ ] UniSwap
+* [x] Binance (DONE)
+* [x] CoinFloor (DONE)
+* [x] CoinHako (DONE)
+* [x] Gate.io (DONE)
+* [x] HitBTC (DONE)
+* [x] Kucoin (DONE)
+* [x] Upbit (DONE)
 
-    * Mercatox
-
-    * Bittrex (DONE)
-    * Binance (DONE)
-    * BitThumb (DONE)
-    * CoinFloor (DONE)
-    * CoinHako (DONE)
-    * Gate.io (DONE)
-    * HitBTC (DONE)
-    * Kucoin (DONE)
-    * Simex (DONE)
-    * Upbit (DONE)
-
-- [ ] fix API
-    * BitcoinAverage (update orders URL)
-    * Digifinex (locate public API)
-    * Huobi (fix URL)
-    * CoinHako (orders)
+Misc Changes
 - [ ] add example using async/threads
 - [ ] add list of supported pairs per exchange
 - [ ] allow pairs to be provided by code calling py lib
