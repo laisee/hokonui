@@ -10,3 +10,8 @@ if __package__ is None:
 import hokonui
 import hokonui.exchanges
 import hokonui.utils
+
+print(hokonui)
+print(hokonui.exchanges)
+print(hokonui.utils)
+
