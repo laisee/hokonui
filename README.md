@@ -5,6 +5,7 @@ Forked from https://github.com/dursk/bitcoin-price-api.
 
 [![CodeQL](https://github.com/laisee/hokonui/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/codeql-analysis.yml)
 [![OSSAR](https://github.com/laisee/hokonui/actions/workflows/ossar-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/ossar-analysis.yml)
+[![Codacy Security Scan](https://github.com/laisee/hokonui/actions/workflows/codacy-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/codacy-analysis.yml)
 
 ## Exchanges included
  - BTC-E
