@@ -12,6 +12,9 @@ from hokonui.utils.helpers import get_response
 class GateIo(Base):
     ''' Class Exchange base class for all exchanges '''
 
+    ASK_URL = None
+    BID_URL = None
+    PRICE_URL = None
     TICKER_URL = 'https://data.gateio.io/api2/1/ticker/btc_%s'
     ORDER_BOOK_URL = 'https://data.gateio.io/api2/1/orderBook/btc_%s'
     NAME = 'GateIo'
