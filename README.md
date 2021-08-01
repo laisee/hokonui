@@ -10,12 +10,10 @@ Forked from https://github.com/dursk/bitcoin-price-api.
  - Bitstamp
  - BitX
  - CoinBase
- - CoinSetter
  - Huobi
  - itBit
  - OKCoin
- - MexBT
- - Quoine
+ - Liquid
  ... and more 
 
 ## Data Providers
