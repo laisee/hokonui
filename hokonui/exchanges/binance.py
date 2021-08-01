@@ -1,13 +1,11 @@
 ''' Module for Exchange base class '''
 # pylint: disable=duplicate-code, line-too-long
-
-import time
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 from hokonui.utils.helpers import get_response
-
+import time
 
 class Binance(Base):
     ''' Class Exchange base class for all exchanges '''
