@@ -29,9 +29,9 @@ def main():
             askBitfinex = bfx.get_current_ask('USD')
             bidBitfinex = bfx.get_current_bid('USD')
             print "itBit    : Bid %s Ask %s" % (format(
-                Decimal(bid), '.2f'), format(Decimal(ask), '.2f'))
+                Decimal(bidItBit), '.2f'), format(Decimal(askItBit), '.2f'))
             print "Bitfinex : Bid %s Ask %s" % (format(
-                Decimal(bid), '.2f'), format(Decimal(ask), '.2f'))
+                Decimal(bidBitfinex), '.2f'), format(Decimal(askBitfinex), '.2f'))
             print '-' * 20
 
             # check for Arb in one direction (buy @ ItBit, sell @ Bitfinex)
