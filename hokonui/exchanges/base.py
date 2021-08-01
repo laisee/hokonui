@@ -7,6 +7,10 @@ from hokonui.utils.helpers import get_response
 class Exchange(object):
     ''' Class Exchange base class for all exchanges '''
 
+
+    ASK_URL: str = None
+    BID_URL: str = None
+    PRICE_URL: str = None
     TICKER_URL: str = None
     ORDER_BOOK_URL: str = None
     VOLUME_URL: str = None

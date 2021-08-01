@@ -12,6 +12,9 @@ from hokonui.utils.helpers import get_response
 class HitBTC(Base):
     ''' Class Exchange base class for all exchanges '''
 
+    ASK_URL = None
+    BID_URL = None
+    PRICE_URL = None
     TICKER_URL = 'https://api.hitbtc.com/api/2/public/ticker/BTC%s'
     ORDER_BOOK_URL = 'https://api.hitbtc.com/api/2/public/orderbook/BTC%s'
     NAME = 'HitBTC'

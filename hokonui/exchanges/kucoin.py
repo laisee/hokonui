@@ -12,6 +12,10 @@ from hokonui.utils.helpers import get_response
 class Kucoin(Base):
     ''' Class Exchange base class for all exchanges '''
 
+
+    ASK_URL = None
+    BID_URL = None
+    PRICE_URL = None
     TICKER_URL     = "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-USDT"
     ORDER_BOOK_URL = "https://api.kucoin.com/api/v1/market/orderbook/level2_20?symbol=BTC-USDT"
     NAME = 'Kucoin'

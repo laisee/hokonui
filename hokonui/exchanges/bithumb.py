@@ -12,6 +12,9 @@ from hokonui.utils.helpers import get_response
 class BitThumb(Base):
     ''' Class BitThumb base class for all exchanges '''
 
+    ASK_URL = None
+    BID_URL = None
+    PRICE_URL = None
     ORDER_BOOK_URL: str = "https://api.bithumb.com/public/orderbook/BTC"
     TICKER_URL: str = "https://api.bithumb.com/public/ticker/BTC"
     NAME: str = 'BitThumb'
