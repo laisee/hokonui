@@ -9,7 +9,7 @@ else:
 
 from requests_futures.sessions import FuturesSession
 
-print "getting price for ItBit exchange "
+print("getting price for ItBit exchange ")
 session = FuturesSession()
 future_one = session.get(itb.TICKER_URL)
-print "Finished ..."
+print("Finished ...")
