@@ -1,3 +1,5 @@
+''' Module for testing Hokonui API '''
+
 import sys
 import json
 import string

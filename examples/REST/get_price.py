@@ -8,7 +8,7 @@ else:
     from ..hokonui.exchanges.bitfinex import Bitfinex as bfx
     from ..hokonui.exchanges.itbit import Itbit as itb
 
-from decimal import *
+from decimal import Decimal
 
 
 def main():
@@ -17,9 +17,12 @@ def main():
     print('-' * 20)
     bid = bfx.get_current_bid('USD')
     ask = bfx.get_current_ask('USD')
-    print("Bitfinex : Bid %s Ask %s" % (format(double(bfx.bid), '.2f'), format(double(bfx.ask), '.2f')))
+    print("Bitfinex : Bid %s Ask %s" % (format(Decimal(bid), '.2f'), format(Decimal(ask), '.2f')))
     print('-' * 20)
-
+    bid = itb.get_current_bid('USD')
+    ask = itb.get_current_ask('USD')
+    print("ITBit: Bid %s Ask %s" % (format(Decimal(bid), '.2f'), format(Decimal(ask), '.2f')))
+    print('-' * 20)
 
 if __name__ == "__main__":
     main()
