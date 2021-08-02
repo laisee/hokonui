@@ -2,7 +2,7 @@
 
 import json
 from sys import path
-from tests import TestCase, docparams, ok_
+from tests import nose, TestCase, docparams, ok_
 
 libPath = '../hokonui'
 if libPath not in path: path.append(libPath)
