@@ -7,7 +7,7 @@ from unittest import TestCase
 from nose.tools import ok_
 
 libPath = '../hokonui'
-if not libPath in path:
+if libPath not in path:
     path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
