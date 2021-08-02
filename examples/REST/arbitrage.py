@@ -28,23 +28,21 @@ def main():
             bidItBit = itb.get_current_bid('USD')
             askBitfinex = bfx.get_current_ask('USD')
             bidBitfinex = bfx.get_current_bid('USD')
-            print "itBit    : Bid %s Ask %s" % (format(
-                Decimal(bidItBit), '.2f'), format(Decimal(askItBit), '.2f'))
-            print "Bitfinex : Bid %s Ask %s" % (format(
-                Decimal(bidBitfinex), '.2f'), format(Decimal(askBitfinex), '.2f'))
-            print '-' * 20
+            print("itBit    : Bid %s Ask %s" % (format( Decimal(bidItBit), '.2f'), format(Decimal(askItBit), '.2f')))
+            print("Bitfinex : Bid %s Ask %s" % (format( Decimal(bidBitfinex), '.2f'), format(Decimal(askBitfinex), '.2f')))
+            print('-' * 20)
 
             # check for Arb in one direction (buy @ ItBit, sell @ Bitfinex)
             if askItBit < bidBitfinex:  # can we buy for 100 on ItBit and sell for 101 on Bitfinex?
                 arb = bidBitfinex - askItBit
-                print "Arb #1 exists : ITBIT sell price < Bitfinex buy price "
-                print "Amount        : %s " % format(Decimal(arb), '.2f')
+                print("Arb #1 exists : ITBIT sell price < Bitfinex buy price ")
+                print("Amount        : %s " % format(Decimal(arb), '.2f'))
 
             # check for arb in the other direction (buy @ Bitfinex, sell @ ItBit)
             if bidItBit > askBitfinex:  # can we buy for 100 on Bitfinex and sell for 101 on ItBit?
                 arb = askBitfinex - bidItBit
-                print "Arb #2 exists : Bitfinex sell price < itBit buy price "
-                print "Amount        : %s " % format(Decimal(arb), '.2f')
+                print("Arb #2 exists : Bitfinex sell price < itBit buy price ")
+                print("Amount        : %s " % format(Decimal(arb), '.2f'))
 
             lock.release()
             time.sleep(sleeptime)
