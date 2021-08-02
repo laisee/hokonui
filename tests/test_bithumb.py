@@ -1,9 +1,11 @@
 ''' Module for testing BitThumb exchange '''
 
-from tests import *
+import json
+from sys import path
+from tests import TestCase, docparams, ok_
 
 libPath = '../hokonui'
-if not libPath in sys.path: sys.path.append(libPath)
+if libPath not in path: path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.bithumb import BitThumb as bth
