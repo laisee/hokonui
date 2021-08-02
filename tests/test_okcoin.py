@@ -4,6 +4,7 @@ import nose
 import json
 from unittest import TestCase
 from nose.tools import ok_
+from sys import path
 
 libPath = '../hokonui'
 if libPath not in path:
