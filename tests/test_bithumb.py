@@ -1,14 +1,18 @@
 ''' Module for testing BitThumb exchange '''
 
+import nose
 import json
 from sys import path
-from tests import nose, TestCase, docparams, ok_
+from unittest import TestCase
+from nose.tools import ok_
 
 libPath = '../hokonui'
-if libPath not in path: path.append(libPath)
+if not libPath in path:
+    path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.bithumb import BitThumb as bth
+from hokonui.utils.helpers import docstring_parameter as docparams
 
 
 class TestBitThumb(TestCase):

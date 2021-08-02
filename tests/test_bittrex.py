@@ -1,12 +1,18 @@
 ''' Module for testing Bittrex exchange '''
 
-from tests import *
+import nose
+import json
+from sys import path
+from unittest import TestCase
+from nose.tools import ok_
 
 libPath = '../hokonui'
-if not libPath in sys.path: sys.path.append(libPath)
+if not libPath in path:
+    path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.bittrex import Bittrex as btx
+from hokonui.utils.helpers import docstring_parameter as docparams
 
 
 class TestBittrex(TestCase):

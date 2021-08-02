@@ -1,12 +1,18 @@
 ''' module for testing liquid n API '''
 
-from tests import *
+import json
+import nose
+from sys import path
+from unittest import TestCase
+from nose.tools import ok_
 
 libPath = '../hokonui'
-if not libPath in sys.path: sys.path.append(libPath)
+if libPath not in path:
+    path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.liquid import Liquid as liquid
+from hokonui.utils.helpers import docstring_parameter as docparams
 
 
 class TestLiquid(TestCase):

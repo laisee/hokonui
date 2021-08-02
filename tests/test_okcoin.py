@@ -1,13 +1,17 @@
 ''' Module for testing Ok Coin API '''
 
-from tests import *
+import nose
+import json
+from unittest import TestCase
+from nose.tools import ok_
 
 libPath = '../hokonui'
-if not libPath in sys.path: sys.path.append(libPath)
+if libPath not in path:
+    path.append(libPath)
 
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.okcoin import OKCoin as okc
-
+from hokonui.utils.helpers import docstring_parameter as docparams
 
 class TestOkCoin(TestCase):
     ''' Class for testing OkCoin API '''
@@ -43,7 +47,6 @@ class TestOkCoin(TestCase):
     @docparams(okc.__name__, "ticker")
     def test_ticker(cls):
         ''' {0}.{1} '''
-
         data = json.loads(okc.get_current_ticker())
         ok_(data["pair"] == base.CCY_DEFAULT, "shd be '%s'" % base.CCY_DEFAULT)
         ok_(float(data["ask"]) > 0.00, "ask should not be empty")
