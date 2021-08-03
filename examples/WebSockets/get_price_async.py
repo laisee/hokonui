@@ -1,3 +1,4 @@
+from requests_futures.sessions import FuturesSession
 if __package__ is None:
     import sys
     from os import path
@@ -7,17 +8,15 @@ if __package__ is None:
 else:
     from ..hokonui.exchanges.itbit import Itbit as itb
 
-from requests_futures.sessions import FuturesSession
 
-
-def onResponse(url):
+def on_response(url: str):
+    ''' response handler '''
     print("Got a response for URL ", url)
-
 
 print("Getting price from ItBit exchange ")
 session = FuturesSession()
 print(dir(session))
-session.hooks["response"] = onResponse
+session.hooks["response"] = on_response
 
 func = session.hooks["response"]
 func(itb.TICKER_URL)

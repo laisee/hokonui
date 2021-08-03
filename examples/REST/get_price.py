@@ -1,3 +1,4 @@
+from decimal import Decimal
 if __package__ is None:
     import sys
     from os import path
@@ -8,7 +9,6 @@ else:
     from ..hokonui.exchanges.bitfinex import Bitfinex as bfx
     from ..hokonui.exchanges.itbit import Itbit as itb
 
-from decimal import Decimal
 
 
 def main():

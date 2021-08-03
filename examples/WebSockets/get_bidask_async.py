@@ -1,3 +1,4 @@
+from requests_futures.sessions import FuturesSession
 if __package__ is None:
     import sys
     from os import path
@@ -7,7 +8,6 @@ if __package__ is None:
 else:
     from ..hokonui.exchanges.itbit import Itbit as itb
 
-from requests_futures.sessions import FuturesSession
 
 print("getting price for ItBit exchange ")
 session = FuturesSession()

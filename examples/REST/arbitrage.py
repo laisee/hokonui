@@ -9,11 +9,10 @@ except ImportError:
 if __package__ is None:
     import sys
     from os import path
-    sys.path.append(
-        path.dirname(path.dirname(path.dirname(path.abspath(__file__)))))
-    # import ITBIT library
-    from hokonui.exchanges.bitfinex import Bitfinex as bfx
+    sys.path.append(path.dirname(path.dirname(path.dirname(path.abspath(__file__)))))
     # import Bitfinex library
+    from hokonui.exchanges.bitfinex import Bitfinex as bfx
+    # import ITBIT library
     from hokonui.exchanges.itbit import Itbit as itb
 else:
     # import ITBIT library
@@ -29,23 +28,23 @@ def main():
     def ticker(sleeptime, lock):
         while True:
             lock.acquire()
-            askItBit =    format( Decimal(itb.get_current_ask('USD'), '.2f'))
-            bidItBit =    format( Decimal(itb.get_current_bid('USD'), '.2f'))
-            askBitfinex = format( Decimal(bfx.get_current_ask('USD',  '.2f')))
-            bidBitfinex = format( Decimal(bfx.get_current_bid('USD',  '.2f')))
-            print("It : Bid %s Ask %s" % (bidItBit,    askItBit))
-            print("Bfx: Bid %s Ask %s" % (bidBitfinex, askBitfinex))
+            ask_itbit =    format( Decimal(itb.get_current_ask('USD'), '.2f'))
+            bid_itbit =    format( Decimal(itb.get_current_bid('USD'), '.2f'))
+            ask_bitfinex = format( Decimal(bfx.get_current_ask('USD',  '.2f')))
+            bid_bitfinex = format( Decimal(bfx.get_current_bid('USD',  '.2f')))
+            print("It : Bid %s Ask %s" % (bid_itbit,    ask_itbit))
+            print("Bfx: Bid %s Ask %s" % (bid_bitfinex, ask_bitfinex))
             print('-' * 20)
 
             # check for Arb in one direction (buy @ ItBit, sell @ Bitfinex)
-            if askItBit < bidBitfinex:  # can we buy for 100 on ItBit and sell for 101 on Bitfinex?
-                arb = bidBitfinex - askItBit
+            if ask_itbit < bid_bitfinex: # can we buy for 100 on ItBit and sell for 101 on Bitfinex?
+                arb = bid_bitfinex - ask_itbit
                 print("Arb #1 exists : ITBIT sell price < Bitfinex buy price ")
                 print("Amount        : %s " % format(Decimal(arb), '.2f'))
 
             # check for arb in the other direction (buy @ Bitfinex, sell @ ItBit)
-            if bidItBit > askBitfinex:  # can we buy for 100 on Bitfinex and sell for 101 on ItBit?
-                arb = askBitfinex - bidItBit
+            if bid_itbit > ask_bitfinex: # can we buy for 100 on Bitfinex and sell for 101 on ItBit?
+                arb = ask_bitfinex - bid_itbit
                 print("Arb #2 exists : Bitfinex sell price < itBit buy price ")
                 print("Amount        : %s " % format(Decimal(arb), '.2f'))
 
