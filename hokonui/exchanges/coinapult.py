@@ -10,8 +10,7 @@ class Coinapult(Base):
     ''' Class for testing Coinapult API '''
 
     TICKER_URL = 'https://api.coinapult.com/api/ticker?market=%s_BTC'
-    TICKER_LEVEL = [(50, 'small'), (250, 'medium'), (1000, 'large'),
-                    (2500, 'vip'), (5000, 'vip+')]
+    TICKER_LEVEL = [(50, 'small'), (250, 'medium'), (1000, 'large'), (2500, 'vip'), (5000, 'vip+')]
     NAME = 'Coinapult'
 
     @classmethod
@@ -58,8 +57,6 @@ class Coinapult(Base):
     @classmethod
     def _pick_level(cls, btc_amount):
         """
-        Choose between small, medium, large, ... depending on the
-        amount specified.
         """
         for size, level in cls.TICKER_LEVEL:
             if btc_amount < size:

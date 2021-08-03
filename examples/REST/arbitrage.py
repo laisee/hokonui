@@ -1,5 +1,10 @@
-import thread, time
+import time
 from decimal import Decimal
+
+try:
+    import thread
+except ImportError:
+    import _thread as thread
 
 if __package__ is None:
     import sys
@@ -24,12 +29,12 @@ def main():
     def ticker(sleeptime, lock):
         while True:
             lock.acquire()
-            askItBit = itb.get_current_ask('USD')
-            bidItBit = itb.get_current_bid('USD')
-            askBitfinex = bfx.get_current_ask('USD')
-            bidBitfinex = bfx.get_current_bid('USD')
-            print("itBit    : Bid %s Ask %s" % (format( Decimal(bidItBit), '.2f'), format(Decimal(askItBit), '.2f')))
-            print("Bitfinex : Bid %s Ask %s" % (format( Decimal(bidBitfinex), '.2f'), format(Decimal(askBitfinex), '.2f')))
+            askItBit =    format( Decimal(itb.get_current_ask('USD'), '.2f'))
+            bidItBit =    format( Decimal(itb.get_current_bid('USD'), '.2f'))
+            askBitfinex = format( Decimal(bfx.get_current_ask('USD',  '.2f')))
+            bidBitfinex = format( Decimal(bfx.get_current_bid('USD',  '.2f')))
+            print("It : Bid %s Ask %s" % (bidItBit,    askItBit))
+            print("Bfx: Bid %s Ask %s" % (bidBitfinex, askBitfinex))
             print('-' * 20)
 
             # check for Arb in one direction (buy @ ItBit, sell @ Bitfinex)
