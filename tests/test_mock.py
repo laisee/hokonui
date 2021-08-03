@@ -1,17 +1,17 @@
 ''' Module for testing Mock exchange '''
 
-import nose
 import json
 from sys import path
 from unittest import TestCase
 from nose.tools import ok_
-
-libPath = '../hokonui'
-if not libPath in path:
-    path.append(libPath)
-
+import nose
 from hokonui.exchanges.mock import Mock as mock
 from hokonui.utils.helpers import docstring_parameter as docparams
+
+
+LIBPATH = '../hokonui'
+if LIBPATH not in path:
+    path.append(LIBPATH)
 
 
 class TestMock(TestCase):

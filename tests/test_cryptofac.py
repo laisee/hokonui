@@ -1,19 +1,17 @@
 ''' Module for testing crypto facilities API '''
 
-import nose
 import json
 from sys import path
 from unittest import TestCase
 from nose.tools import ok_
-
-libPath = '../hokonui'
-if not libPath in path:
-    path.append(libPath)
-
-
-from hokonui.exchanges.base import Exchange as base
+import nose
 from hokonui.exchanges.cryptofac import CryptoFacility as cfc
 from hokonui.utils.helpers import docstring_parameter as docparams
+
+
+LIBPATH = '../hokonui'
+if LIBPATH not in path:
+    path.append(LIBPATH)
 
 
 class TestCryptoFacility(TestCase):

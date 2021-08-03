@@ -1,18 +1,19 @@
 ''' Module for testing Ok Coin API '''
 
-import nose
+
 import json
+from sys import path
 from unittest import TestCase
 from nose.tools import ok_
-from sys import path
-
-libPath = '../hokonui'
-if libPath not in path:
-    path.append(libPath)
-
+import nose
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.okcoin import OKCoin as okc
 from hokonui.utils.helpers import docstring_parameter as docparams
+
+
+LIBPATH = '../hokonui'
+if LIBPATH not in path:
+    path.append(LIBPATH)
 
 class TestOkCoin(TestCase):
     ''' Class for testing OkCoin API '''

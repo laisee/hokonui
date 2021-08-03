@@ -1,18 +1,18 @@
 ''' module for testing liquid n API '''
 
 import json
-import nose
 from sys import path
 from unittest import TestCase
 from nose.tools import ok_
-
-libPath = '../hokonui'
-if libPath not in path:
-    path.append(libPath)
-
+import nose
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.liquid import Liquid as liquid
 from hokonui.utils.helpers import docstring_parameter as docparams
+
+
+LIBPATH = '../hokonui'
+if LIBPATH not in path:
+    path.append(LIBPATH)
 
 
 class TestLiquid(TestCase):
@@ -76,7 +76,7 @@ class TestLiquid(TestCase):
     def test_orders(cls):
         ''' {0}.{1} '''
 
-        ccy_id = cls.CcyToId(base.CCY_DEFAULT)
+        ccy_id = cls.ccy_to_id(base.CCY_DEFAULT)
         orders = liquid.get_current_orders(ccy_id)
         ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
         ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
@@ -84,7 +84,7 @@ class TestLiquid(TestCase):
         ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
 
     @staticmethod
-    def CcyToId(ccy):
+    def ccy_to_id(ccy):
         ''' static method for converting CCY string to ID value '''
 
         ccyid = -1
