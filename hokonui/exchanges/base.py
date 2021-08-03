@@ -4,7 +4,7 @@
 from hokonui.utils.helpers import get_response
 
 
-class Exchange(object):
+class Exchange():
     ''' Class Exchange base class for all exchanges '''
 
 

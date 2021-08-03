@@ -70,7 +70,7 @@ class GateIo(Base):
         ''' Method for extracting ticker '''
         bid = apply_format(data.get('highestBid'))
         ask = apply_format(data.get('lowestAsk'))
-        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
+        return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):

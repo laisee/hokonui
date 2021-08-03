@@ -47,7 +47,7 @@ class Coinapult(Base):
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
         ask = apply_format(str(data[level]['ask']))
         bid = apply_format(str(data[level]['bid']))
-        return Ticker(ccy, bid, ask).toJSON()
+        return Ticker(ccy, bid, ask).to_json()
 
     @classmethod
     def get_current_orders(cls, ccy):

@@ -28,7 +28,7 @@ class OKCoin(Base):
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        return Ticker(cls.CCY_DEFAULT, apply_format(data["bid"]), apply_format(data["ask"])).toJSON()
+        return Ticker(cls.CCY_DEFAULT, apply_format(data["bid"]), apply_format(data["ask"])).to_json()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):

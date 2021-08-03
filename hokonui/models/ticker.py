@@ -1,8 +1,9 @@
+''' Ticker module '''
 import json
 import time
 
 
-class Ticker(object):
+class Ticker():  # pylint: disable=too-few-public-methods
     """An instance of market data for a selected exchange, market and currency
 
     Attributes:
@@ -12,14 +13,13 @@ class Ticker(object):
         timestamp: unix timestamp(UTC) when prices were captured
     """
     def __init__(self, pair, bid, ask):
+        ''' init '''
+
         self.pair = pair
         self.bid = bid
         self.ask = ask
         self.timestamp = int(time.time())
 
-    def toJSON(self):
+    def to_json(self):
         ''' method for convertingt to Json '''
-        return json.dumps(self,
-                          default=lambda o: o.__dict__,
-                          sort_keys=True,
-                          indent=4)
+        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)

@@ -1,11 +1,11 @@
 ''' Module for testing Bitfinex API '''
 # pylint: disable=duplicate-code, line-too-long
+import time
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 
-import time
 
 
 class Bitfinex(Base):
@@ -35,7 +35,7 @@ class Bitfinex(Base):
         ''' Method for extracting ticker '''
         bid = apply_format(data.get('bid'))
         ask = apply_format(data.get('ask'))
-        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
+        return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):

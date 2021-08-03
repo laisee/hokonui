@@ -1,11 +1,11 @@
 ''' Module for Exchange base class '''
 # pylint: disable=duplicate-code, line-too-long
+import time
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 from hokonui.utils.helpers import get_response
-import time
 
 class Binance(Base):
     ''' Class Exchange base class for all exchanges '''
@@ -70,7 +70,7 @@ class Binance(Base):
         ''' Method for extracting ticker '''
         bid = apply_format(data.get('bidPrice'))
         ask = apply_format(data.get('askPrice'))
-        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
+        return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):

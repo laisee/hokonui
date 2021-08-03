@@ -10,6 +10,7 @@ import requests
 
 
 def docstring_parameter(*sub):
+    ''' Method for managing params '''
     def dec(obj):
         obj.__doc__ = obj.__doc__.format(*sub)
         return obj
@@ -46,6 +47,8 @@ def get_response(url, ccy, params=None, body=None, header=None):
     if params:
         url = "%s%s" % (url, params)
 
+    rsp = None
+
     try:
         if body:
             data = json.loads(body)
@@ -53,20 +56,21 @@ def get_response(url, ccy, params=None, body=None, header=None):
         else:
             response = requests.get(url, headers=header)
         response.raise_for_status()
-        return response.json()
-    except Exception as exc:
-        print("Exception during request %s : %s " % (url, exc))
+        rsp = response.json()
+    except requests.ConnectionError as cex:
+        print("Exception during request %s : %s " % (url, cex))
         print('-' * 60)
         traceback.print_exc(file=sys.stdout)
         print('-' * 60)
-
+    finally:
+        return rsp
 
 def guard(url, ccy):
     ''' Method for checking inputs '''
     print("URL ", url)
     if ccy:
         if '%' not in url:
-            raise ValueError( "URL %s does not have placeholder for inserting supplied ccy %s " % (url, ccy))
+            raise ValueError( "URL %s does not have placeholder for ccy %s " % (url, ccy))
     else:
         if '%' in url:
             raise ValueError("URL %s should have a currency value supplied" % url)

@@ -34,7 +34,7 @@ class Coinfloor(Base):
     def _current_ticker_extractor(cls, data):
         bid = apply_format(data.get('bid'))
         ask = apply_format(data.get('ask'))
-        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
+        return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):

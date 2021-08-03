@@ -38,7 +38,7 @@ class Kraken(Base):
         pair = list(data["result"].keys())[0]
         ask = list(data["result"][pair]["a"])[0]
         bid = list(data["result"][pair]["b"])[0]
-        return Ticker(pair, apply_format(bid), apply_format(ask)).toJSON()
+        return Ticker(pair, apply_format(bid), apply_format(ask)).to_json()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100.0):

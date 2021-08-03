@@ -34,7 +34,7 @@ class Upbit(Base):
     def _current_ticker_extractor(cls, data):
         bid = apply_format(data[0].get('trade_price'))
         ask = apply_format(data[0].get('trade_price'))
-        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
+        return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):

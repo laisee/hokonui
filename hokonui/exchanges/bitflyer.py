@@ -35,7 +35,7 @@ class BitFlyer(Base):
         ''' Method for extracting ticker '''
         bid = apply_format(data.get('best_bid'))
         ask = apply_format(data.get('best_ask'))
-        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
+        return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):

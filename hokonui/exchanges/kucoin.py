@@ -39,7 +39,6 @@ class Kucoin(Base):
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
         ''' Method for extracting orders '''
-        print("DATA ",data) 
         orders = {}
         bids = {}
         asks = {}
@@ -72,7 +71,7 @@ class Kucoin(Base):
         ''' Method for extracting ticker '''
         bid = apply_format(data["data"].get('bestBid'))
         ask = apply_format(data["data"].get('bestAsk'))
-        return Ticker(cls.CCY_DEFAULT, bid, ask).toJSON()
+        return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):

@@ -6,7 +6,7 @@ from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format_level
 
 
-class Mock(object):
+class Mock():
     ''' Class Mock exchanges '''
 
     TICKER_URL = None
@@ -72,7 +72,7 @@ class Mock(object):
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting ticker '''
 
-        return Ticker(cls.CCY_DEFAULT, data["ask"], data["bid"]).toJSON()
+        return Ticker(cls.CCY_DEFAULT, data["ask"], data["bid"]).to_json()
 
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):

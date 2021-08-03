@@ -30,7 +30,7 @@ class Itbit(Base):
     @classmethod
     def _current_ticker_extractor(cls, data):
         return Ticker(cls.CCY_DEFAULT, apply_format(data.get('bid')),
-                      apply_format(data.get('ask'))).toJSON()
+                      apply_format(data.get('ask'))).to_json()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):
