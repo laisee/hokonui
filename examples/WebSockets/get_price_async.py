@@ -1,3 +1,5 @@
+''' get price(async) '''
+
 from requests_futures.sessions import FuturesSession
 if __package__ is None:
     import sys
@@ -11,6 +13,7 @@ else:
 
 def on_response(url: str):
     ''' response handler '''
+
     print("Got a response for URL ", url)
 
 print("Getting price from ItBit exchange ")
