@@ -1,5 +1,6 @@
 ''' Module for Exchange base class '''
 # pylint: disable=duplicate-code, line-too-long
+
 import time
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
