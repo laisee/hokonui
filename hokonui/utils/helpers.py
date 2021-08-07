@@ -11,6 +11,7 @@ import requests
 
 def docstring_parameter(*sub):
     ''' Method for managing params '''
+
     def dec(obj):
         obj.__doc__ = obj.__doc__.format(*sub)
         return obj
@@ -20,26 +21,31 @@ def docstring_parameter(*sub):
 
 def apply_format(value, precision='.5f'):
     ''' Method for applying formats '''
+
     return format(Decimal(value), precision)
 
 
 def apply_format_level(value, precision='.2f'):
     ''' Method for applying format levels '''
+
     return format(Decimal(value), precision)
 
 
 def get_datetime():
     ''' Method for generating datetime value '''
+
     return datetime.now().strftime('%Y-%m-%d %h:%m:%s')
 
 
 def get_timestamp():
     ''' Method for calculating UTC timestamps '''
+
     return time.mktime(time.gmtime())
 
 
 def get_response(url, ccy, params=None, body=None, header=None):
     ''' Method for executing API requests '''
+
     guard(url, ccy)
     if ccy:
         url = url % ccy
@@ -67,6 +73,7 @@ def get_response(url, ccy, params=None, body=None, header=None):
 
 def guard(url, ccy):
     ''' Method for checking inputs '''
+
     print("URL ", url)
     if ccy:
         if '%' not in url:
