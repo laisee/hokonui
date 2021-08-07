@@ -69,8 +69,7 @@ def get_response(url, ccy, params=None, body=None, header=None):
         print('-' * 60)
         traceback.print_exc(file=sys.stdout)
         print('-' * 60)
-    finally:
-        return rsp
+    return rsp
 
 def guard(url, ccy):
     ''' Method for checking inputs '''

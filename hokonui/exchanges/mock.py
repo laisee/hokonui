@@ -22,22 +22,29 @@ class Mock():
     @classmethod
     def _current_price_extractor(cls, data):
         ''' Method for extracting current price '''
+
+        assert cls is not None
         return data["price"]
 
     @classmethod
     def _current_bid_extractor(cls, data):
         ''' Method for extracting bid price '''
+
+        assert cls is not None
         return data["bid"]
 
     @classmethod
     def _current_ask_extractor(cls, data):
         ''' Method for extracting ask price '''
+
+        assert cls is not None
         return data["ask"]
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
         ''' Method for extracting orders '''
 
+        assert cls is not None
         orders = {}
         bids = {}
         asks = {}
@@ -72,11 +79,23 @@ class Mock():
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting ticker '''
 
+        assert cls is not None
+        assert data is not None
         return Ticker(cls.CCY_DEFAULT, data["ask"], data["bid"]).to_json()
 
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving last price '''
+
+        assert cls is not None
+        if ccy is not None:
+            print(ccy)
+        if params is not None:
+            print(params)
+        if body is not None:
+            print(body)
+        if header is not None:
+            print(header)
         data = {"price": cls.MOCK_PRICE}
         return cls._current_price_extractor(data)
 
@@ -84,12 +103,28 @@ class Mock():
     def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current bid price '''
         data = {"bid": cls.MOCK_PRICE}
+        if ccy is not None:
+            print(ccy)
+        if params is not None:
+            print(params)
+        if body is not None:
+            print(body)
+        if header is not None:
+            print(header)
         return cls._current_bid_extractor(data)
 
     @classmethod
     def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current ask price '''
         data = {"ask": cls.MOCK_PRICE}
+        if ccy is not None:
+            print(ccy)
+        if params is not None:
+            print(params)
+        if body is not None:
+            print(body)
+        if header is not None:
+            print(header)
         return cls._current_ask_extractor(data)
 
     @classmethod
@@ -97,6 +132,14 @@ class Mock():
         ''' Method for retrieving current ticker '''
 
         data = {"ask": cls.MOCK_PRICE, "bid": cls.MOCK_PRICE}
+        if ccy is not None:
+            print(ccy)
+        if params is not None:
+            print(params)
+        if body is not None:
+            print(body)
+        if header is not None:
+            print(header)
         return cls._current_ticker_extractor(data)
 
     @classmethod
@@ -112,4 +155,12 @@ class Mock():
                 "quantity": "12.88"
             }]
         }
+        if ccy is not None:
+            print(ccy)
+        if params is not None:
+            print(params)
+        if body is not None:
+            print(body)
+        if max_qty is not None:
+            print(max_qty)
         return cls._current_orders_extractor(data, max_qty)
