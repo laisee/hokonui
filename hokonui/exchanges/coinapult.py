@@ -24,7 +24,7 @@ class Coinapult(Base):
     @classmethod
     def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         ''' method for testing current bid price '''
-        btc_amount=0.1
+        btc_amount = 0.1
         url = cls.TICKER_URL.format(ccy)
         data = get_response(url, ccy)
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
@@ -34,7 +34,7 @@ class Coinapult(Base):
     @classmethod
     def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         ''' method for testing current ask price '''
-        btc_amount=0.1
+        btc_amount = 0.1
         url = cls.TICKER_URL.format(ccy)
         data = get_response(url, ccy)
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
@@ -45,7 +45,7 @@ class Coinapult(Base):
     def get_current_ticker(cls, ccy=None, params=None, body=None, header=None):
         ''' method for testing current ticker '''
 
-        btc_amount=0
+        btc_amount = 0
         url = cls.TICKER_URL.format(ccy)
         data = get_response(url, ccy, params, body, header)
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'

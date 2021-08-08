@@ -14,6 +14,7 @@ LIBPATH = '../hokonui'
 if LIBPATH not in path:
     path.append(LIBPATH)
 
+
 class TestUpbit(TestCase):
     ''' Class for testing Upbit exchange '''
     @classmethod

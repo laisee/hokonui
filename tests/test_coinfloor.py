@@ -42,18 +42,14 @@ class TestCoinfloor(TestCase):
     def test_price(cls):
         ''' {0}.{1}'''
 
-        ok_(
-            float(cfl.get_current_price(cfl.CCY_DEFAULT, None, None, None)) >
-            0.00)
+        ok_(float(cfl.get_current_price(cfl.CCY_DEFAULT, None, None, None)) > 0.00)
 
     @classmethod
     @docparams(cfl.__name__, "bid")
     def test_bid(cls):
         ''' {0}.{1}'''
 
-        ok_(
-            float(cfl.get_current_bid(cfl.CCY_DEFAULT, None, None, None)) >
-            0.00)
+        ok_(float(cfl.get_current_bid(cfl.CCY_DEFAULT, None, None, None)) > 0.00)
 
     @classmethod
     @docparams(cfl.__name__, "ask")

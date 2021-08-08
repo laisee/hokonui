@@ -13,6 +13,7 @@ LIBPATH = '../hokonui'
 if LIBPATH not in path:
     path.append(LIBPATH)
 
+
 class TestKucoin(TestCase):
     ''' Class for testing Kucoin exchange '''
     @classmethod

@@ -10,10 +10,10 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 class Huobi(Base):
     ''' Class for testing Huobi API '''
 
-    TICKER_URL = 'https://api.huobi.pro/market/detail/merged?symbol=btcusdt'
-    ORDER_BOOK_URL = 'https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1'
     NAME = 'Huobi'
     CCY_DEFAULT = "BTCUSDT"
+    TICKER_URL = 'https://api.huobi.pro/market/detail/merged?symbol=btcusdt'
+    ORDER_BOOK_URL = 'https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1'
 
     @classmethod
     def _current_price_extractor(cls, data):

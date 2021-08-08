@@ -7,7 +7,6 @@ from hokonui.utils.helpers import get_response
 class Exchange():
     ''' Class Exchange base class for all exchanges '''
 
-
     ASK_URL: str = None
     BID_URL: str = None
     PRICE_URL: str = None
@@ -76,6 +75,6 @@ class Exchange():
     @classmethod
     def get_current_orders(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current orders '''
-        max_qty=100
+        max_qty = 100
         data = get_response(cls.ORDER_BOOK_URL, ccy, params, body, header)
         return cls._current_orders_extractor(data, max_qty)

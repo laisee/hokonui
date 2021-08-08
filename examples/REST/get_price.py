@@ -10,7 +10,6 @@ else:
     from ..hokonui.exchanges.itbit import Itbit as itb
 
 
-
 def main():
     """main function, called at the start of the program"""
 
@@ -23,6 +22,7 @@ def main():
     ask = itb.get_current_ask('USD')
     print("ITBit: Bid %s Ask %s" % (format(Decimal(bid), '.2f'), format(Decimal(ask), '.2f')))
     print('-' * 20)
+
 
 if __name__ == "__main__":
     main()

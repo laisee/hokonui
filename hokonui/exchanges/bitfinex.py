@@ -8,7 +8,6 @@ from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 
 
-
 class Bitfinex(Base):
     ''' class for testing Bitfinex public information API  '''
 

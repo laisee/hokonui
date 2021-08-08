@@ -5,7 +5,7 @@ from sys import path
 from unittest import TestCase
 from nose.tools import ok_
 import nose
-#from hokonui.exchanges.base import Exchange as base
+# from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.bithumb import BitThumb as bth
 from hokonui.utils.helpers import docstring_parameter as docparams
 

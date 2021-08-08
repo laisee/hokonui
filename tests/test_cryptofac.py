@@ -79,8 +79,8 @@ class TestCryptoFacility(TestCase):
         ''' {0}.{1} '''
 
         orders = cfc.get_current_orders(cls.SYMBOL)
-        #ok_(len(orders["asks"]) > 0, "Asks array shd not be empty")
-        #ok_(len(orders["bids"]) > 0, "Bids array shd not be empty")
+        # ok_(len(orders["asks"]) > 0, "Asks array shd not be empty")
+        # ok_(len(orders["bids"]) > 0, "Bids array shd not be empty")
         ok_(orders["source"] == "CryptoFacility", "Src shd = 'CryptoFacility'")
         ok_(float(orders["timestamp"]) > 0, "Timestamp shd be > zero")
 

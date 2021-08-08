@@ -14,6 +14,7 @@ LIBPATH = '../hokonui'
 if LIBPATH not in path:
     path.append(LIBPATH)
 
+
 class TestKraken(TestCase):
     ''' Class for testing Kraken API '''
     @classmethod

@@ -13,6 +13,7 @@ LIBPATH = '../hokonui'
 if LIBPATH not in path:
     path.append(LIBPATH)
 
+
 class TestBitstamp(TestCase):
     ''' Class for testing Bitstamp exchange '''
     @classmethod

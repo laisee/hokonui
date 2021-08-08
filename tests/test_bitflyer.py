@@ -14,6 +14,7 @@ LIBPATH = '../hokonui'
 if LIBPATH not in path:
     path.append(LIBPATH)
 
+
 class TestBitFlyer(TestCase):
     ''' Class for testing Bitflyer API '''
 

@@ -12,7 +12,6 @@ from hokonui.utils.helpers import get_response
 class Kucoin(Base):
     ''' Class Exchange base class for all exchanges '''
 
-
     ASK_URL = None
     BID_URL = None
     PRICE_URL = None

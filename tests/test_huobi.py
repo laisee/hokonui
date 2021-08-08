@@ -13,6 +13,7 @@ LIBPATH = '../hokonui'
 if LIBPATH not in path:
     path.append(LIBPATH)
 
+
 class TestHuobi(TestCase):
     ''' Class for testing Huobi exchange'''
     @classmethod

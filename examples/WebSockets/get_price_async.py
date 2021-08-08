@@ -16,7 +16,8 @@ def on_response(url: str):
 
     print("Got a response for URL ", url)
 
-print("Getting price from ItBit exchange ")
+
+print("Getting price from ItBit exchange")
 session = FuturesSession()
 print(dir(session))
 session.hooks["response"] = on_response

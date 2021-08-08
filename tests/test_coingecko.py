@@ -15,7 +15,6 @@ if LIBPATH not in path:
     path.append(LIBPATH)
 
 
-
 class TestCoinbase(TestCase):
     ''' Class for testing Coinbase API '''
     @classmethod

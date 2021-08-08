@@ -13,6 +13,7 @@ LIBPATH = '../hokonui'
 if LIBPATH not in path:
     path.append(LIBPATH)
 
+
 class TestCoinDesk(TestCase):
     ''' Class for testing Coindesk API '''
     @classmethod

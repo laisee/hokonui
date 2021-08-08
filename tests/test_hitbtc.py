@@ -15,7 +15,6 @@ if LIBPATH not in path:
     path.append(LIBPATH)
 
 
-
 class TestHitBTC(TestCase):
     ''' Class for testing HitBTC exchange '''
     @classmethod

@@ -23,8 +23,7 @@ class BitThumb(Base):
     @classmethod
     def _current_price_extractor(cls, data):
         ''' Method for extracting current price '''
-        return (float(apply_format(data['data'].get('min_price'))) +
-                float(apply_format(data['data'].get('max_price')))) / 2
+        return (float(apply_format(data['data'].get('min_price'))) + float(apply_format(data['data'].get('max_price')))) / 2
 
     @classmethod
     def _current_bid_extractor(cls, data):

@@ -15,6 +15,7 @@ LIBPATH = '../hokonui'
 if LIBPATH not in path:
     path.append(LIBPATH)
 
+
 class TestOkCoin(TestCase):
     ''' Class for testing OkCoin API '''
     @classmethod

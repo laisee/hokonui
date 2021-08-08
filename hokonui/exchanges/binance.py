@@ -8,9 +8,9 @@ from hokonui.utils.helpers import apply_format
 from hokonui.utils.helpers import apply_format_level
 from hokonui.utils.helpers import get_response
 
+
 class Binance(Base):
     ''' Class Exchange base class for all exchanges '''
-
 
     ASK_URL = None
     BID_URL = None

@@ -15,6 +15,7 @@ LIBPATH = '../hokonui'
 if LIBPATH not in path:
     path.append(LIBPATH)
 
+
 class TestitBit(TestCase):
     ''' Class for testing ITBIT exchange '''
     @classmethod
