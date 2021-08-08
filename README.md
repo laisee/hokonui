@@ -7,6 +7,11 @@ Forked from <https://github.com/dursk/bitcoin-price-api>
 [![OSSAR](https://github.com/laisee/hokonui/actions/workflows/ossar-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/ossar-analysis.yml)
 [![Codacy Security Scan](https://github.com/laisee/hokonui/actions/workflows/codacy-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/codacy-analysis.yml)
 [![CxFlow](https://github.com/laisee/hokonui/actions/workflows/checkmarx-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/checkmarx-analysis.yml)
+[![Veracode Static Analysis Pipeline Scan](https://github.com/laisee/hokonui/actions/workflows/veracode-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/veracode-analysis.yml)
+[![Semgrep](https://github.com/laisee/hokonui/actions/workflows/semgrep-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/semgrep-analysis.yml)
+[![SL Scan](https://github.com/laisee/hokonui/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/shiftleft-analysis.yml)
+[![DevSkim](https://github.com/laisee/hokonui/actions/workflows/devskim-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/devskim-analysis.yml)
+
 
 ## Exchanges included
 - BTC-E
