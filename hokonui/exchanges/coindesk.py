@@ -12,7 +12,27 @@ class CoinDesk(Base):
     NAME = 'CoinDesk'
 
     @classmethod
-    def get_current_price(cls, ccy=Base.CCY_DEFAULT):
+    def _current_ticker_extractor(cls, data):
+        ''' Method for extracting ticker '''
+
+    @classmethod
+    def _current_price_extractor(cls, data):
+        ''' Method for extracting current price '''
+
+    @classmethod
+    def _current_bid_extractor(cls, data):
+        ''' Method for extracting bid price '''
+
+    @classmethod
+    def _current_ask_extractor(cls, data):
+        ''' Method for extracting ask price '''
+
+    @classmethod
+    def _current_orders_extractor(cls, data, max_qty=100):
+        ''' Method for extracting ask price '''
+
+    @classmethod
+    def get_current_price(cls, ccy=Base.CCY_DEFAULT, params=None, body=None, header=None):
         ''' Method for retrieving current price '''
         url = 'https://api.coindesk.com/v1/bpi/currentprice/%s.json'
         data = get_response(url, ccy)

@@ -16,7 +16,7 @@ class Kucoin(Base):
     ASK_URL = None
     BID_URL = None
     PRICE_URL = None
-    TICKER_URL     = "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-USDT"
+    TICKER_URL = "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-USDT"
     ORDER_BOOK_URL = "https://api.kucoin.com/api/v1/market/orderbook/level2_20?symbol=BTC-USDT"
     NAME = 'Kucoin'
     CCY_DEFAULT = 'USDT'
@@ -104,8 +104,9 @@ class Kucoin(Base):
         return cls._current_ticker_extractor(data)
 
     @classmethod
-    def get_current_orders(cls, ccy=None, params=None, body=None, max_qty=5):
+    def get_current_orders(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving current orders '''
 
+        max_qty = 5
         data = get_response(cls.ORDER_BOOK_URL, ccy, params, body)
         return cls._current_orders_extractor(data, max_qty)

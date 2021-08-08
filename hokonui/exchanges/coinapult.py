@@ -14,16 +14,17 @@ class Coinapult(Base):
     NAME = 'Coinapult'
 
     @classmethod
-    def get_current_price(cls, ccy):
+    def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         ''' method for testing last price '''
+
         url = cls.TICKER_URL.format(ccy)
         data = get_response(url, ccy)
-        price = str(data['index'])
-        return apply_format(price)
+        return apply_format(str(data['index']))
 
     @classmethod
-    def get_current_bid(cls, ccy, btc_amount=0.1):
+    def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         ''' method for testing current bid price '''
+        btc_amount=0.1
         url = cls.TICKER_URL.format(ccy)
         data = get_response(url, ccy)
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
@@ -31,8 +32,9 @@ class Coinapult(Base):
         return apply_format(price)
 
     @classmethod
-    def get_current_ask(cls, ccy, btc_amount=0.1):
+    def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         ''' method for testing current ask price '''
+        btc_amount=0.1
         url = cls.TICKER_URL.format(ccy)
         data = get_response(url, ccy)
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
@@ -40,17 +42,39 @@ class Coinapult(Base):
         return apply_format(price)
 
     @classmethod
-    def _current_ticker_extractor(cls, ccy, data, btc_amount=0):
+    def get_current_ticker(cls, ccy=None, params=None, body=None, header=None):
         ''' method for testing current ticker '''
+
+        btc_amount=0
         url = cls.TICKER_URL.format(ccy)
-        data = get_response(url, ccy)
+        data = get_response(url, ccy, params, body, header)
         level = cls._pick_level(btc_amount) if btc_amount > 0 else 'small'
         ask = apply_format(str(data[level]['ask']))
         bid = apply_format(str(data[level]['bid']))
         return Ticker(ccy, bid, ask).to_json()
 
     @classmethod
-    def get_current_orders(cls, ccy):
+    def _current_ticker_extractor(cls, data):
+        ''' Method for extracting current price '''
+
+    @classmethod
+    def _current_price_extractor(cls, data):
+        ''' Method for extracting current price '''
+
+    @classmethod
+    def _current_bid_extractor(cls, data):
+        ''' Method for extracting bid price '''
+
+    @classmethod
+    def _current_ask_extractor(cls, data):
+        ''' Method for extracting ask price '''
+
+    @classmethod
+    def _current_orders_extractor(cls, data, max_qty=100):
+        ''' Method for extracting ask price '''
+
+    @classmethod
+    def get_current_orders(cls, ccy=None, params=None, body=None, header=None):
         ''' method for testing current orders '''
         raise ValueError("not implemented for this class using ccy %s" % ccy)
 

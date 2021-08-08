@@ -104,8 +104,10 @@ class Binance(Base):
         return cls._current_ticker_extractor(data)
 
     @classmethod
-    def get_current_orders(cls, ccy=None, params=None, body=None, max_qty=5):
+    def get_current_orders(cls, ccy=None, params=None, body=None, header=None):
+
         ''' Method for retrieving current orders '''
 
+        max_qty = 5
         data = get_response(cls.ORDER_BOOK_URL, ccy, params, body)
         return cls._current_orders_extractor(data, max_qty)
