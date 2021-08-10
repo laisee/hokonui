@@ -33,7 +33,10 @@ class Huobi(Base):
     @classmethod
     def _current_ticker_extractor(cls, data):
         ''' Method for extracting current ticker '''
-        return Ticker(cls.CCY_DEFAULT, apply_format(data["tick"]['bid'][0]), apply_format(data["tick"]['ask'][0])).to_json()
+
+        bid = apply_format(data["tick"]['bid'][0])
+        ask = apply_format(data["tick"]['ask'][0])
+        return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):

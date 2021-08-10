@@ -22,4 +22,4 @@ class Ticker():  # pylint: disable=too-few-public-methods
 
     def to_json(self):
         ''' method for convertingt to Json '''
-        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+        return json.dumps(self, default=lambda o: o.__dict__, indent=4)

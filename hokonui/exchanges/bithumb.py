@@ -23,7 +23,10 @@ class BitThumb(Base):
     @classmethod
     def _current_price_extractor(cls, data):
         ''' Method for extracting current price '''
-        return (float(apply_format(data['data'].get('min_price'))) + float(apply_format(data['data'].get('max_price')))) / 2
+
+        min_price = float(apply_format(data['data'].get('min_price')))
+        max_price = float(apply_format(data['data'].get('max_price')))
+        return (min_price + max_price) / 2
 
     @classmethod
     def _current_bid_extractor(cls, data):
@@ -75,7 +78,10 @@ class BitThumb(Base):
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         ''' Method for retrieving last price '''
-        url = cls.PRICE_URL if hasattr(cls, 'PRICE_URL') and cls.PRICE_URL is not None else cls.TICKER_URL
+        if hasattr(cls, 'PRICE_URL') and cls.PRICE_URL is not None:
+            url = cls.PRICE_URL
+        else:
+            url = cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_price_extractor(data)
 

@@ -78,7 +78,7 @@ def guard(url, ccy):
     print("URL ", url)
     if ccy:
         if '%' not in url:
-            raise ValueError("URL %s does not have placeholder for ccy %s " % (url, ccy))
+            raise ValueError("URL %s does not have place for ccy %s " % (url, ccy))
     else:
         if '%' in url:
             raise ValueError("URL %s should have a currency value supplied" % url)
