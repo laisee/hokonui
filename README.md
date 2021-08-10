@@ -12,8 +12,6 @@ Forked from <https://github.com/dursk/bitcoin-price-api>
 
 [![Semgrep](https://github.com/laisee/hokonui/actions/workflows/semgrep.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/semgrep.yml)
 
-[![Semgrep](https://github.com/laisee/hokonui/actions/workflows/semgrep-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/semgrep-analysis.yml)
-
 
 ## Exchanges included
 - BTC-E
