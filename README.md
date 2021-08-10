@@ -10,8 +10,6 @@ Forked from <https://github.com/dursk/bitcoin-price-api>
 
 [![Codacy Security Scan](https://github.com/laisee/hokonui/actions/workflows/codacy-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/codacy-analysis.yml)
 
-[![Veracode Static Analysis Pipeline Scan](https://github.com/laisee/hokonui/actions/workflows/veracode-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/veracode-analysis.yml)
-
 [![Semgrep](https://github.com/laisee/hokonui/actions/workflows/semgrep-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/semgrep-analysis.yml)
 
 
