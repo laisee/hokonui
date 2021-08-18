@@ -7,9 +7,7 @@ Forked from <https://github.com/dursk/bitcoin-price-api>
 [![OSSAR](https://github.com/laisee/hokonui/actions/workflows/ossar-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/ossar-analysis.yml)
 [![SL Scan](https://github.com/laisee/hokonui/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/shiftleft-analysis.yml)
 [![DevSkim](https://github.com/laisee/hokonui/actions/workflows/devskim-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/devskim-analysis.yml)
-
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/cf037d2688d24eb5917e4797af7199b6)](https://www.codacy.com/gh/laisee/hokonui/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laisee/hokonui&amp;utm_campaign=Badge_Grade)
-
 [![Semgrep](https://github.com/laisee/hokonui/actions/workflows/semgrep.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/semgrep.yml)
 
 
