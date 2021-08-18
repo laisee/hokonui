@@ -3,6 +3,7 @@ Python library for querying Bitcoin exchange tickers, order books.
 
 Forked from <https://github.com/dursk/bitcoin-price-api>
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6c1ebe5910254c7a913167ff1b46b072)](https://app.codacy.com/gh/laisee/hokonui?utm_source=github.com&utm_medium=referral&utm_content=laisee/hokonui&utm_campaign=Badge_Grade_Settings)
 [![CodeQL](https://github.com/laisee/hokonui/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/codeql-analysis.yml)
 [![OSSAR](https://github.com/laisee/hokonui/actions/workflows/ossar-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/ossar-analysis.yml)
 [![SL Scan](https://github.com/laisee/hokonui/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/laisee/hokonui/actions/workflows/shiftleft-analysis.yml)
