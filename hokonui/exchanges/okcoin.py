@@ -11,25 +11,28 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 class OKCoin(Base):
     """Class for testing OkCoin API"""
 
-    TICKER_URL = "https://www.okcoin.com/api/spot/v3/instruments/BTC-USDT/ticker"
-    ORDER_BOOK_URL = "https://www.okcoin.com/api/spot/v3/instruments/BTC-USDT/book?size=5&depth=0.2"
+    API_VERSION = "v5"
+    BASE_URL = "https://www.okcoin.com"
+    TICKER_URL = f"{BASE_URL}/api/{API_VERSION}/market/ticker?instId=BTC-USD"
+    ORDER_BOOK_URL = f"{BASE_URL}/api/{API_VERSION}/market/books?instId=BTC-USD"
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return apply_format(data["last"])
+        return apply_format(data["data"][0]["askPx"])
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return apply_format(data["bid"])
+        return apply_format(data["data"][0]["bidPx"])
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return apply_format(data["ask"])
+        print(data)
+        return apply_format(data["data"][0]["askPx"])
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        bid = apply_format(data["bid"])
-        ask = apply_format(data["ask"])
+        bid = apply_format(data["data"][0]["bidPx"])
+        ask = apply_format(data["data"][0]["askPx"])
         return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
@@ -39,14 +42,14 @@ class OKCoin(Base):
         asks = {}
         buymax = 0
         sellmax = 0
-        for level in data["bids"]:
+        for level in data["data"][0]["bids"]:
             if buymax > max_qty:
                 pass
             else:
                 bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
             buymax = buymax + float(level[1])
 
-        for level in data["asks"]:
+        for level in data["data"][0]["asks"]:
             if sellmax > max_qty:
                 pass
             else:

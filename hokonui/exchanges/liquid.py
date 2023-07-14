@@ -24,16 +24,16 @@ class Liquid(Base):
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return apply_format(data.get("market_bid"))
+        return apply_format(data.get("last_traded_price"))
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return apply_format(data.get("market_ask"))
+        return apply_format(data.get("last_traded_price"))
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        bid = apply_format(data.get("market_bid"))
-        ask = apply_format(data.get("market_ask"))
+        bid = apply_format(data.get("last_traded_price"))
+        ask = apply_format(data.get("last_traded_price"))
         return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod

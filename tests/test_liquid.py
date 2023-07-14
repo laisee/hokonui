@@ -2,10 +2,8 @@
 
 import json
 from sys import path
+import pytest
 from unittest import TestCase
-
-import nose
-from nose.tools import ok_
 
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.liquid import Liquid as liquid
@@ -38,28 +36,28 @@ class TestLiquid(TestCase):
     def test_name(cls):
         """{0}.{1}"""
 
-        ok_(liquid.NAME == cls.__name__.replace("Test", ""))
+        assert liquid.NAME == cls.__name__.replace("Test", "")
 
     @classmethod
     @docparams(liquid.__name__, "price")
     def test_price(cls):
         """{0}.{1}"""
 
-        ok_(float(liquid.get_current_price(base.CCY_DEFAULT)) > 0.00)
+        assert float(liquid.get_current_price(base.CCY_DEFAULT)) > 0.00
 
     @classmethod
     @docparams(liquid.__name__, "bid")
     def test_bid(cls):
         """{0}.{1}"""
 
-        ok_(float(liquid.get_current_bid(base.CCY_DEFAULT)) > 0.00)
+        assert float(liquid.get_current_bid(base.CCY_DEFAULT)) > 0.00
 
     @classmethod
     @docparams(liquid.__name__, "ask")
     def test_ask(cls):
         """{0}.{1}"""
 
-        ok_(float(liquid.get_current_ask(base.CCY_DEFAULT)) > 0.00)
+        assert float(liquid.get_current_ask(base.CCY_DEFAULT)) > 0.00
 
     @classmethod
     @docparams(liquid.__name__, "ticker")
@@ -67,23 +65,24 @@ class TestLiquid(TestCase):
         """{0}.{1}"""
 
         data = json.loads(liquid.get_current_ticker(base.CCY_DEFAULT))
-        ok_(data["pair"] == base.CCY_DEFAULT, "shd be '%s'" % base.CCY_DEFAULT)
-        ok_(float(data["ask"]) > 0.00, "ask should not be empty")
-        ok_(float(data["bid"]) > 0.00, "bid should not be empty")
-        ok_(float(data["bid"]) <= float(data["ask"]), "bid should be < ask")
-        ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
+        assert data["pair"] == base.CCY_DEFAULT, "shd be '%s'" % base.CCY_DEFAULT
+        assert float(data["ask"]) > 0.00, "ask should not be empty"
+        assert float(data["bid"]) > 0.00, "bid should not be empty"
+        assert float(data["bid"]) <= float(data["ask"]), "bid should be < ask"
+        assert float(data["timestamp"]) > 0, "Timestamp should be > zero"
 
     @classmethod
     @docparams(liquid.__name__, "orders")
+    @pytest.mark.skip("Order book not available to public")
     def test_orders(cls):
         """{0}.{1}"""
 
         ccy_id = cls.ccy_to_id(base.CCY_DEFAULT)
         orders = liquid.get_current_orders(ccy_id)
-        ok_(len(orders["asks"]) > 0, "Asks array should not be empty")
-        ok_(len(orders["bids"]) > 0, "Bids array should not be empty")
-        ok_(orders["source"] == "Liquid", "Source should be 'Liquid'")
-        ok_(float(orders["timestamp"]) > 0, "Timestamp should be > zero")
+        assert len(orders["asks"]) > 0, "Asks array should not be empty"
+        assert len(orders["bids"]) > 0, "Bids array should not be empty"
+        assert orders["source"] == "Liquid", "Source should be 'Liquid'"
+        assert float(orders["timestamp"]) > 0, "Timestamp should be > zero"
 
     @staticmethod
     def ccy_to_id(ccy):

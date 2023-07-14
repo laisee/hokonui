@@ -1,8 +1,6 @@
 """ Module for testing Coindesk API """
 # pylint: disable=duplicate-code, line-too-long
 
-import pandas
-
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.utils.helpers import apply_format, get_response
 

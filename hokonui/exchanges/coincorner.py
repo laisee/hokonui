@@ -14,27 +14,27 @@ class Coinfloor(Base):
 
     """
 
-    TICKER_URL = "https://webapi.coinfloor.co.uk:8090/bist/XBT/%s/ticker/"
+    TICKER_URL = "https://api.coincorner.com/api/Ticker?Coin=BTC&Currency=%s"
     ORDER_BOOK_URL = "https://webapi.coinfloor.co.uk:8090/bist/XBT/%s/order_book/"
     NAME = "Coinfloor"
     CCY_DEFAULT = "GBP"
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return apply_format(data.get("last"))
+        return apply_format(data.get("LastPrice"))
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return apply_format(data.get("bid"))
+        return apply_format(data.get("BidHigh"))
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return apply_format(data.get("ask"))
+        return apply_format(data.get("LastPrice"))
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        bid = apply_format(data.get("bid"))
-        ask = apply_format(data.get("ask"))
+        bid = apply_format(data.get("BidHigh"))
+        ask = apply_format(data.get("LastPrice"))
         return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod

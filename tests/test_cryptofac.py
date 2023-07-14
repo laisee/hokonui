@@ -4,9 +4,6 @@ import json
 from sys import path
 from unittest import TestCase
 
-import nose
-from nose.tools import ok_
-
 from hokonui.exchanges.cryptofac import CryptoFacility as cfc
 from hokonui.utils.helpers import docstring_parameter as docparams
 
@@ -39,28 +36,28 @@ class TestCryptoFacility(TestCase):
     def test_name(cls):
         """{0}.{1}"""
 
-        ok_(cfc.NAME == cls.__name__.replace("Test", ""))
+        assert cfc.NAME == cls.__name__.replace("Test", "")
 
     @classmethod
     @docparams(cfc.__name__, "price")
     def test_price(cls):
         """{0}.{1}"""
 
-        ok_(float(cfc.get_current_price()) > 0.00)
+        assert float(cfc.get_current_price()) > 0.00
 
     @classmethod
     @docparams(cfc.__name__, "bid")
     def test_bid(cls):
         """{0}.{1}"""
 
-        ok_(float(cfc.get_current_bid()) > 0.00)
+        assert float(cfc.get_current_bid()) > 0.00
 
     @classmethod
     @docparams(cfc.__name__, "ask")
     def test_ask(cls):
         """{0}.{1}"""
 
-        ok_(float(cfc.get_current_ask()) > 0.00)
+        assert float(cfc.get_current_ask()) > 0.00
 
     @classmethod
     @docparams(cfc.__name__, "ticker")
@@ -68,11 +65,11 @@ class TestCryptoFacility(TestCase):
         """{0}.{1}"""
 
         data = json.loads(cfc.get_current_ticker())
-        ok_(data["pair"] == cfc.CCY_DEFAULT, "shd be '%s'" % cfc.CCY_DEFAULT)
-        ok_(float(data["ask"]) > 0.00, "ask shd not be empty")
-        ok_(float(data["bid"]) > 0.00, "bid shd not be empty")
-        ok_(float(data["bid"]) <= float(data["ask"]), "bid shd be <= ask")
-        ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
+        assert data["pair"] == cfc.CCY_DEFAULT, "shd be '%s'" % cfc.CCY_DEFAULT
+        assert float(data["ask"]) > 0.00, "ask shd not be empty"
+        assert float(data["bid"]) > 0.00, "bid shd not be empty"
+        assert float(data["bid"]) <= float(data["ask"]), "bid shd be <= ask"
+        assert float(data["timestamp"]) > 0, "Timestamp should be > zero"
 
     @classmethod
     @docparams(cfc.__name__, "orders")
@@ -80,11 +77,11 @@ class TestCryptoFacility(TestCase):
         """{0}.{1}"""
 
         orders = cfc.get_current_orders(cls.SYMBOL)
-        # ok_(len(orders["asks"]) > 0, "Asks array shd not be empty")
-        # ok_(len(orders["bids"]) > 0, "Bids array shd not be empty")
-        ok_(orders["source"] == "CryptoFacility", "Src shd = 'CryptoFacility'")
-        ok_(float(orders["timestamp"]) > 0, "Timestamp shd be > zero")
+        # assert len(orders["asks"]) > 0, "Asks array shd not be empty"
+        # assert len(orders["bids"]) > 0, "Bids array shd not be empty"
+        assert orders["source"] == "CryptoFacility", "Src shd = 'CryptoFacility'"
+        assert float(orders["timestamp"]) > 0, "Timestamp shd be > zero"
 
 
 if __name__ == "__main__":
-    nose.runmodule()
+    pass
