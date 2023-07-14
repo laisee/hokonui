@@ -1,19 +1,19 @@
-''' Module for testing Kraken API '''
+""" Module for testing Kraken API """
 # pylint: disable=duplicate-code, line-too-long
 
 import time
+
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
-from hokonui.utils.helpers import apply_format
-from hokonui.utils.helpers import apply_format_level
+from hokonui.utils.helpers import apply_format, apply_format_level
 
 
 class Kraken(Base):
-    ''' Class for testing Kraken API '''
+    """Class for testing Kraken API"""
 
-    TICKER_URL = 'https://api.kraken.com/0/public/Ticker?pair=xbtusd'
-    ORDER_BOOK_URL = 'https://api.kraken.com/0/public/Depth?pair=XBTUSD&count=100'
-    NAME = 'Kraken'
+    TICKER_URL = "https://api.kraken.com/0/public/Ticker?pair=xbtusd"
+    ORDER_BOOK_URL = "https://api.kraken.com/0/public/Depth?pair=XBTUSD&count=100"
+    NAME = "Kraken"
 
     @classmethod
     def _current_price_extractor(cls, data):
@@ -52,16 +52,14 @@ class Kraken(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level[0])] = "{:.8f}".format(
-                    float(level[1]))
+                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
                 buymax = buymax + float(level[1])
 
         for level in data["result"][pair]["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level[0])] = "{:.8f}".format(
-                    float(level[1]))
+                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
                 sellmax = sellmax + float(level[1])
         orders["source"] = "Kraken"
         orders["bids"] = bids

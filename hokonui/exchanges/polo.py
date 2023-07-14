@@ -1,20 +1,21 @@
-''' Module for testing Poloniex API '''
+""" Module for testing Poloniex API """
 # pylint: disable=duplicate-code, line-too-long
 
 import time
+
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 
 class Poloniex(Base):
-    '''
+    """
     Class for Poloniex API
 
-    '''
+    """
 
-    TICKER_URL = 'https://poloniex.com/public?command=returnTicker'
-    ORDER_BOOK_URL = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=%s&depth=10'
+    TICKER_URL = "https://poloniex.com/public?command=returnTicker"
+    ORDER_BOOK_URL = "https://poloniex.com/public?command=returnOrderBook&currencyPair=%s&depth=10"
     CCY_DEFAULT = "USDT_BTC"
     NAME = "Poloniex"
 
@@ -48,16 +49,14 @@ class Poloniex(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level[0])] = "{:.8f}".format(
-                    float(level[1]))
+                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
             buymax = buymax + float(level[1])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level[0])] = "{:.8f}".format(
-                    float(level[1]))
+                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
             sellmax = sellmax + float(level[1])
 
         orders["source"] = cls.NAME

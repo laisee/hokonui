@@ -1,1 +1,1 @@
-''' Module for testing Hokonui API '''
+""" Module for testing Hokonui API """

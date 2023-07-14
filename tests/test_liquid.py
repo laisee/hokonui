@@ -1,68 +1,70 @@
-''' module for testing liquid n API '''
+""" module for testing liquid n API """
 
 import json
 from sys import path
 from unittest import TestCase
-from nose.tools import ok_
+
 import nose
+from nose.tools import ok_
+
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.liquid import Liquid as liquid
 from hokonui.utils.helpers import docstring_parameter as docparams
 
-
-LIBPATH = '../hokonui'
+LIBPATH = "../hokonui"
 if LIBPATH not in path:
     path.append(LIBPATH)
 
 
 class TestLiquid(TestCase):
-    ''' Class for testing Liquid API '''
+    """Class for testing Liquid API"""
+
     @classmethod
-    @docparams(liquid.__name__, 'setup')
+    @docparams(liquid.__name__, "setup")
     def setup(cls):
-        ''' {0}.{1} '''
+        """{0}.{1}"""
 
-        print(__name__, ': TestClass.setup_class() ----------')
+        print(__name__, ": TestClass.setup_class() ----------")
 
     @classmethod
-    @docparams(liquid.__name__, 'teardown')
+    @docparams(liquid.__name__, "teardown")
     def teardown(cls):
-        ''' {0}.{1} '''
+        """{0}.{1}"""
 
-        print(__name__, ': TestClass.teardown_class() -------')
+        print(__name__, ": TestClass.teardown_class() -------")
 
     @classmethod
-    @docparams(liquid.__name__, 'name')
+    @docparams(liquid.__name__, "name")
     def test_name(cls):
-        ''' {0}.{1} '''
+        """{0}.{1}"""
 
-        ok_(liquid.NAME == cls.__name__.replace('Test', ''))
+        ok_(liquid.NAME == cls.__name__.replace("Test", ""))
 
     @classmethod
-    @docparams(liquid.__name__, 'price')
+    @docparams(liquid.__name__, "price")
     def test_price(cls):
-        ''' {0}.{1} '''
+        """{0}.{1}"""
 
         ok_(float(liquid.get_current_price(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(liquid.__name__, 'bid')
+    @docparams(liquid.__name__, "bid")
     def test_bid(cls):
-        ''' {0}.{1} '''
+        """{0}.{1}"""
 
         ok_(float(liquid.get_current_bid(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(liquid.__name__, 'ask')
+    @docparams(liquid.__name__, "ask")
     def test_ask(cls):
-        ''' {0}.{1} '''
+        """{0}.{1}"""
 
         ok_(float(liquid.get_current_ask(base.CCY_DEFAULT)) > 0.00)
 
     @classmethod
-    @docparams(liquid.__name__, 'ticker')
+    @docparams(liquid.__name__, "ticker")
     def test_ticker(cls):
-        ''' {0}.{1} '''
+        """{0}.{1}"""
 
         data = json.loads(liquid.get_current_ticker(base.CCY_DEFAULT))
         ok_(data["pair"] == base.CCY_DEFAULT, "shd be '%s'" % base.CCY_DEFAULT)
@@ -72,9 +74,9 @@ class TestLiquid(TestCase):
         ok_(float(data["timestamp"]) > 0, "Timestamp should be > zero")
 
     @classmethod
-    @docparams(liquid.__name__, 'orders')
+    @docparams(liquid.__name__, "orders")
     def test_orders(cls):
-        ''' {0}.{1} '''
+        """{0}.{1}"""
 
         ccy_id = cls.ccy_to_id(base.CCY_DEFAULT)
         orders = liquid.get_current_orders(ccy_id)
@@ -85,33 +87,33 @@ class TestLiquid(TestCase):
 
     @staticmethod
     def ccy_to_id(ccy):
-        ''' static method for converting CCY string to ID value '''
+        """static method for converting CCY string to ID value"""
 
         ccyid = -1
-        if ccy == 'USD':
+        if ccy == "USD":
             ccyid = 1
-        elif ccy == 'EUR':
+        elif ccy == "EUR":
             ccyid = 3
-        elif ccy == 'JPY':
+        elif ccy == "JPY":
             ccyid = 5
-        elif ccy == 'SGD':
+        elif ccy == "SGD":
             ccyid = 7
-        elif ccy == 'HKD':
+        elif ccy == "HKD":
             ccyid = 9
-        elif ccy == 'IDR':
+        elif ccy == "IDR":
             ccyid = 11
-        elif ccy == 'AUD':
+        elif ccy == "AUD":
             ccyid = 13
-        elif ccy == 'PHP':
+        elif ccy == "PHP":
             ccyid = 15
-        elif ccy == 'CNY':
+        elif ccy == "CNY":
             ccyid = 17
-        elif ccy == 'INR':
+        elif ccy == "INR":
             ccyid = 18
         else:
             raise ValueError("Invalid Currency : %s " % ccy)
         return ccyid
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     nose.runmodule()

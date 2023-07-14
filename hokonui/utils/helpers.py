@@ -1,17 +1,18 @@
-''' Module containing helper methods '''
+""" Module containing helper methods """
 # pylint: disable=duplicate-code, line-too-long
 
 import json
 import sys
-import traceback
 import time
+import traceback
 from datetime import datetime
 from decimal import Decimal
+
 import requests
 
 
 def docstring_parameter(*sub):
-    ''' Method for managing params '''
+    """Method for managing params"""
 
     def dec(obj):
         obj.__doc__ = obj.__doc__.format(*sub)
@@ -20,32 +21,32 @@ def docstring_parameter(*sub):
     return dec
 
 
-def apply_format(value, precision='.5f'):
-    ''' Method for applying formats '''
+def apply_format(value, precision=".5f"):
+    """Method for applying formats"""
 
     return format(Decimal(value), precision)
 
 
-def apply_format_level(value, precision='.2f'):
-    ''' Method for applying format levels '''
+def apply_format_level(value, precision=".2f"):
+    """Method for applying format levels"""
 
     return format(Decimal(value), precision)
 
 
 def get_datetime():
-    ''' Method for generating datetime value '''
+    """Method for generating datetime value"""
 
-    return datetime.now().strftime('%Y-%m-%d %h:%m:%s')
+    return datetime.now().strftime("%Y-%m-%d %h:%m:%s")
 
 
 def get_timestamp():
-    ''' Method for calculating UTC timestamps '''
+    """Method for calculating UTC timestamps"""
 
     return time.mktime(time.gmtime())
 
 
 def get_response(url, ccy, params=None, body=None, header=None):
-    ''' Method for executing API requests '''
+    """Method for executing API requests"""
 
     guard(url, ccy)
     if ccy:
@@ -66,19 +67,19 @@ def get_response(url, ccy, params=None, body=None, header=None):
         rsp = response.json()
     except requests.ConnectionError as cex:
         print("Exception during request %s : %s " % (url, cex))
-        print('-' * 60)
+        print("-" * 60)
         traceback.print_exc(file=sys.stdout)
-        print('-' * 60)
+        print("-" * 60)
     return rsp
 
 
 def guard(url, ccy):
-    ''' Method for checking inputs '''
+    """Method for checking inputs"""
 
     print("URL ", url)
     if ccy:
-        if '%' not in url:
+        if "%" not in url:
             raise ValueError("URL %s does not have place for ccy %s " % (url, ccy))
     else:
-        if '%' in url:
+        if "%" in url:
             raise ValueError("URL %s should have a currency value supplied" % url)

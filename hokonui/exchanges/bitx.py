@@ -1,35 +1,36 @@
-''' Module for testing BitX API '''
+""" Module for testing BitX API """
 # pylint: disable=duplicate-code, line-too-long
 
 import time
+
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format, apply_format_level
 
 
 class BitX(Base):
-    ''' Class for testing BitX API '''
+    """Class for testing BitX API"""
 
-    TICKER_URL = 'https://api.mybitx.com/api/1/ticker?pair=XBT%s'
-    ORDER_BOOK_URL = 'https://api.mybitx.com/api/1/orderbook?pair=XBT%s'
-    NAME = 'BitX'
+    TICKER_URL = "https://api.mybitx.com/api/1/ticker?pair=XBT%s"
+    ORDER_BOOK_URL = "https://api.mybitx.com/api/1/orderbook?pair=XBT%s"
+    NAME = "BitX"
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return apply_format(data.get('last_trade'))
+        return apply_format(data.get("last_trade"))
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return apply_format(data.get('bid'))
+        return apply_format(data.get("bid"))
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return apply_format(data.get('ask'))
+        return apply_format(data.get("ask"))
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        bid = apply_format(data.get('bid'))
-        ask = apply_format(data.get('ask'))
+        bid = apply_format(data.get("bid"))
+        ask = apply_format(data.get("ask"))
         return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
@@ -43,16 +44,14 @@ class BitX(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format(
-                    float(level["volume"]))
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["volume"]))
             buymax = buymax + float(level["volume"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format(
-                    float(level["volume"]))
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["volume"]))
             sellmax = sellmax + float(level["volume"])
 
         orders["source"] = cls.NAME

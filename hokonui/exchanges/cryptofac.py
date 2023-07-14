@@ -1,17 +1,18 @@
-''' Module for testing Cryptofacility API '''
+""" Module for testing Cryptofacility API """
 # pylint: disable=duplicate-code, line-too-long
 import time
+
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
 from hokonui.utils.helpers import apply_format
 
 
 class CryptoFacility(Base):
-    ''' Class for testing Cryptofac API '''
+    """Class for testing Cryptofac API"""
 
-    TICKER_URL = 'https://www.cryptofacilities.com/derivatives/api/v3/tickers/'
-    ORDER_BOOK_URL = 'https://www.cryptofacilities.com/derivatives/api/v3/orderbook?symbol=%s'
-    NAME = 'CryptoFacility'
+    TICKER_URL = "https://www.cryptofacilities.com/derivatives/api/v3/tickers/"
+    ORDER_BOOK_URL = "https://www.cryptofacilities.com/derivatives/api/v3/orderbook?symbol=%s"
+    NAME = "CryptoFacility"
 
     @classmethod
     def _current_price_extractor(cls, data):
@@ -32,8 +33,7 @@ class CryptoFacility(Base):
     def _current_ticker_extractor(cls, data):
         ask = data["tickers"][5]["ask"]
         bid = data["tickers"][5]["bid"]
-        return Ticker(cls.CCY_DEFAULT, apply_format(bid),
-                      apply_format(ask)).to_json()
+        return Ticker(cls.CCY_DEFAULT, apply_format(bid), apply_format(ask)).to_json()
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=3):
