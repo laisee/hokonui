@@ -1,4 +1,3 @@
-
 import json
 from sys import path
 from unittest import TestCase

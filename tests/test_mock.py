@@ -41,24 +41,30 @@ class TestMock(TestCase):
     def test_price(cls):
         """{0}.{1}"""
 
-        assert float(mock.get_current_price(mock.CCY_DEFAULT)) == mock.MOCK_PRICE, "Invalid price: should be %s, was %s" % (mock.MOCK_PRICE, mock.get_current_price(mock.CCY_DEFAULT))
-        
+        assert float(mock.get_current_price(mock.CCY_DEFAULT)) == mock.MOCK_PRICE, "Invalid price: should be %s, was %s" % (
+            mock.MOCK_PRICE,
+            mock.get_current_price(mock.CCY_DEFAULT),
+        )
 
     @classmethod
     @docparams(mock.__name__, "bid")
     def test_bid(cls):
         """{0}.{1}"""
 
-        assert float(mock.get_current_bid(mock.CCY_DEFAULT)) == mock.MOCK_PRICE, "Invalid price: should be %s, was %s" % (mock.MOCK_PRICE, mock.get_current_price(mock.CCY_DEFAULT))
-        
+        assert float(mock.get_current_bid(mock.CCY_DEFAULT)) == mock.MOCK_PRICE, "Invalid price: should be %s, was %s" % (
+            mock.MOCK_PRICE,
+            mock.get_current_price(mock.CCY_DEFAULT),
+        )
 
     @classmethod
     @docparams(mock.__name__, "ask")
     def test_ask(cls):
         """{0}.{1}"""
 
-        assert float(mock.get_current_ask(mock.CCY_DEFAULT)) == mock.MOCK_PRICE, "Invalid price: should be %s, was %s" % (mock.MOCK_PRICE, mock.get_current_price(mock.CCY_DEFAULT))
-        
+        assert float(mock.get_current_ask(mock.CCY_DEFAULT)) == mock.MOCK_PRICE, "Invalid price: should be %s, was %s" % (
+            mock.MOCK_PRICE,
+            mock.get_current_price(mock.CCY_DEFAULT),
+        )
 
     @classmethod
     @docparams(mock.__name__, "ticker")
@@ -80,13 +86,17 @@ class TestMock(TestCase):
         orders = mock.get_current_orders(mock.CCY_DEFAULT)
         # test Asks
         assert len(orders["asks"]) > 0, "Asks array should not be empty"
-        assert float(orders["asks"]["1.23"]) == float(mock.MOCK_ASK_QTY), "Asks order qty @ price 1.23 should be %s, was %s" % (mock.MOCK_ASK_QTY, orders["asks"]["1.23"])
-        
+        assert float(orders["asks"]["1.23"]) == float(mock.MOCK_ASK_QTY), "Asks order qty @ price 1.23 should be %s, was %s" % (
+            mock.MOCK_ASK_QTY,
+            orders["asks"]["1.23"],
+        )
 
         # test Bids
         assert len(orders["bids"]) > 0, "Bids array should not be empty"
-        assert float(orders["bids"]["1.23"]) == float(mock.MOCK_BID_QTY), "Bids order qty @ price 1.23 should be %s, was %s" % (mock.MOCK_BID_QTY, orders["asks"]["1.23"])
-        
+        assert float(orders["bids"]["1.23"]) == float(mock.MOCK_BID_QTY), "Bids order qty @ price 1.23 should be %s, was %s" % (
+            mock.MOCK_BID_QTY,
+            orders["asks"]["1.23"],
+        )
 
         # test other data
         assert orders["source"] == "Mock", "Source should be 'Mock', was %s" % orders["source"]

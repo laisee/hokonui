@@ -2,10 +2,11 @@
 
 import json
 from sys import path
-import pytest
 from unittest import TestCase
 
-from hokonui.exchanges.coincorner  import Coinfloor as cfl
+import pytest
+
+from hokonui.exchanges.coincorner import Coinfloor as cfl
 from hokonui.utils.helpers import docstring_parameter as docparams
 
 LIBPATH = "../hokonui"

@@ -2,8 +2,9 @@
 
 import json
 from sys import path
-import pytest
 from unittest import TestCase
+
+import pytest
 
 from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.liquid import Liquid as liquid
