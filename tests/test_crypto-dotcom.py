@@ -4,7 +4,6 @@ import json
 from sys import path
 from unittest import TestCase
 
-from hokonui.exchanges.base import Exchange as base
 from hokonui.exchanges.cryptodotcom import CryptoDotCom as cdc
 from hokonui.utils.helpers import docstring_parameter as docparams
 
