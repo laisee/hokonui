@@ -17,21 +17,20 @@ Forked from <https://github.com/dursk/bitcoin-price-api>
 - Bitstamp
 - BitX
 - CoinBase
+- CoinCorner
 - Huobi
-- itBit
 - OKCoin
 - Liquid
  ... and more 
 
 ## Data Providers
 - CoinDesk
-- Coinapult
+- Coinapault
 
 ## Features
 - single API for multiple exchanges, data providers
 - full set of tests using nose tool
 - MIT license
-- active development
 - minimal code dependencies
  
 ## TODO
@@ -40,4 +39,3 @@ Forked from <https://github.com/dursk/bitcoin-price-api>
 - add buy/sell order handling
 - add account management (balances, funding, withdrawals, addresses)
 - add library to PyPi
-- add support for Python 3
