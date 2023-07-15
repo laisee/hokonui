@@ -77,4 +77,4 @@ class TestBitFlyer(TestCase):
 
 
 if __name__ == "__main__":
-    nose.runmodule()
+    pass
