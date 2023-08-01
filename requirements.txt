@@ -5,3 +5,4 @@ requests>=2.20.0
 requests-futures==0.9.5
 pytest==6.2.4
 flake8==3.9
+certifi==2023.7.22
