@@ -14,9 +14,9 @@ class Binance(Base):
     ASK_URL = None
     BID_URL = None
     PRICE_URL = None
-    TICKER_URL = "https://api.binance.com/api/v3/ticker/bookTicker?symbol=BTC%s"
-    ORDER_BOOK_URL = "https://api.binance.com/api/v1/depth?symbol=BTC%s"
-    PRICE_URL = "https://api.binance.com/api/v3/ticker/price?symbol=BTC%s"
+    TICKER_URL = "https://api.binance.us/api/v3/ticker/bookTicker?symbol=BTC%s"
+    ORDER_BOOK_URL = "https://api.binance.us/api/v1/depth?symbol=BTC%s"
+    PRICE_URL = "https://api.binance.us/api/v3/ticker/price?symbol=BTC%s"
     NAME = "Binance"
     CCY_DEFAULT = "USDT"
 
