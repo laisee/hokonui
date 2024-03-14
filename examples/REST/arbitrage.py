@@ -13,6 +13,7 @@ if __package__ is None:
     sys.path.append(path.dirname(path.dirname(path.dirname(path.abspath(__file__)))))
     # import Bitfinex library
     from hokonui.exchanges.bitfinex import Bitfinex as bfx
+
     # import ITBIT library
     from hokonui.exchanges.itbit import Itbit as itb
 else:

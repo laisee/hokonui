@@ -18,11 +18,17 @@ def main():
     print("-" * 20)
     bid = bfx.get_current_bid("USD")
     ask = bfx.get_current_ask("USD")
-    print("Bitfinex : Bid %s Ask %s" % (format(Decimal(bid), ".2f"), format(Decimal(ask), ".2f")))
+    print(
+        "Bitfinex : Bid %s Ask %s"
+        % (format(Decimal(bid), ".2f"), format(Decimal(ask), ".2f"))
+    )
     print("-" * 20)
     bid = itb.get_current_bid("USD")
     ask = itb.get_current_ask("USD")
-    print("ITBit: Bid %s Ask %s" % (format(Decimal(bid), ".2f"), format(Decimal(ask), ".2f")))
+    print(
+        "ITBit: Bid %s Ask %s"
+        % (format(Decimal(bid), ".2f"), format(Decimal(ask), ".2f"))
+    )
     print("-" * 20)
 
 

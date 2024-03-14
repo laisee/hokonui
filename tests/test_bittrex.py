@@ -2,6 +2,7 @@
 
 
 import json
+import pytest
 from sys import path
 from unittest import TestCase
 
@@ -30,30 +31,35 @@ class TestBittrex(TestCase):
 
     @classmethod
     @docparams(btx.__name__, "name")
+    @pytest.mark.skip(reason="skipped because bittrex closing down")
     def test_name(cls):
         """{0}.{1}"""
         assert btx.NAME == cls.__name__.replace("Test", "")
 
     @classmethod
     @docparams(btx.__name__, "price")
+    @pytest.mark.skip(reason="skipped because bittrex closing down")
     def test_price(cls):
         """{0}.{1}"""
         assert float(btx.get_current_price(btx.CCY_DEFAULT)) > 0.00
 
     @classmethod
     @docparams(btx.__name__, "bid")
+    @pytest.mark.skip(reason="skipped because bittrex closing down")
     def test_bid(cls):
         """{0}.{1}"""
         assert float(btx.get_current_bid(btx.CCY_DEFAULT)) > 0.00
 
     @classmethod
     @docparams(btx.__name__, "ask")
+    @pytest.mark.skip(reason="skipped because bittrex closing down")
     def test_ask(cls):
         """{0}.{1}"""
         assert float(btx.get_current_ask(btx.CCY_DEFAULT)) > 0.00
 
     @classmethod
     @docparams(btx.__name__, "ticker")
+    @pytest.mark.skip(reason="skipped because bittrex closing down")
     def test_ticker(cls):
         """{0}.{1}"""
         data = json.loads(btx.get_current_ticker(btx.CCY_DEFAULT))
@@ -65,6 +71,7 @@ class TestBittrex(TestCase):
 
     @classmethod
     @docparams(btx.__name__, "orders")
+    @pytest.mark.skip(reason="skipped because bittrex closing down")
     def test_orders(cls):
         """{0}.{1}"""
         orders = btx.get_current_orders(btx.CCY_DEFAULT)

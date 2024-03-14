@@ -1,6 +1,7 @@
 """ module for testing Poloniex API """
 
 import json
+import pytest
 from sys import path
 from unittest import TestCase
 
@@ -30,6 +31,7 @@ class TestPoloniex(TestCase):
 
     @classmethod
     @docparams(polo.__name__, "name")
+    @pytest.mark.skip(reason="skipped because 403 eror due to cloudflare")
     def test_name(cls):
         """{0}.{1}"""
 
@@ -37,6 +39,7 @@ class TestPoloniex(TestCase):
 
     @classmethod
     @docparams(polo.__name__, "price")
+    @pytest.mark.skip(reason="skipped because 403 eror due to cloudflare")
     def test_price(cls):
         """{0}.{1}"""
 
@@ -44,6 +47,7 @@ class TestPoloniex(TestCase):
 
     @classmethod
     @docparams(polo.__name__, "bid")
+    @pytest.mark.skip(reason="skipped because 403 eror due to cloudflare")
     def test_bid(cls):
         """{0}.{1}"""
 
@@ -51,6 +55,7 @@ class TestPoloniex(TestCase):
 
     @classmethod
     @docparams(polo.__name__, "ask")
+    @pytest.mark.skip(reason="skipped because 403 eror due to cloudflare")
     def test_ask(cls):
         """{0}.{1}"""
 
@@ -58,6 +63,7 @@ class TestPoloniex(TestCase):
 
     @classmethod
     @docparams(polo.__name__, "ticker")
+    @pytest.mark.skip(reason="skipped because 403 eror due to cloudflare")
     def test_ticker(cls):
         """{0}.{1}"""
 
@@ -70,6 +76,7 @@ class TestPoloniex(TestCase):
 
     @classmethod
     @docparams(polo.__name__, "orders")
+    @pytest.mark.skip(reason="skipped because 403 eror due to cloudflare")
     def test_orders(cls):
         """{0}.{1}"""
 

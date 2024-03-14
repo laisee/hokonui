@@ -34,7 +34,9 @@ class TestGateIo(TestCase):
     def test_name(cls):
         """{0}.{1}"""
 
-        assert gate.NAME == cls.__name__.replace("Test", ""), "Name should be '%s', was '%s'" % (gate.NAME, cls.__name__)
+        assert gate.NAME == cls.__name__.replace(
+            "Test", ""
+        ), "Name should be '%s', was '%s'" % (gate.NAME, cls.__name__)
 
     @classmethod
     @docparams(gate.__name__, "price")

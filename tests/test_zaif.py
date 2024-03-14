@@ -62,7 +62,10 @@ class TestZaif(TestCase):
         """{0}.{1}"""
 
         data = json.loads(zf.get_current_ticker(zf.CCY_DEFAULT))
-        assert data["pair"] == zf.CCY_DEFAULT, "Ccy should be '%s', was '%s'" % (zf.CCY_DEFAULT, data["pair"])
+        assert data["pair"] == zf.CCY_DEFAULT, "Ccy should be '%s', was '%s'" % (
+            zf.CCY_DEFAULT,
+            data["pair"],
+        )
         assert float(data["ask"]) > 0.00, "ask should not be empty"
         assert float(data["bid"]) > 0.00, "bid should not be empty"
         assert float(data["bid"]) <= float(data["ask"]), "bid should be < ask"

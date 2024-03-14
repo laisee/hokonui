@@ -60,7 +60,9 @@ class TestBitThumb(TestCase):
         assert data["pair"] == bth.CCY_DEFAULT, "shd be '%s'" % bth.CCY_DEFAULT
         assert float(data["ask"]) > 0.00, "ask should not be empty"
         assert float(data["bid"]) > 0.00, "bid should not be empty"
-        assert float(data["bid"]) <= float(data["ask"]), "bid ({}) shd be < ask ({})".format(data["bid"], data["ask"])
+        assert float(data["bid"]) <= float(
+            data["ask"]
+        ), "bid ({}) shd be < ask ({})".format(data["bid"], data["ask"])
         assert float(data["timestamp"]) > 0, "Timestamp should be > zero"
 
     @classmethod

@@ -34,7 +34,9 @@ class TestBinance(TestCase):
     def test_name(cls):
         """{0}.{1}"""
 
-        assert bn.NAME == cls.__name__.replace("Test", ""), "Name should be '%s', was '%s'" % (bn.NAME, cls.__name__)
+        assert bn.NAME == cls.__name__.replace(
+            "Test", ""
+        ), "Name should be '%s', was '%s'" % (bn.NAME, cls.__name__)
 
     @classmethod
     @docparams(bn.__name__, "price")

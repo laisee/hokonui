@@ -49,14 +49,18 @@ class BitFlyer(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["size"])
+                )
             buymax = buymax + float(level["size"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["size"]))
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["size"])
+                )
             sellmax = sellmax + float(level["size"])
 
         orders["source"] = cls.NAME

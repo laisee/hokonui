@@ -38,13 +38,18 @@ class TestCoinbase(TestCase):
     @docparams(cba.__name__, "price")
     def test_price(cls):
         """{0}.{1}"""
-        assert float(cba.get_current_price(base.CCY_DEFAULT, None, None, cba.HEADER)) > 0.00
+        assert (
+            float(cba.get_current_price(base.CCY_DEFAULT, None, None, cba.HEADER))
+            > 0.00
+        )
 
     @classmethod
     @docparams(cba.__name__, "bid")
     def test_bid(cls):
         """{0}.{1}"""
-        assert float(cba.get_current_bid(base.CCY_DEFAULT, None, None, cba.HEADER)) > 0.00
+        assert (
+            float(cba.get_current_bid(base.CCY_DEFAULT, None, None, cba.HEADER)) > 0.00
+        )
 
     @classmethod
     @docparams(cba.__name__, "ask")

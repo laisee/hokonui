@@ -17,7 +17,7 @@ class Gemini(Base):
     TICKER_URL = "https://api.gemini.com/v2/ticker/%s"
     ORDER_BOOK_URL = "https://api.sandbox.gemini.com/v1/book/%s"
     NAME = "Gemini"
-    CCY_DEFAULT = "btcusd"
+    CCY_DEFAULT = "dotusd"
 
     @classmethod
     def _current_price_extractor(cls, data):
@@ -38,24 +38,25 @@ class Gemini(Base):
         return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
-    def _current_orders_extractor(cls, data, max_qty=3):
+    def _current_orders_extractor(cls, data, max_qty=10):
         orders = {}
         bids = {}
         asks = {}
         buymax = 0
         sellmax = 0
+        print(data)
         for level in data["bids"]:
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
+                bids[apply_format_level(level["price"])] = "{:.8f}".format( float(level["amount"]))
             buymax = buymax + float(level["amount"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
+                asks[apply_format_level(level["price"])] = "{:.8f}".format( float(level["amount"]))
             sellmax = sellmax + float(level["amount"])
 
         orders["source"] = cls.NAME

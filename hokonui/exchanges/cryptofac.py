@@ -11,7 +11,9 @@ class CryptoFacility(Base):
     """Class for testing Cryptofac API"""
 
     TICKER_URL = "https://www.cryptofacilities.com/derivatives/api/v3/tickers/"
-    ORDER_BOOK_URL = "https://www.cryptofacilities.com/derivatives/api/v3/orderbook?symbol=%s"
+    ORDER_BOOK_URL = (
+        "https://www.cryptofacilities.com/derivatives/api/v3/orderbook?symbol=%s"
+    )
     NAME = "CryptoFacility"
 
     @classmethod

@@ -35,7 +35,9 @@ class TestHitBTC(TestCase):
     def test_name(cls):
         """{0}.{1}"""
 
-        assert hit.NAME == cls.__name__.replace("Test", ""), "Name should be '%s', was '%s'" % (hit.NAME, cls.__name__)
+        assert hit.NAME == cls.__name__.replace(
+            "Test", ""
+        ), "Name should be '%s', was '%s'" % (hit.NAME, cls.__name__)
 
     @classmethod
     @docparams(hit.__name__, "price")

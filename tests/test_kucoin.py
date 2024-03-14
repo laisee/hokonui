@@ -34,7 +34,9 @@ class TestKucoin(TestCase):
     def test_name(cls):
         """{0}.{1}"""
 
-        assert kuc.NAME == cls.__name__.replace("Test", ""), "Name should be '%s', was '%s'" % (kuc.NAME, cls.__name__)
+        assert kuc.NAME == cls.__name__.replace(
+            "Test", ""
+        ), "Name should be '%s', was '%s'" % (kuc.NAME, cls.__name__)
 
     @classmethod
     @docparams(kuc.__name__, "price")

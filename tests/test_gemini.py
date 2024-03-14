@@ -73,8 +73,8 @@ class TestGemini(TestCase):
         """{0}.{1}"""
 
         orders = g2.get_current_orders(g2.CCY_DEFAULT)
-        assert len(orders["asks"]) > 0, "Asks array should not be empty"
-        assert len(orders["bids"]) > 0, "Bids array should not be empty"
+        assert len(orders["asks"]) > 0, "Asks array should not be empty for currency {}".format(g2.CCY_DEFAULT)
+        assert len(orders["bids"]) > 0, "Bids array should not be empty for currency {}".format(g2.CCY_DEFAULT)
         assert orders["source"] == "Gemini", "Source should be 'Gemini'"
         assert float(orders["timestamp"]) > 0, "Timestamp should be > zero"
 

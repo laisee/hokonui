@@ -55,14 +55,18 @@ class Mock:
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"], ".2f")] = "{:.8f}".format(float(level["quantity"]))
+                asks[apply_format_level(level["price"], ".2f")] = "{:.8f}".format(
+                    float(level["quantity"])
+                )
             buymax = buymax + float(level["quantity"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"], ".2f")] = "{:.8f}".format(float(level["quantity"]))
+                bids[apply_format_level(level["price"], ".2f")] = "{:.8f}".format(
+                    float(level["quantity"])
+                )
             sellmax = sellmax + float(level["quantity"])
 
         orders["source"] = cls.NAME
@@ -142,7 +146,10 @@ class Mock:
     @classmethod
     def get_current_orders(cls, ccy=None, params=None, body=None, max_qty=5):
         """Method for retrieving current orders"""
-        data = {"asks": [{"price": cls.MOCK_PRICE, "quantity": "12.99"}], "bids": [{"price": cls.MOCK_PRICE, "quantity": "12.88"}]}
+        data = {
+            "asks": [{"price": cls.MOCK_PRICE, "quantity": "12.99"}],
+            "bids": [{"price": cls.MOCK_PRICE, "quantity": "12.88"}],
+        }
         if ccy is not None:
             print(ccy)
         if params is not None:

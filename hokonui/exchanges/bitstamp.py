@@ -46,14 +46,18 @@ class Bitstamp(Base):
                 if buymax > max_qty:
                     continue
                 else:
-                    bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                    bids[apply_format_level(level[0])] = "{:.8f}".format(
+                        float(level[1])
+                    )
                 buymax = buymax + float(level[1])
 
             for level in data["asks"]:
                 if sellmax > max_qty:
                     continue
                 else:
-                    asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
+                    asks[apply_format_level(level[0])] = "{:.8f}".format(
+                        float(level[1])
+                    )
                 sellmax = sellmax + float(level[1])
 
         orders["source"] = cls.NAME

@@ -49,14 +49,18 @@ class BitThumb(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["quantity"]))
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["quantity"])
+                )
             buymax = buymax + float(level["quantity"])
 
         for level in data["data"]["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["quantity"]))
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(
+                    float(level["quantity"])
+                )
             sellmax = sellmax + float(level["quantity"])
 
         orders["source"] = cls.NAME
@@ -85,14 +89,22 @@ class BitThumb(Base):
     @classmethod
     def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         """Method for retrieving current bid price"""
-        url = cls.BID_URL if hasattr(cls, "BID_URL") and cls.BID_URL is not None else cls.TICKER_URL
+        url = (
+            cls.BID_URL
+            if hasattr(cls, "BID_URL") and cls.BID_URL is not None
+            else cls.TICKER_URL
+        )
         data = get_response(url, ccy, params, body, header)
         return cls._current_bid_extractor(data)
 
     @classmethod
     def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         """Method for retrieving current ask price"""
-        url = cls.ASK_URL if hasattr(cls, "ASK_URL") and cls.ASK_URL is not None else cls.TICKER_URL
+        url = (
+            cls.ASK_URL
+            if hasattr(cls, "ASK_URL") and cls.ASK_URL is not None
+            else cls.TICKER_URL
+        )
         data = get_response(url, ccy, params, body, header)
         return cls._current_ask_extractor(data)
 
