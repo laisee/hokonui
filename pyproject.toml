@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-requests = "^2.31.0"
+requests = "^2.32.0"
 requests-futures = "^1.0.1"
 
 [tool.black]
@@ -21,7 +21,7 @@ skip = [".gitignore", ".dockerignore"]
 extend_skip = [".md", ".json"]
 
 [tool.poetry.group.dev.dependencies]
-requests = "^2.31.0"
+requests = "^2.32.0"
 pytest = "^7.4.0"
 coverage = "^7.2.7"
 flake8 = "^6.0.0"
