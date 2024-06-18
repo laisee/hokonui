@@ -40,28 +40,28 @@ class TestPoloniex(TestCase):
     def test_price(cls):
         """{0}.{1}"""
 
-        assert float(polo.get_current_price()) > 0.00
+        assert float(polo.get_current_price(polo.CCY_DEFAULT)) > 0.00
 
     @classmethod
     @docparams(polo.__name__, "bid")
     def test_bid(cls):
         """{0}.{1}"""
 
-        assert float(polo.get_current_bid()) > 0.00
+        assert float(polo.get_current_bid(polo.CCY_DEFAULT)) > 0.00
 
     @classmethod
     @docparams(polo.__name__, "ask")
     def test_ask(cls):
         """{0}.{1}"""
 
-        assert float(polo.get_current_ask()) > 0.00
+        assert float(polo.get_current_ask(polo.CCY_DEFAULT)) > 0.00
 
     @classmethod
     @docparams(polo.__name__, "ticker")
     def test_ticker(cls):
         """{0}.{1}"""
 
-        data = json.loads(polo.get_current_ticker())
+        data = json.loads(polo.get_current_ticker(polo.CCY_DEFAULT))
         assert data["pair"] == polo.CCY_DEFAULT, "shd be '%s'" % polo.CCY_DEFAULT
         assert float(data["ask"]) > 0.00, "ask should not be empty"
         assert float(data["bid"]) > 0.00, "bid should not be empty"
