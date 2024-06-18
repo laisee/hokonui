@@ -1,7 +1,6 @@
 """ module for testing Poloniex API """
 
 import json
-import pytest
 from sys import path
 from unittest import TestCase
 

@@ -17,7 +17,7 @@ class Poloniex(Base):
 
     CCY_DEFAULT = "USDT"
     NAME = "Poloniex"
-    TICKER_URL = f"https://api.poloniex.com/markets/BTC_{CCY_DEFAULT}/ticker24h"
+    TICKER_URL = f"https://api.poloniex.com/markets/BTC_%s/ticker24h"
     ORDER_BOOK_URL = f"https://api.poloniex.com/markets/BTC_%s/orderBook"
 
     @classmethod
@@ -47,13 +47,13 @@ class Poloniex(Base):
         float_numbers = [float(num) for num in data["bids"]]
 
         # Create tuples of consecutive numbers
-        buys = [(float_numbers[i], float_numbers[i + 1]) for i in range(0, len(float_numbers), 2)]
+        bids = [(float_numbers[i], float_numbers[i + 1]) for i in range(0, len(float_numbers), 2)]
 
         float_numbers = [float(num) for num in data["asks"]]
         asks = [(float_numbers[i], float_numbers[i + 1]) for i in range(0, len(float_numbers), 2)]
 
         orders["source"] = cls.NAME
-        orders["bids"] = buys
+        orders["bids"] = bids
         orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))
         return orders
