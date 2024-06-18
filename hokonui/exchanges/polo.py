@@ -6,7 +6,7 @@ import time
 
 from hokonui.exchanges.base import Exchange as Base
 from hokonui.models.ticker import Ticker
-from hokonui.utils.helpers import apply_format, apply_format_level
+from hokonui.utils.helpers import apply_format
 
 
 class Poloniex(Base):
@@ -44,19 +44,16 @@ class Poloniex(Base):
         asks = {}
         bids = {}
 
-        buymax = 0
-        sellmax = 0
-
         float_numbers = [float(num) for num in data["bids"]]
 
         # Create tuples of consecutive numbers
-        buy_orders = [(float_numbers[i], float_numbers[i + 1]) for i in range(0, len(float_numbers), 2)]
+        buys = [(float_numbers[i], float_numbers[i + 1]) for i in range(0, len(float_numbers), 2)]
 
         float_numbers = [float(num) for num in data["asks"]]
-        sell_orders = [(float_numbers[i], float_numbers[i + 1]) for i in range(0, len(float_numbers), 2)]
+        asks = [(float_numbers[i], float_numbers[i + 1]) for i in range(0, len(float_numbers), 2)]
 
         orders["source"] = cls.NAME
-        orders["bids"] = buy_orders
-        orders["asks"] = sell_orders
+        orders["bids"] = buys
+        orders["asks"] = asks
         orders["timestamp"] = str(int(time.time()))
         return orders
