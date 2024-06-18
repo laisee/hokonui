@@ -17,8 +17,8 @@ class Poloniex(Base):
 
     CCY_DEFAULT = "USDT"
     NAME = "Poloniex"
-    TICKER_URL = f"https://api.poloniex.com/markets/BTC_%s/ticker24h"
-    ORDER_BOOK_URL = f"https://api.poloniex.com/markets/BTC_%s/orderBook"
+    TICKER_URL = "https://api.poloniex.com/markets/BTC_%s/ticker24h"
+    ORDER_BOOK_URL = "https://api.poloniex.com/markets/BTC_%s/orderBook"
 
     @classmethod
     def _current_price_extractor(cls, data):
