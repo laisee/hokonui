@@ -1,4 +1,5 @@
 """ Module containing helper methods """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import json

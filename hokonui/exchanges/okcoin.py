@@ -1,4 +1,5 @@
 """ Module for testing OkCoin API """
+
 # pylint: disable=fixme, line-too-long
 
 import time

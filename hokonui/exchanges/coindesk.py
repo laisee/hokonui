@@ -1,4 +1,5 @@
 """ Module for testing Coindesk API """
+
 # pylint: disable=duplicate-code, line-too-long
 
 from hokonui.exchanges.base import Exchange as Base
@@ -31,9 +32,7 @@ class CoinDesk(Base):
         """Method for extracting ask price"""
 
     @classmethod
-    def get_current_price(
-        cls, ccy=Base.CCY_DEFAULT, params=None, body=None, header=None
-    ):
+    def get_current_price(cls, ccy=Base.CCY_DEFAULT, params=None, body=None, header=None):
         """Method for retrieving current price"""
         url = "https://api.coindesk.com/v1/bpi/currentprice/%s.json"
         data = get_response(url, ccy)
@@ -52,8 +51,5 @@ class CoinDesk(Base):
         """Method for retrieving historical data"""
         if not end:
             end = start
-        url = (
-            "https://api.coindesk.com/v1/bpi/historical/close.json"
-            "?start={}&end={}".format(start, end)
-        )
+        url = "https://api.coindesk.com/v1/bpi/historical/close.json" "?start={}&end={}".format(start, end)
         return get_response(url, None)

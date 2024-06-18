@@ -1,4 +1,5 @@
 """ Module for testing Poloniex API """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import time

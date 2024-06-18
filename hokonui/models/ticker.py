@@ -1,4 +1,5 @@
 """ Ticker module """
+
 import json
 import time
 

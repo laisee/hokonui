@@ -1,4 +1,5 @@
 """ Module for testing Huobi API """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import time

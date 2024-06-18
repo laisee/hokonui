@@ -1,4 +1,5 @@
 """ Module for Exchange base class """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import time
@@ -55,18 +56,14 @@ class Mock:
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"], ".2f")] = "{:.8f}".format(
-                    float(level["quantity"])
-                )
+                asks[apply_format_level(level["price"], ".2f")] = "{:.8f}".format(float(level["quantity"]))
             buymax = buymax + float(level["quantity"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"], ".2f")] = "{:.8f}".format(
-                    float(level["quantity"])
-                )
+                bids[apply_format_level(level["price"], ".2f")] = "{:.8f}".format(float(level["quantity"]))
             sellmax = sellmax + float(level["quantity"])
 
         orders["source"] = cls.NAME

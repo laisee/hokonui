@@ -1,4 +1,5 @@
 """ Module for Exchange base class """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import time
@@ -48,18 +49,14 @@ class Bittrex(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["rate"])] = "{:.8f}".format(
-                    float(level["quantity"])
-                )
+                asks[apply_format_level(level["rate"])] = "{:.8f}".format(float(level["quantity"]))
             buymax = buymax + float(level["quantity"])
 
         for level in data["ask"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["rate"])] = "{:.8f}".format(
-                    float(level["quantity"])
-                )
+                bids[apply_format_level(level["rate"])] = "{:.8f}".format(float(level["quantity"]))
             sellmax = sellmax + float(level["quantity"])
 
         orders["source"] = cls.NAME
@@ -78,33 +75,21 @@ class Bittrex(Base):
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         """Method for retrieving last price"""
-        url = (
-            cls.PRICE_URL
-            if hasattr(cls, "PRICE_URL") and cls.PRICE_URL is not None
-            else cls.TICKER_URL
-        )
+        url = cls.PRICE_URL if hasattr(cls, "PRICE_URL") and cls.PRICE_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_price_extractor(data)
 
     @classmethod
     def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         """Method for retrieving current bid price"""
-        url = (
-            cls.BID_URL
-            if hasattr(cls, "BID_URL") and cls.BID_URL is not None
-            else cls.TICKER_URL
-        )
+        url = cls.BID_URL if hasattr(cls, "BID_URL") and cls.BID_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_bid_extractor(data)
 
     @classmethod
     def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         """Method for retrieving current ask price"""
-        url = (
-            cls.ASK_URL
-            if hasattr(cls, "ASK_URL") and cls.ASK_URL is not None
-            else cls.TICKER_URL
-        )
+        url = cls.ASK_URL if hasattr(cls, "ASK_URL") and cls.ASK_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_ask_extractor(data)
 

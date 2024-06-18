@@ -1,4 +1,5 @@
 """ Module for testing Coinfloor API """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import time

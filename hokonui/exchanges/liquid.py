@@ -1,4 +1,5 @@
 """ Module for testing liquid API """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import time

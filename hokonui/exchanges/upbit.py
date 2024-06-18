@@ -1,4 +1,5 @@
 """ Module for testing Upbit API """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import time
@@ -48,18 +49,14 @@ class Upbit(Base):
             if buymax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["ask_price"])] = "{:.8f}".format(
-                    float(level["ask_size"])
-                )
+                asks[apply_format_level(level["ask_price"])] = "{:.8f}".format(float(level["ask_size"]))
             buymax = buymax + float(level["ask_size"])
 
         for level in data[0]["orderbook_units"]:
             if sellmax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["bid_price"])] = "{:.8f}".format(
-                    float(level["bid_size"])
-                )
+                bids[apply_format_level(level["bid_price"])] = "{:.8f}".format(float(level["bid_size"]))
             sellmax = sellmax + float(level["bid_size"])
 
         orders["source"] = cls.NAME

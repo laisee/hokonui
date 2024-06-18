@@ -1,4 +1,5 @@
 """ Module for testing Coinapult API """
+
 # pylint: disable=duplicate-code, line-too-long
 
 from hokonui.exchanges.base import Exchange as Base

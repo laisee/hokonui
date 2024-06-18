@@ -1,4 +1,5 @@
 """ Module for testing Gemini API """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import time
@@ -49,14 +50,14 @@ class Gemini(Base):
             if buymax > max_qty:
                 pass
             else:
-                bids[apply_format_level(level["price"])] = "{:.8f}".format( float(level["amount"]))
+                bids[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
             buymax = buymax + float(level["amount"])
 
         for level in data["asks"]:
             if sellmax > max_qty:
                 pass
             else:
-                asks[apply_format_level(level["price"])] = "{:.8f}".format( float(level["amount"]))
+                asks[apply_format_level(level["price"])] = "{:.8f}".format(float(level["amount"]))
             sellmax = sellmax + float(level["amount"])
 
         orders["source"] = cls.NAME

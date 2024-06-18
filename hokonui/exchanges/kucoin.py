@@ -1,4 +1,5 @@
 """ Module for Exchange base class """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import time
@@ -15,9 +16,7 @@ class Kucoin(Base):
     BID_URL = None
     PRICE_URL = None
     TICKER_URL = "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-USDT"
-    ORDER_BOOK_URL = (
-        "https://api.kucoin.com/api/v1/market/orderbook/level2_20?symbol=BTC-USDT"
-    )
+    ORDER_BOOK_URL = "https://api.kucoin.com/api/v1/market/orderbook/level2_20?symbol=BTC-USDT"
     NAME = "Kucoin"
     CCY_DEFAULT = "USDT"
 
@@ -74,33 +73,21 @@ class Kucoin(Base):
     @classmethod
     def get_current_price(cls, ccy=None, params=None, body=None, header=None):
         """Method for retrieving last price"""
-        url = (
-            cls.PRICE_URL
-            if hasattr(cls, "PRICE_URL") and cls.PRICE_URL is not None
-            else cls.TICKER_URL
-        )
+        url = cls.PRICE_URL if hasattr(cls, "PRICE_URL") and cls.PRICE_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_price_extractor(data)
 
     @classmethod
     def get_current_bid(cls, ccy=None, params=None, body=None, header=None):
         """Method for retrieving current bid price"""
-        url = (
-            cls.BID_URL
-            if hasattr(cls, "BID_URL") and cls.BID_URL is not None
-            else cls.TICKER_URL
-        )
+        url = cls.BID_URL if hasattr(cls, "BID_URL") and cls.BID_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_bid_extractor(data)
 
     @classmethod
     def get_current_ask(cls, ccy=None, params=None, body=None, header=None):
         """Method for retrieving current ask price"""
-        url = (
-            cls.ASK_URL
-            if hasattr(cls, "ASK_URL") and cls.ASK_URL is not None
-            else cls.TICKER_URL
-        )
+        url = cls.ASK_URL if hasattr(cls, "ASK_URL") and cls.ASK_URL is not None else cls.TICKER_URL
         data = get_response(url, ccy, params, body, header)
         return cls._current_ask_extractor(data)
 

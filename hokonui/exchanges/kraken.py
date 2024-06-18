@@ -1,4 +1,5 @@
 """ Module for testing Kraken API """
+
 # pylint: disable=duplicate-code, line-too-long
 
 import time
