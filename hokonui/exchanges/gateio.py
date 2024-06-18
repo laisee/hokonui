@@ -14,25 +14,26 @@ class GateIo(Base):
     ASK_URL = None
     BID_URL = None
     PRICE_URL = None
-    TICKER_URL = "https://data.gateio.io/api2/1/ticker/btc_%s"
-    ORDER_BOOK_URL = "https://data.gateio.io/api2/1/orderBook/btc_%s"
+    #TICKER_URL = "https://data.gateio.io/api2/1/ticker/btc_%s"
+    TICKER_URL = "https://api.gateio.ws/api/v4/spot/tickers?currency_pair=BTC_%s"
+    ORDER_BOOK_URL = "https://api.gateio.ws/api/v4/spot/order_book?currency_pair=BTC_%s"
     NAME = "GateIo"
     CCY_DEFAULT = "USDT"
 
     @classmethod
     def _current_price_extractor(cls, data):
         """Method for extracting current price"""
-        return apply_format(data.get("last"))
+        return apply_format(data[0]["last"])
 
     @classmethod
     def _current_bid_extractor(cls, data):
         """Method for extracting bid price"""
-        return apply_format(data.get("highestBid"))
+        return apply_format(data[0]["highest_bid"])
 
     @classmethod
     def _current_ask_extractor(cls, data):
         """Method for extracting ask price"""
-        return apply_format(data.get("lowestAsk"))
+        return apply_format(data[0]["lowest_ask"])
 
     @classmethod
     def _current_orders_extractor(cls, data, max_qty=100):
@@ -65,8 +66,8 @@ class GateIo(Base):
     @classmethod
     def _current_ticker_extractor(cls, data):
         """Method for extracting ticker"""
-        bid = apply_format(data.get("highestBid"))
-        ask = apply_format(data.get("lowestAsk"))
+        bid = apply_format(data[0]["highest_bid"])
+        ask = apply_format(data[0]["lowest_ask"])
         return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod

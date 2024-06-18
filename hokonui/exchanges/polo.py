@@ -14,29 +14,27 @@ class Poloniex(Base):
 
     """
 
-    TICKER_URL = "https://poloniex.com/public?command=returnTicker"
-    ORDER_BOOK_URL = (
-        "https://poloniex.com/public?command=returnOrderBook&currencyPair=%s&depth=10"
-    )
-    CCY_DEFAULT = "USDT_BTC"
+    CCY_DEFAULT = "USDT"
     NAME = "Poloniex"
+    TICKER_URL = f"https://api.poloniex.com/markets/BTC_{CCY_DEFAULT}/ticker24h"
+    ORDER_BOOK_URL = f"https://api.poloniex.com/markets/BTC_%s/orderBook"
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return apply_format(str(data[cls.CCY_DEFAULT]["last"]))
+        return apply_format(str(data["bid"]))
 
     @classmethod
     def _current_bid_extractor(cls, data):
-        return apply_format(str(data[cls.CCY_DEFAULT]["highestBid"]))
+        return apply_format(str(data["bid"]))
 
     @classmethod
     def _current_ask_extractor(cls, data):
-        return apply_format(str(data[cls.CCY_DEFAULT]["lowestAsk"]))
+        return apply_format(str(data["ask"]))
 
     @classmethod
     def _current_ticker_extractor(cls, data):
-        ask = apply_format(str(data[cls.CCY_DEFAULT]["last"]))
-        bid = apply_format(str(data[cls.CCY_DEFAULT]["last"]))
+        ask = apply_format(str(data["ask"]))
+        bid = apply_format(str(data["bid"]))
         return Ticker(cls.CCY_DEFAULT, bid, ask).to_json()
 
     @classmethod
@@ -47,22 +45,17 @@ class Poloniex(Base):
 
         buymax = 0
         sellmax = 0
-        for level in data["bids"]:
-            if buymax > max_qty:
-                pass
-            else:
-                asks[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            buymax = buymax + float(level[1])
 
-        for level in data["asks"]:
-            if sellmax > max_qty:
-                pass
-            else:
-                bids[apply_format_level(level[0])] = "{:.8f}".format(float(level[1]))
-            sellmax = sellmax + float(level[1])
+        float_numbers = [float(num) for num in data["bids"]]
+
+        # Create tuples of consecutive numbers
+        buy_orders = [(float_numbers[i], float_numbers[i + 1]) for i in range(0, len(float_numbers), 2)]
+
+        float_numbers = [float(num) for num in data["asks"]]
+        sell_orders = [(float_numbers[i], float_numbers[i + 1]) for i in range(0, len(float_numbers), 2)]
 
         orders["source"] = cls.NAME
-        orders["bids"] = bids
-        orders["asks"] = asks
+        orders["bids"] = buy_orders
+        orders["asks"] = sell_orders
         orders["timestamp"] = str(int(time.time()))
         return orders
