@@ -31,10 +31,3 @@ jobs:
           echo "Pylint score is less than 8, failing the build."
           exit 1
         fi
-
-    - name: Upload pylint results
-      if: failure()
-      with:
-        name: pylint-output
-        path: pylint-output.txt
-      run: echo "$pylint_output" > pylint-output.txt
