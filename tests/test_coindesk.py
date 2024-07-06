@@ -3,6 +3,7 @@
 
 from sys import path
 from unittest import TestCase
+import unittest
 
 from hokonui.exchanges.coindesk import CoinDesk as coin
 from hokonui.utils.helpers import docstring_parameter as docparams
@@ -31,7 +32,7 @@ class TestCoinDesk(TestCase):
 
     @classmethod
     @docparams(coin.__name__, "past_price")
-    @pytest.mark.skip(reason="fails when tested on github")
+    @unittest.skip("demonstrating skipping")
     def test_past_price(cls):
         """{0}.{1}"""
 
