@@ -34,7 +34,6 @@ jobs:
 
     - name: Upload pylint results
       if: failure()
-      uses: actions/upload-artifact@v2
       with:
         name: pylint-output
         path: pylint-output.txt
