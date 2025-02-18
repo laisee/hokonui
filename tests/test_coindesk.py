@@ -3,7 +3,6 @@
 
 from sys import path
 from unittest import TestCase
-import unittest
 
 from hokonui.exchanges.coindesk import CoinDesk as coin
 from hokonui.utils.helpers import docstring_parameter as docparams
