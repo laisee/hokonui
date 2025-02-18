@@ -12,17 +12,17 @@ from hokonui.utils.helpers import apply_format, apply_format_level
 class CoinBase(Base):
     """Class for testing Coinbase API"""
 
-    TICKER_URL = "https://api.pro.coinbase.com/products/BTC-%s/ticker"
-    PRICE_URL = "https://api.coinbase.com/v2/prices/BTC-%s/spot"
-    BID_URL = "https://api.pro.coinbase.com/products/BTC-%s/ticker"
-    ASK_URL = "https://api.pro.coinbase.com/products/BTC-%s/ticker"
-    ORDER_BOOK_URL = "https://api.pro.coinbase.com/products/BTC-%s/book"
+    TICKER_URL     = "https://api.exchange.coinbase.com/products/btc-%s/ticker"
+    PRICE_URL      = "https://api.exchange.coinbase.com/products/btc-%s/ticker"
+    BID_URL        = "https://api.exchange.coinbase.com/products/btc-%s/ticker"
+    ASK_URL        = "https://api.exchange.coinbase.com/products/btc-%s/ticker"
+    ORDER_BOOK_URL = "https://api.exchange.coinbase.com/products/btc-%s/book"
     HEADER = None
     NAME = "Coinbase"
 
     @classmethod
     def _current_price_extractor(cls, data):
-        return apply_format(data["data"]["amount"])
+        return apply_format(data["price"])
 
     @classmethod
     def _current_bid_extractor(cls, data):

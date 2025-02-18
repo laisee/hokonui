@@ -34,22 +34,21 @@ class CoinDesk(Base):
     @classmethod
     def get_current_price(cls, ccy=Base.CCY_DEFAULT, params=None, body=None, header=None):
         """Method for retrieving current price"""
-        url = "https://api.coindesk.com/v1/bpi/currentprice/%s.json"
+        url = "https://data-api.coindesk.com/spot/v1/latest/tick?market=coinbase&instruments=BTC-%s&apply_mapping=true"
         data = get_response(url, ccy)
-        price = data["bpi"][ccy]["rate_float"]
+        price = data["Data"][f"BTC-{ccy}"]["PRICE"]
         return apply_format(price)
 
     @classmethod
-    def get_past_price(cls, date):
+    def get_past_price(cls, ccy=Base.CCY_DEFAULT):
         """Method for retrieving past price"""
-        data = cls._get_historical_data(date)
-        price = data["bpi"][date]
+        url = "https://data-api.coindesk.com/spot/v1/latest/tick?market=coinbase&instruments=BTC-%s&apply_mapping=true"
+        data = get_response(url,ccy)
+        price = data["Data"][f"BTC-{ccy}"]["MOVING_7_DAY_OPEN"]
         return apply_format(str(price))
 
     @classmethod
-    def _get_historical_data(cls, start, end=None):
+    def get_historical_data(cls, timestamp, ccy=Base.CCY_DEFAULT):
         """Method for retrieving historical data"""
-        if not end:
-            end = start
-        url = "https://api.coindesk.com/v1/bpi/historical/close.json" "?start={}&end={}".format(start, end)
-        return get_response(url, None)
+        url = f"https://data-api.coindesk.com/spot/v1/historical/days?market=kraken&instrument=BTC-%s&limit=10&aggregate=1&fill=true&apply_mapping=true&response_format=JSON&to_ts={timestamp}"
+        return get_response(url, ccy)
